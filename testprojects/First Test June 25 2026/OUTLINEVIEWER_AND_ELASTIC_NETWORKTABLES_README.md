@@ -1,73 +1,98 @@
 # Viewing NetworkTables Telemetry with OutlineViewer or Elastic
 
-This project publishes Kiwi drive telemetry through NetworkTables. Use this guide when you want to verify that the robot is actually sending values to the Driver Station laptop.
+> [!IMPORTANT]
+> This guide documents the **macOS workflow** tested with the WPILib 2027 alpha tools.
+>
+> If the WPILib VS Code **Start Tool** command cannot find or launch dashboard tools, use the direct app paths below.
 
-This guide describes the macOS workflow tested with the WPILib 2027 alpha tools. The exact install folder may be different on another computer. In the examples below, replace:
+## Goal
+
+This project uses direct NetworkTables telemetry instead of treating `SmartDashboard` as the main telemetry API.
+
+The goal is for students to see robot data as named tables and topics:
+
+```text
+Robot code -> NetworkTables table -> OutlineViewer or Elastic
+```
+
+That makes the dashboard structure visible and intentional. Instead of publishing everything under `/SmartDashboard`, this project publishes examples under readable tables such as:
+
+```text
+KiwiDriveExample
+TelemetryExample
+```
+
+## Contents
+
+- [Tool Options](#tool-options)
+- [WPILib Install Folder](#wpilib-install-folder)
+- [If WPILib Start Tool Does Not Work](#if-wpilib-start-tool-does-not-work)
+- [Robot Modes and Tables](#robot-modes-and-tables)
+- [Option 1: OutlineViewer](#option-1-outlineviewer)
+- [Option 2: Elastic](#option-2-elastic)
+- [Telemetry Values](#telemetry-values)
+- [Troubleshooting](#troubleshooting)
+
+## Tool Options
+
+| Tool | Best For | What You See |
+| --- | --- | --- |
+| OutlineViewer | Confirming raw NetworkTables values exist | A tree of tables and values |
+| Elastic | Building a student-facing dashboard view | Widgets you can drag onto a grid |
+
+Use **OutlineViewer** when you want the simplest possible check that values are publishing.
+
+Use **Elastic** when you want a nicer dashboard layout for students or driver-station-style viewing.
+
+## WPILib Install Folder
+
+In the examples below, replace:
 
 ```text
 <WPILIB_INSTALL>
 ```
 
-with the folder where WPILib is installed on your machine. For a default user-folder install, that may look like:
+with the folder where WPILib is installed on your machine.
+
+For a default user-folder install on macOS, that may look like:
 
 ```text
 ~/wpilib/2027_alpha5
 ```
 
-The Kiwi drive teleop mode to run is:
-
-```text
-Kiwi Drive + NT Telemetry
-```
-
-The Kiwi drive NetworkTables table to look for is:
-
-```text
-KiwiDriveExample
-```
-
-There is also a telemetry-only teleop mode:
-
-```text
-NT Telemetry Example
-```
-
-That mode publishes joystick numbers, booleans, and strings under:
-
-```text
-TelemetryExample
-```
-
-In OutlineViewer and Elastic, this appears as a tree/table item. You do not type the leading slash from paths like `/KiwiDriveExample/xInput`.
+Do not assume the exact folder is the same for every computer. Use the folder where your WPILib alpha tools were installed.
 
 ## If WPILib Start Tool Does Not Work
 
-Sometimes VS Code's WPILib `Start Tool` command may say it cannot find tools, try to install tools through Gradle, restart, and then still fail. If that loop happens, skip VS Code's tool launcher for this check.
+Sometimes VS Code's WPILib `Start Tool` command may fail to launch tools. In the tested setup, it reported that tools could not be found, tried to resolve or install tools through Gradle, and still did not launch the dashboard tools after restarting VS Code.
 
-Open the dashboard tool directly from the WPILib install folder.
+If that happens, skip the VS Code launcher and open the tools directly.
 
-For OutlineViewer:
+OutlineViewer:
 
 ```text
 <WPILIB_INSTALL>/tools/OutlineViewer.app
 ```
 
-For Elastic:
+Elastic folder:
 
 ```text
 <WPILIB_INSTALL>/elastic/
 ```
 
-In the working Elastic setup, the `elastic` folder contained:
+Elastic app:
 
 ```text
-Elastic-WPILib-macOS.tar.gz
-elastic_dashboard
+<WPILIB_INSTALL>/elastic/elastic_dashboard
 ```
 
-If `elastic_dashboard` is not present, unpack `Elastic-WPILib-macOS.tar.gz`, then double-click `elastic_dashboard`.
+If `elastic_dashboard` is not present, unpack:
 
-If `OutlineViewer.app` is not present in `tools/`, check the artifacts folder:
+```text
+<WPILIB_INSTALL>/elastic/Elastic-WPILib-macOS.tar.gz
+```
+
+If `OutlineViewer.app` is not present, check:
 
 ```text
 <WPILIB_INSTALL>/tools/artifacts/
@@ -79,18 +104,52 @@ There may be an archive named like:
 OutlineViewer-2027.0.0-alpha-6-osxuniversal.zip
 ```
 
-Unpack that archive only if the app is missing from `tools/`. In the working setup, `tools/OutlineViewer.app` was already available and could be opened directly.
+Unpack the archive only if the app is missing from `tools/`.
 
-## Connecting OutlineViewer
+## Robot Modes and Tables
 
-1. Open `OutlineViewer.app`.
-2. In the menu bar, choose:
+This project includes two NetworkTables examples.
+
+| Driver Station Mode | Purpose | NetworkTables Table |
+| --- | --- | --- |
+| `Kiwi Drive + NT Telemetry` | Drives the Kiwi robot and publishes drive telemetry | `KiwiDriveExample` |
+| `NT Telemetry Example` | Publishes joystick telemetry only; does not drive the robot | `TelemetryExample` |
+
+In dashboard tools, these usually appear as table names. You do **not** type the leading slash.
+
+For example, look for:
+
+```text
+KiwiDriveExample
+```
+
+not:
+
+```text
+/KiwiDriveExample
+```
+
+## Option 1: OutlineViewer
+
+OutlineViewer is the most direct way to verify that NetworkTables publishing is working.
+
+### Open OutlineViewer
+
+Open:
+
+```text
+<WPILIB_INSTALL>/tools/OutlineViewer.app
+```
+
+### Connect OutlineViewer
+
+In OutlineViewer, open:
 
 ```text
 Options -> Settings
 ```
 
-3. Use these settings:
+Use these settings:
 
 ```text
 Mode: Client
@@ -100,158 +159,34 @@ Network Identity: outlineviewer
 Set Address from DS: checked
 ```
 
-For the tested setup, `Team/IP` was set to the team number configured during robot setup. The example screenshot used:
+For the tested setup, the configured team number was:
 
 ```text
-Team/IP: 666
+666
 ```
 
-Use your own configured team number if it is different.
+Use your own configured team number.
 
-4. Click:
+Click:
 
 ```text
 Apply
 ```
 
-OutlineViewer should connect after applying the settings.
+### View the Tables
 
-## Finding the Kiwi Telemetry
+After the robot code is deployed:
 
-After the robot code is deployed and connected:
-
-1. In Driver Station, select:
-
-```text
-Kiwi Drive + NT Telemetry
-```
-
+1. Select `Kiwi Drive + NT Telemetry` or `NT Telemetry Example` in Driver Station.
 2. Enable TeleOp.
-3. Move the gamepad joysticks.
-4. In OutlineViewer, look in the NetworkTables tree for:
+3. Move the gamepad joysticks or press example buttons.
+4. In OutlineViewer, look under:
 
 ```text
 Transitory Values
 ```
 
-5. Expand the Kiwi drive table:
-
-```text
-KiwiDriveExample
-```
-
-6. You should see values like:
-
-```text
-xInput
-yInput
-rotationInput
-frontLeftOutput
-frontRightOutput
-backOutput
-```
-
-The input values should change as the joysticks move. The output values should change after the Kiwi drive math runs.
-
-## Finding the Telemetry-Only Example
-
-After the robot code is deployed and connected:
-
-1. In Driver Station, select:
-
-```text
-NT Telemetry Example
-```
-
-2. Enable TeleOp.
-3. Move the gamepad joysticks and press the south face button or bumper buttons.
-4. In OutlineViewer, look in the NetworkTables tree for:
-
-```text
-Transitory Values
-```
-
-5. Expand the telemetry table:
-
-```text
-TelemetryExample
-```
-
-6. You should see values like:
-
-```text
-leftX
-leftY
-rightX
-leftTrigger
-rightTrigger
-leftStickMagnitude
-southFaceButton
-leftBumperButton
-rightBumperButton
-leftStickActive
-driveDirectionStatus
-buttonStatus
-```
-
-The number values show joystick axes and triggers. The boolean values show true/false button or stick states. The string values show readable status messages created by simple `if` statements in the teleop code.
-
-## Connecting Elastic
-
-1. Open the WPILib install folder:
-
-```text
-<WPILIB_INSTALL>
-```
-
-2. Open the `elastic` folder.
-3. If needed, unpack:
-
-```text
-Elastic-WPILib-macOS.tar.gz
-```
-
-4. Double-click:
-
-```text
-elastic_dashboard
-```
-
-5. In Elastic, click:
-
-```text
-Settings
-```
-
-6. On the `Network` tab, use the robot/team settings. The tested setup used:
-
-```text
-Team Number: 666
-IP Address Mode: Driver Station
-Target Server: Robot Code
-```
-
-Use your own configured team number if it is different.
-
-7. Confirm that Elastic shows a connected NetworkTables status at the bottom of the window. In the tested setup, Elastic showed:
-
-```text
-Network Tables: Connected (172.30.0.1)
-Team 666
-```
-
-## Adding the Kiwi Telemetry Widget in Elastic
-
-After Elastic is connected and either NetworkTables teleop mode is enabled:
-
-1. Click:
-
-```text
-+ Add Widget
-```
-
-2. Stay on the `Network Tables` tab.
-3. Find:
+5. Expand:
 
 ```text
 KiwiDriveExample
@@ -263,53 +198,128 @@ or:
 TelemetryExample
 ```
 
+The values should update live while TeleOp is enabled.
+
+## Option 2: Elastic
+
+Elastic is better for building a visual dashboard from the NetworkTables values.
+
+### Open Elastic
+
+Open the WPILib install folder:
+
+```text
+<WPILIB_INSTALL>
+```
+
+Then open:
+
+```text
+elastic
+```
+
+If needed, unpack:
+
+```text
+Elastic-WPILib-macOS.tar.gz
+```
+
+Then double-click:
+
+```text
+elastic_dashboard
+```
+
+### Connect Elastic
+
+In Elastic, click:
+
+```text
+Settings
+```
+
+On the `Network` tab, use the robot/team settings.
+
+The tested setup used:
+
+```text
+Team Number: 666
+IP Address Mode: Driver Station
+Target Server: Robot Code
+```
+
+Use your own configured team number.
+
+Elastic should show a connected status at the bottom of the window, such as:
+
+```text
+Network Tables: Connected (172.30.0.1)
+Team 666
+```
+
+### Add a NetworkTables Widget
+
+After Elastic is connected and TeleOp is enabled:
+
+1. Click:
+
+```text
++ Add Widget
+```
+
+2. Stay on the `Network Tables` tab.
+3. Find one of these tables:
+
+```text
+KiwiDriveExample
+TelemetryExample
+```
+
 4. Drag the table onto the main grid.
-5. Elastic should create a widget that shows:
+5. Move the joystick while TeleOp is enabled.
 
-```text
-backOutput
-frontLeftOutput
-frontRightOutput
-rotationInput
-xInput
-yInput
-```
+The widget values should update live.
 
-For `TelemetryExample`, Elastic should show number, boolean, and string values such as:
+## Telemetry Values
 
-```text
-leftX
-southFaceButton
-driveDirectionStatus
-buttonStatus
-```
+### `KiwiDriveExample`
 
-6. Move the joystick while TeleOp is enabled. The displayed values should update live.
+| Value | Type | Meaning |
+| --- | --- | --- |
+| `xInput` | double | Left stick X after deadband |
+| `yInput` | double | Left stick Y after deadband, with forward made positive |
+| `rotationInput` | double | Right stick X after deadband |
+| `frontLeftOutput` | double | Computed throttle sent to motor 3 |
+| `frontRightOutput` | double | Computed throttle sent to motor 1 |
+| `backOutput` | double | Computed throttle sent to motor 2 |
 
-## What These Values Mean
+### `TelemetryExample`
 
-| Value | Meaning |
-| --- | --- |
-| `xInput` | Left stick X after deadband |
-| `yInput` | Left stick Y after deadband, with forward made positive |
-| `rotationInput` | Right stick X after deadband |
-| `frontLeftOutput` | Computed throttle sent to motor 3 |
-| `frontRightOutput` | Computed throttle sent to motor 1 |
-| `backOutput` | Computed throttle sent to motor 2 |
-| `leftStickMagnitude` | Distance of the left stick from center |
-| `southFaceButton` | Whether the south face button is currently pressed |
-| `leftStickActive` | Whether the left stick is far enough from center to count as active |
-| `driveDirectionStatus` | String message describing the left stick direction |
-| `buttonStatus` | String message describing selected button states |
+| Value | Type | Meaning |
+| --- | --- | --- |
+| `leftX` | double | Raw left stick X |
+| `leftY` | double | Left stick Y, with forward made positive |
+| `rightX` | double | Raw right stick X |
+| `leftTrigger` | double | Left trigger axis |
+| `rightTrigger` | double | Right trigger axis |
+| `leftStickMagnitude` | double | Distance of the left stick from center |
+| `southFaceButton` | boolean | Whether the south face button is pressed |
+| `leftBumperButton` | boolean | Whether the left bumper is pressed |
+| `rightBumperButton` | boolean | Whether the right bumper is pressed |
+| `leftStickActive` | boolean | Whether the left stick is far enough from center to count as active |
+| `driveDirectionStatus` | string | A readable message describing the left stick direction |
+| `buttonStatus` | string | A readable message describing selected button states |
 
 ## Troubleshooting
 
-If `KiwiDriveExample` or `TelemetryExample` does not appear:
+If a table does not appear:
 
-- Make sure the code has been deployed after the NetworkTables changes.
-- Make sure Driver Station is running `Kiwi Drive + NT Telemetry` or `NT Telemetry Example`, not the default teleop mode.
-- Make sure TeleOp is enabled. The values are updated from `periodic()`.
-- Move the joysticks so the values change.
-- Reopen `Options -> Settings`, confirm the team number, keep `Set Address from DS` checked, and click `Apply` again.
+- Make sure the latest code has been deployed.
+- Make sure Driver Station is running `Kiwi Drive + NT Telemetry` or `NT Telemetry Example`.
+- Make sure TeleOp is enabled.
+- Move the joysticks so values change.
+- In OutlineViewer, reopen `Options -> Settings`, confirm the team number, keep `Set Address from DS` checked, and click `Apply`.
 - In Elastic, reopen `Settings`, confirm the team number, use `IP Address Mode: Driver Station`, use `Target Server: Robot Code`, and check the bottom status bar for `Network Tables: Connected`.
-- If you are testing a local simulation instead of the real robot/SystemCore connection, try `localhost` in `Team/IP`. For the tested robot setup, the configured team number worked.
+- If you are testing local simulation instead of the real robot/SystemCore connection, try `localhost` in the Team/IP or connection field. For the tested robot setup, the configured team number worked.
+
+If VS Code Start Tool keeps failing, open the dashboard apps directly from `<WPILIB_INSTALL>` instead of spending time in the restart/retry loop.
