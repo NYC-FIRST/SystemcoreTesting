@@ -5,14 +5,16 @@
 package first.robot;
 
 import org.wpilib.driverstation.DefaultUserControls;
+import org.wpilib.networktables.DoublePublisher;
+import org.wpilib.networktables.NetworkTable;
+import org.wpilib.networktables.NetworkTableInstance;
 import org.wpilib.opmode.PeriodicOpMode;
 import org.wpilib.opmode.Teleop;
-import org.wpilib.smartdashboard.SmartDashboard;
 
-@Teleop
-public class FinalKiwiDriveExampleTeleMode extends PeriodicOpMode {
+@Teleop(name = "Kiwi Drive + NT Telemetry")
+public class KiwiDriveExampleWithNetworkTableTelemetryTeleMode extends PeriodicOpMode {
   /*
-   * Final Kiwi drive example for an FTC-style three-wheel Kiwi drivetrain on SystemCore.
+   * Kiwi drive example for an FTC-style three-wheel Kiwi drivetrain on SystemCore.
    *
    * Robot layout used here:
    *
@@ -68,7 +70,78 @@ public class FinalKiwiDriveExampleTeleMode extends PeriodicOpMode {
   private final Robot robot;
   private final DefaultUserControls userControls;
 
-  public FinalKiwiDriveExampleTeleMode(Robot robot, DefaultUserControls userControls) {
+  /*
+   * Telemetry and NetworkTables
+   * ---------------------------
+   * In the FTC SDK, students often use telemetry like this:
+   *
+   *   telemetry.addData("left power", leftPower);
+   *   telemetry.update();
+   *
+   * That sends values from the robot program to the Driver Station screen so humans
+   * can see what the robot is thinking.
+   *
+   * In this SystemCore / FRC-style example, NetworkTables is the shared data layer
+   * used for the same idea. The robot publishes named values, and a dashboard such
+   * as Elastic can display them.
+   *
+   * To view these values with OutlineViewer or Elastic, read:
+   *
+   *   OUTLINEVIEWER_AND_ELASTIC_NETWORKTABLES_README.md
+   *
+   * The structure below creates these dashboard paths:
+   *
+   *   /KiwiDriveExample/xInput
+   *   /KiwiDriveExample/yInput
+   *   /KiwiDriveExample/rotationInput
+   *   /KiwiDriveExample/frontLeftOutput
+   *   /KiwiDriveExample/frontRightOutput
+   *   /KiwiDriveExample/backOutput
+   *
+   * Flow of the NetworkTables pieces:
+   *
+   *   Robot code
+   *       |
+   *       v
+   *   NetworkTableInstance.getDefault()
+   *       |
+   *       v
+   *   Table: "KiwiDriveExample"          -> /KiwiDriveExample
+   *       |
+   *       +-- DoublePublisher "xInput"           -> /KiwiDriveExample/xInput
+   *       +-- DoublePublisher "yInput"           -> /KiwiDriveExample/yInput
+   *       +-- DoublePublisher "rotationInput"    -> /KiwiDriveExample/rotationInput
+   *       +-- DoublePublisher "frontLeftOutput"  -> /KiwiDriveExample/frontLeftOutput
+   *       +-- DoublePublisher "frontRightOutput" -> /KiwiDriveExample/frontRightOutput
+   *       +-- DoublePublisher "backOutput"       -> /KiwiDriveExample/backOutput
+   *       |
+   *       v
+   *   publishTelemetry(...) runs every periodic loop
+   *       |
+   *       v
+   *   Elastic/dashboard reads the newest values
+   *
+   * These fields are created once when the OpMode object is created. Creating the
+   * publishers once keeps periodic() focused on robot behavior and avoids repeatedly
+   * looking up dashboard topics while the robot is driving.
+   */
+  private final NetworkTable kiwiDriveExampleTable =
+      NetworkTableInstance.getDefault().getTable("KiwiDriveExample");
+  private final DoublePublisher xInputPublisher =
+      kiwiDriveExampleTable.getDoubleTopic("xInput").publish();
+  private final DoublePublisher yInputPublisher =
+      kiwiDriveExampleTable.getDoubleTopic("yInput").publish();
+  private final DoublePublisher rotationInputPublisher =
+      kiwiDriveExampleTable.getDoubleTopic("rotationInput").publish();
+  private final DoublePublisher frontLeftOutputPublisher =
+      kiwiDriveExampleTable.getDoubleTopic("frontLeftOutput").publish();
+  private final DoublePublisher frontRightOutputPublisher =
+      kiwiDriveExampleTable.getDoubleTopic("frontRightOutput").publish();
+  private final DoublePublisher backOutputPublisher =
+      kiwiDriveExampleTable.getDoubleTopic("backOutput").publish();
+
+  public KiwiDriveExampleWithNetworkTableTelemetryTeleMode(
+      Robot robot, DefaultUserControls userControls) {
     this.robot = robot;
     this.userControls = userControls;
   }
@@ -127,12 +200,33 @@ public class FinalKiwiDriveExampleTeleMode extends PeriodicOpMode {
     robot.motor1.setThrottle(frontRightThrottle);
     robot.motor2.setThrottle(backThrottle);
 
-    SmartDashboard.putNumber("FinalKiwi/LeftX", x);
-    SmartDashboard.putNumber("FinalKiwi/LeftY", y);
-    SmartDashboard.putNumber("FinalKiwi/RightX", rotation);
-    SmartDashboard.putNumber("FinalKiwi/Motor3FrontLeft", frontLeftThrottle);
-    SmartDashboard.putNumber("FinalKiwi/Motor1FrontRight", frontRightThrottle);
-    SmartDashboard.putNumber("FinalKiwi/Motor2Back", backThrottle);
+    /*
+     * This is the telemetry.update() moment for this example. After the drivetrain
+     * math and motor commands are done, send the newest joystick inputs and motor
+     * outputs to NetworkTables so Elastic can display them.
+     */
+    publishTelemetry(x, y, rotation, frontLeftThrottle, frontRightThrottle, backThrottle);
+  }
+
+  /*
+   * Publish one loop's worth of telemetry.
+   *
+   * The DoublePublisher objects above define where each value goes. Calling set()
+   * here updates the current value at that NetworkTables path.
+   */
+  private void publishTelemetry(
+      double x,
+      double y,
+      double rotation,
+      double frontLeftThrottle,
+      double frontRightThrottle,
+      double backThrottle) {
+    xInputPublisher.set(x);
+    yInputPublisher.set(y);
+    rotationInputPublisher.set(rotation);
+    frontLeftOutputPublisher.set(frontLeftThrottle);
+    frontRightOutputPublisher.set(frontRightThrottle);
+    backOutputPublisher.set(backThrottle);
   }
 
   private static double applyDeadband(double value) {

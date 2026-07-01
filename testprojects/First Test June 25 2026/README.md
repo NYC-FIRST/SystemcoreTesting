@@ -38,6 +38,24 @@ Current project-specific addition:
 | Added drive support | KiwiDrive |
 | Intended target | SystemCore / WPILib robot-style Gradle project |
 
+## NetworkTables Telemetry
+
+The teleop mode `Kiwi Drive + NT Telemetry` publishes joystick inputs and computed Kiwi drive outputs to NetworkTables under:
+
+```text
+KiwiDriveExample
+```
+
+The teleop mode `NT Telemetry Example` is a telemetry-only example. It does not drive the robot; it publishes joystick numbers, booleans, and strings under:
+
+```text
+TelemetryExample
+```
+
+For the exact steps to view those values with OutlineViewer or Elastic, including the workaround for WPILib `Start Tool` not finding installed tools, see:
+
+[OUTLINEVIEWER_AND_ELASTIC_NETWORKTABLES_README.md](OUTLINEVIEWER_AND_ELASTIC_NETWORKTABLES_README.md)
+
 ## VS Code / WPILib Setup
 
 When using Visual Studio Code with the WPILib extension, import or open the individual project folder inside `testprojects/`:
