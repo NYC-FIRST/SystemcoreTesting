@@ -56,6 +56,16 @@ For the exact steps to view those values with OutlineViewer or Elastic, includin
 
 [OUTLINEVIEWER_AND_ELASTIC_NETWORKTABLES_README.md](OUTLINEVIEWER_AND_ELASTIC_NETWORKTABLES_README.md)
 
+## FTC Student Structure Guide
+
+For a comparison between familiar FTC OpMode structure and the SystemCore / WPILib-style structure used in this project, see:
+
+[FTC_TO_SYSTEMCORE_STRUCTURE_README.md](FTC_TO_SYSTEMCORE_STRUCTURE_README.md)
+
+For the expanded student guide with side-by-side FTC and SystemCore code comparisons, a lifecycle walkthrough, a Kiwi drive case study, and a glossary, see:
+
+[FTC_STUDENT_ULTIMATE_SYSTEMCORE_GUIDE.md](FTC_STUDENT_ULTIMATE_SYSTEMCORE_GUIDE.md)
+
 ## VS Code / WPILib Setup
 
 When using Visual Studio Code with the WPILib extension, import or open the individual project folder inside `testprojects/`:
