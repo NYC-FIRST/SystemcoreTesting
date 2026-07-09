@@ -1,79 +1,83 @@
 # A301 Manual Firmware Update Via Terminal
 
-## Context
+This guide documents a working terminal-based path for updating A301 firmware through REV Hardware Client 2 (RHC2) running directly on Systemcore.
 
-This note documents a working terminal-based firmware update flow for an A301 connected through Motioncore and managed by REV Hardware Client 2 (RHC2) running directly on Systemcore.
+It was written from a real troubleshooting session where an A301 was visible on Motioncore but could not be driven from REVLib until its firmware was updated.
 
-The original problem was discovered while testing an A301 Java opmode with REVLib `2027.0.0-alpha-3`. The A301 was detected, but REVLib refused to run it because the firmware was too old:
+## At a Glance
+
+| Item | Value used in this test |
+| --- | --- |
+| Device | REV A301 |
+| Controller path | Systemcore + Motioncore |
+| Motioncore port | `can_d0` / Motioncore D0 |
+| A301 CAN ID | Default CAN ID `3` |
+| REVLib version | `2027.0.0-alpha-3` |
+| RHC2 install | RHC2 IPK `1.2.1` installed on Systemcore |
+| Firmware file | `a301_27_0_0_prerelease_11.dfu` |
+| Connection used | Systemcore Wi-Fi AP |
+| Recommended flashing connection | USB, when practical |
+
+> [!IMPORTANT]
+> RHC2 must be installed on the Systemcore itself before any of these terminal commands will work. The terminal commands talk to the RHC2 backend service on Systemcore port `2714`; without the IPK-installed Systemcore RHC2 service, there is nothing for `curl` to reach.
+
+## Why This Was Needed
+
+The A301 test opmode reached the device, but REVLib refused to run it because the firmware was below the required minimum:
 
 ```text
 The firmware version of Bus #5 A301 #3 is too old and must be updated to 27.0.0-prerelease.11 or later.
 ```
 
-For this test, the A301 was updated using:
+For this test, the A301 was updated to:
 
 ```text
-a301_27_0_0_prerelease_11.dfu
+27.0.0-prerelease.11
 ```
 
-This was intentionally the `.11` firmware, not `.14`, because the immediate goal was to satisfy the minimum firmware required by REVLib `2027.0.0-alpha-3` and verify the A301 test opmode.
+We intentionally used `.11`, not `.14`, because the immediate goal was to satisfy the minimum firmware required by REVLib `2027.0.0-alpha-3` and validate the A301 test opmode.
 
-## First Install RHC2 on Systemcore
+## Install RHC2 on Systemcore First
 
-Before any of the terminal commands below will work, REV Hardware Client 2 must be installed on the Systemcore itself. The `curl` commands in this guide talk to the RHC2 backend service running on Systemcore at port `2714`; if RHC2 is not installed and running there, the terminal API will not exist.
-
-For this test, RHC2 was installed directly on Systemcore by downloading the RHC2 IPK and installing it through the Systemcore dashboard:
+Install REV Hardware Client 2 directly on Systemcore before using this guide.
 
 1. Download the RHC2 IPK for Systemcore.
 2. Open the Systemcore dashboard in a browser.
-3. Use **Add Package**.
-4. Select the downloaded RHC2 IPK.
-5. Wait for the package to install and start.
+3. Select **Add Package**.
+4. Choose the downloaded RHC2 IPK.
+5. Wait for the package to install and the RHC2 service to start.
 
-The version used in the working test flow was RHC2 IPK `1.2.1`.
+The working test flow used RHC2 IPK `1.2.1`.
 
-After installation, RHC2 should be reachable from the laptop at:
+After installation, RHC2 should be reachable at:
 
 ```text
 http://<systemcore-ip>:2714
 ```
 
-This is why the terminal workflow can access RHC2 with `curl`.
+## Safety Notes
 
-## Requirements
+> [!WARNING]
+> Keep Systemcore, Motioncore, and the A301 powered during the firmware update. Do not power cycle or disconnect CAN/power while flashing is in progress.
 
-- Systemcore powered and reachable from the laptop.
-- Motioncore connected and powered.
-- A301 connected to Motioncore.
-- REV Hardware Client 2 installed and running on Systemcore.
-- A301 `.dfu` firmware file downloaded locally.
-- Terminal access on the laptop.
+> [!NOTE]
+> USB is preferred for firmware flashing because it is more stable. This workflow was tested successfully over the Systemcore Wi-Fi access point, but USB is the safer default if available.
 
-## Network Notes
+## Network Addresses
 
-USB is recommended for firmware flashing because it is more stable.
+Choose the `HOST` value for your connection method.
 
-This workflow was tested successfully over the Systemcore Wi-Fi access point. When connected over Wi-Fi, the Systemcore address was:
+| Connection | Typical RHC2 host |
+| --- | --- |
+| Systemcore Wi-Fi AP | `http://172.30.0.1:2714` |
+| USB from macOS/Linux | `http://172.27.0.1:2714` |
+| USB from Windows | `http://172.26.0.1:2714` |
 
-```bash
-HOST=http://172.30.0.1:2714
-```
+The commands below use Wi-Fi because that is what worked in this test.
 
-For USB from macOS or Linux, the address is usually:
+## Terminal Setup
 
-```bash
-HOST=http://172.27.0.1:2714
-```
-
-For Windows over USB, the address is usually:
-
-```bash
-HOST=http://172.26.0.1:2714
-```
-
-## Set Variables
-
-Set these first. Replace the `DFU` path with the local path to the downloaded A301 firmware file.
+Replace `DFU` with the local path to your downloaded firmware file.
 
 ```bash
 HOST=http://172.30.0.1:2714
@@ -83,36 +87,35 @@ DFU="/path/to/a301_27_0_0_prerelease_11.dfu"
 
 `BUS=Y2FuX2Qw` is the URL-safe base64 descriptor for `can_d0`, which corresponds to Motioncore D0.
 
-## Claim Leader Access
+## Step 1: Claim RHC2 Leader Access
 
-RHC2 requires a leader session for firmware update actions.
+RHC2 protects write operations with a leader session. Firmware update commands will return `401 Unauthorized` unless the terminal has a leader cookie.
 
-Close any open RHC2 browser tabs before claiming leader from the terminal. If a browser tab already has leader, the terminal may only receive a `READER` token and update commands will return `401 Unauthorized`.
-
-Claim leader:
+Close open RHC2 browser tabs before claiming leader from the terminal. If a browser tab already holds leader, the terminal may receive a `READER` token instead.
 
 ```bash
 curl -i -c rhc2.cookies -X POST \
   "$HOST/v1/login/claim?claimLeader=true"
 ```
 
-Good response:
+Expected leader response:
 
 ```text
 HTTP/1.1 200 OK
-...
-...-LEADER
+Set-Cookie: REVUI-Auth=<token>-LEADER;...
+
+<token>-LEADER
 ```
 
-If the token ends in `-READER`, close RHC2 browser tabs or restart RHC2/Systemcore, then try again.
+If the token ends in `-READER`, close RHC2 browser tabs or restart RHC2/Systemcore, then claim leader again.
 
-Verify leader:
+Verify leader access:
 
 ```bash
 curl -i -b rhc2.cookies "$HOST/v1/login/is-leader"
 ```
 
-Expected:
+Expected response:
 
 ```text
 HTTP/1.1 200 OK
@@ -120,25 +123,28 @@ HTTP/1.1 200 OK
 true
 ```
 
-## Find the A301 UUID
+## Step 2: Find the A301 UUID
 
-List REV devices on the Motioncore bus:
+List REV devices on Motioncore D0:
 
 ```bash
 curl -i -b rhc2.cookies "$HOST/v1/bus/$BUS/rev/devices"
 ```
 
-Find the A301 entry in the response. It should include fields such as CAN ID, type, and UUID.
+Find the A301 entry in the response and copy its `uuid`.
 
-Copy the A301 UUID and set it:
+Then set:
 
 ```bash
 UUID="PASTE_A301_UUID_HERE"
 ```
 
-In the test case that produced this note, the A301 was using default CAN ID `3`.
+In the original test, the A301 was on default CAN ID `3`.
 
-## Create a Firmware Update Session
+> [!TIP]
+> The UUID is not the CAN ID. The CAN ID may be `3`, but the update API needs the full UUID returned by the RHC2 device list.
+
+## Step 3: Create a Firmware Update Session
 
 ```bash
 curl -i -b rhc2.cookies -X POST "$HOST/v1/bus/$BUS/revup/update/can/" \
@@ -146,7 +152,7 @@ curl -i -b rhc2.cookies -X POST "$HOST/v1/bus/$BUS/revup/update/can/" \
   -d "{\"uuids\":[\"$UUID\"],\"isUpdatingApp\":true}"
 ```
 
-Good response:
+Expected response:
 
 ```text
 HTTP/1.1 200 OK
@@ -155,30 +161,30 @@ content-length: 1
 2
 ```
 
-The number in the response body is the session ID. Use whatever number RHC2 returns:
+The response body is the session number. Save it:
 
 ```bash
 SESSION=2
 ```
 
-For example, if the response body is `0`, use `SESSION=0`. If the response body is `1`, use `SESSION=1`.
+If your response body is `0`, use `SESSION=0`. If it is `1`, use `SESSION=1`, and so on.
 
-## Upload the Firmware File
+## Step 4: Upload the DFU File
 
 ```bash
 curl -i -b rhc2.cookies -X POST "$HOST/v1/bus/$BUS/revup/update/can/$SESSION/upload" \
   -F "file=@$DFU"
 ```
 
-Good response:
+Expected response:
 
 ```text
 HTTP/1.1 204 No Content
 ```
 
-`204 No Content` is okay. It means the upload succeeded and there is intentionally no response body.
+`204 No Content` is success here. It means the file uploaded and the server intentionally returned no response body.
 
-## Start Flashing
+## Step 5: Start Flashing
 
 ```bash
 curl -i -b rhc2.cookies -X POST "$HOST/v1/bus/$BUS/revup/update/can/$SESSION/start"
@@ -190,29 +196,26 @@ Good responses may include:
 HTTP/1.1 200 OK
 ```
 
-or:
-
 ```text
 HTTP/1.1 202 Accepted
 ```
-
-or:
 
 ```text
 HTTP/1.1 204 No Content
 ```
 
-After this point, do not power off the robot, Systemcore, Motioncore, or A301.
+> [!CAUTION]
+> After this command succeeds, assume flashing is active. Keep everything powered and connected until the status reports completion.
 
-## Check Progress
+## Step 6: Check Progress
 
 ```bash
 curl -i -b rhc2.cookies "$HOST/v1/bus/$BUS/revup/update/can/$SESSION"
 ```
 
-Repeat until the status reports completed or the percentage reaches `100`.
+Repeat the progress command until the update reports completion or reaches `100`.
 
-Good statuses may include:
+Common good statuses include:
 
 ```text
 READY_TO_FLASH
@@ -220,31 +223,85 @@ FLASHING
 COMPLETED
 ```
 
-After completion, wait a few seconds, then power cycle Systemcore, Motioncore, and the A301.
+When complete:
 
-## Common HTTP Responses
+1. Wait a few seconds.
+2. Power cycle Systemcore, Motioncore, and the A301.
+3. Rerun the A301 test opmode.
+4. Confirm the old firmware error is gone.
 
-`200 OK`
-: Success. For session creation, the response body may be just the session number.
+## Expected Response Reference
 
-`204 No Content`
-: Success with no response body. This was seen after uploading the DFU file.
+| Response | Meaning | Action |
+| --- | --- | --- |
+| `200 OK` | Success. Session creation may return only the session number in the body. | Continue. |
+| `202 Accepted` | Request accepted and queued/started. | Continue monitoring progress. |
+| `204 No Content` | Success with no response body. Seen after DFU upload. | Continue. |
+| `401 Unauthorized` | Terminal is not authenticated as leader. | Reclaim leader and ensure commands include `-b rhc2.cookies`. |
+| `404 Not Found` | Wrong bus descriptor, UUID, session ID, or endpoint. | Recheck `BUS`, `UUID`, `SESSION`, and URL. |
+| `422` | Request reached RHC2, but session/device state is invalid. | Check command order: create session, upload, then start. |
+| `500` | RHC2 backend error. | Restart RHC2/Systemcore and retry; collect logs for an issue report. |
 
-`401 Unauthorized`
-: The terminal is not authenticated as leader. Reclaim leader and make sure every update command includes `-b rhc2.cookies`.
+## Troubleshooting
 
-`404 Not Found`
-: Wrong bus descriptor, wrong UUID, wrong session ID, or wrong endpoint.
+### The Login Token Ends in `-READER`
 
-`422`
-: RHC2 sees the request, but the session or device state is wrong. For example, this may happen if starting before uploading.
+Another RHC2 client is probably leader. Close browser tabs that have RHC2 open, or restart the RHC2 service/Systemcore, then run the leader claim command again.
 
-`500`
-: RHC2 backend error.
+### Session Creation Returns a Number Other Than `0`
 
-## Notes
+That is normal. The returned number is the session ID. Use the number RHC2 returned:
 
-- The `%` shown by zsh after some `curl` outputs is not an error. It means the response did not end with a newline.
-- Keep the robot powered throughout flashing.
-- USB is preferred for reliability, but this workflow worked over Systemcore Wi-Fi.
-- This was tested with REVLib `2027.0.0-alpha-3` and A301 firmware `27.0.0-prerelease.11`.
+```bash
+SESSION=<returned-number>
+```
+
+### Upload Returns `204 No Content`
+
+That is normal and was observed in the successful update flow.
+
+### zsh Prints `%` After a Response
+
+That is not an error. zsh prints `%` when command output does not end with a newline.
+
+### RHC2 Downloads UI Crashes
+
+This terminal flow avoids the Downloads UI. It uses a local `.dfu` file and the RHC2 backend API directly.
+
+## Complete Command Template
+
+```bash
+HOST=http://172.30.0.1:2714
+BUS=Y2FuX2Qw
+DFU="/path/to/a301_27_0_0_prerelease_11.dfu"
+
+curl -i -c rhc2.cookies -X POST \
+  "$HOST/v1/login/claim?claimLeader=true"
+
+curl -i -b rhc2.cookies "$HOST/v1/login/is-leader"
+
+curl -i -b rhc2.cookies "$HOST/v1/bus/$BUS/rev/devices"
+
+UUID="PASTE_A301_UUID_HERE"
+
+curl -i -b rhc2.cookies -X POST "$HOST/v1/bus/$BUS/revup/update/can/" \
+  -H "Content-Type: application/json" \
+  -d "{\"uuids\":[\"$UUID\"],\"isUpdatingApp\":true}"
+
+SESSION="PASTE_RETURNED_SESSION_NUMBER_HERE"
+
+curl -i -b rhc2.cookies -X POST "$HOST/v1/bus/$BUS/revup/update/can/$SESSION/upload" \
+  -F "file=@$DFU"
+
+curl -i -b rhc2.cookies -X POST "$HOST/v1/bus/$BUS/revup/update/can/$SESSION/start"
+
+curl -i -b rhc2.cookies "$HOST/v1/bus/$BUS/revup/update/can/$SESSION"
+```
+
+## Test Notes
+
+- Tested with REVLib `2027.0.0-alpha-3`.
+- Tested with RHC2 IPK `1.2.1` installed directly on Systemcore.
+- Tested with A301 firmware `27.0.0-prerelease.11`.
+- Tested over Systemcore Wi-Fi AP.
+- USB is still recommended for firmware flashing when available.
