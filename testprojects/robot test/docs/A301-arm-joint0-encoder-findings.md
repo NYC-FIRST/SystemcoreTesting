@@ -1,78 +1,134 @@
 # A301 Arm Joint 0 Encoder Findings
 
-This note records what we found while testing the A301 connected as `armJoint0` on Motioncore channel `D4`.
+> [!IMPORTANT]
+> During bring-up, the `D4` A301 accepted throttle commands, but its relative and absolute encoder signals did not report usable motion data. Until that is fixed, do not rely on encoder-based position control for `armJoint0`.
+
+## At A Glance
+
+| Item | Current State |
+| --- | --- |
+| Motor object | `armJoint0 = new A301(CANBusMap.CAN_D4)` |
+| Firmware target | `27.0.0-prerelease-15` |
+| Vendor library | REVLib 4 / `2027.0.0-alpha-4` |
+| Firmware update tool | RHC2 |
+| Test OpMode | `Arm J0 Relative Throttle` |
+| Log file | `/home/systemcore/deploy/arm_joint0_log.csv` |
+| Current confidence in relative encoder | Low |
+| Current confidence in absolute encoder | Low |
 
 ## Test Setup
 
-- Motor object: `armJoint0 = new A301(CANBusMap.CAN_D4)`
-- Test OpMode: `Arm J0 Relative Throttle`
-- Start button: square / west face button
-- Commanded motion during the logged test:
-  - Open-loop throttle command: `-0.15`
-  - Intended travel: `1.0` relative rotation
-  - Timeout: `6.0` seconds
-  - CSV log path on SystemCore: `/home/systemcore/deploy/arm_joint0_log.csv`
+The `armJoint0` test was created as a separate OpMode so the D4 motor can be tested without mixing arm debugging into the drivetrain OpMode.
 
-The test was changed away from absolute-position control and relative-position control because the motor behavior did not match the commanded position targets.
+| Setting | Value |
+| --- | --- |
+| Start button | Square / west face button |
+| Open-loop throttle | `-0.15` |
+| Intended travel | `1.0` relative rotation |
+| Timeout | `6.0 s` |
+| Pause target | `3.0 s` |
+| Control approach during this test | Open-loop throttle with encoder logging |
 
-## What The Log Showed
+The test was moved away from absolute-position and relative-position commands because the physical behavior did not match the commanded position targets.
 
-During the logged run, the code did start the sequence and did command the motor:
+```java
+public final A301 armJoint0 = new A301(CANBusMap.CAN_D4);
+```
 
-- `lastCommandedThrottle` was `-0.150000`
-- `reportedThrottle` was `-0.150000`
-- `appliedOutput` was approximately `-0.149988`
+## Logged Results
 
-However, the sensor values reported by the A301 did not look physically believable:
+During the logged run, the code did start the sequence and did send a command to the A301:
 
-- `relativePosition` stayed fixed at approximately `486685.3125`
-- `absolutePosition` stayed fixed at approximately `-0.25`
-- `velocity` reported approximately `-104000 RPM`
-- `current` reported `0.0 A`
-- Sticky fault and sticky warning were present
+| Signal | Observed Value | Meaning |
+| --- | ---: | --- |
+| `lastCommandedThrottle` | `-0.150000` | Our code commanded motion |
+| `reportedThrottle` | `-0.150000` | REVLib reported the same throttle request |
+| `appliedOutput` | `-0.149988` | The controller reported roughly 15% output |
 
-The important part is that the relative encoder position did not change while the motor was being commanded. Because of that, the code could not reliably stop after one rotation based on relative encoder position.
+The sensor values did not look physically believable:
 
-## Current Conclusion
+| Signal | Observed Value | Concern |
+| --- | ---: | --- |
+| `relativePosition` | `486685.3125` | Stayed fixed instead of changing |
+| `absolutePosition` | `-0.25` | Stayed fixed instead of changing |
+| `velocity` | About `-104000 RPM` | Not realistic for the test |
+| `current` | `0.0 A` | Did not show motor load during commanded output |
+| Sticky fault | Present | Needs detail from RHC2 or richer logging |
+| Sticky warning | Present | Needs detail from RHC2 or richer logging |
 
-At the moment, we should not trust either encoder signal from this `D4` A301 for motion control:
+> [!NOTE]
+> The state machine did reach its timeout and return to `IDLE`. The problem is not that the OpMode failed to run; the problem is that the feedback signals did not provide usable movement information.
 
-- The relative encoder value appears stuck or stale.
-- The absolute encoder value also appears stuck.
-- The velocity value is not realistic.
-- Current reporting did not show motor load during the command.
+## What This Means
 
-This means position-based stopping, absolute-position moves, and relative-position moves are not currently reliable for `armJoint0`.
+```mermaid
+flowchart TD
+    A["Press square"] --> B["Command D4 throttle"]
+    B --> C["A301 reports applied output"]
+    C --> D{"Relative or absolute position changes?"}
+    D -->|"No"| E["Cannot stop by encoder position"]
+    D -->|"Yes"| F["Position-based control can be tested"]
+    E --> G["Use timer-only safety tests first"]
+```
 
-The test code did reach its timeout and return to `IDLE`, so the state machine was running. The failure is that the position feedback did not provide usable movement information.
+At the moment, the D4 A301 should be treated as **not ready for encoder-based motion control**.
 
-## Practical Implication
+That includes:
 
-Until the encoder reporting problem is fixed, the safest next tests are time-based open-loop tests, for example:
+- Absolute-position moves
+- Relative-position moves
+- Stop-after-one-rotation logic
+- Any PID or closed-loop test that depends on the reported encoder values
 
-1. Press square.
-2. Run the motor at a very low throttle for a short fixed time.
-3. Stop the motor.
-4. Pause.
-5. Run the opposite direction for a short fixed time.
-6. Stop the motor again.
+## Recommended Next Test
 
-That kind of test verifies whether throttle commands and stop commands work without depending on encoder data.
+Use a timer-only open-loop test to separate command/stop behavior from encoder reporting.
 
-## Things To Check Next
+```text
+square pressed
+  -> run very low throttle for a short fixed time
+  -> stop
+  -> pause
+  -> run opposite direction for a short fixed time
+  -> stop
+```
 
-- Confirm in REV Hardware Client 2 that the A301 connected to physical `D4` shows changing relative and absolute encoder values while it moves.
-- Confirm that `CANBusMap.CAN_D4` is the correct channel for the physical motor being tested.
-- Check whether the sticky fault and sticky warning give more detail in REV Hardware Client 2.
-- Add raw fault and warning logging if the REVLib API exposes detailed fields or raw bits.
-- Consider clearing sticky faults only after recording what they are.
-- Confirm firmware and REVLib compatibility:
-  - A301 firmware `27.0.0-prerelease-15` or later
-  - REVLib `2027.0.0-alpha-4` or later
+Suggested starting point:
+
+| Step | Action |
+| --- | --- |
+| 1 | Press square |
+| 2 | Run at very low throttle for `0.25 s` |
+| 3 | Stop hard |
+| 4 | Pause |
+| 5 | Run opposite direction for `0.25 s` |
+| 6 | Stop hard again |
+
+> [!TIP]
+> This verifies whether `setThrottle(...)`, `disable()`, and stop behavior work without depending on the encoder.
+
+## Investigation Checklist
+
+- [ ] Confirm in RHC2 that the physical `D4` A301 shows changing relative encoder values while moving.
+- [ ] Confirm in RHC2 that the physical `D4` A301 shows changing absolute encoder values while moving.
+- [ ] Confirm that `CANBusMap.CAN_D4` maps to the physical motor being tested.
+- [ ] Record the detailed sticky fault and sticky warning information from RHC2.
+- [ ] Add raw or detailed fault/warning logging if the REVLib API exposes it.
+- [ ] Confirm the A301 is on firmware `27.0.0-prerelease-15` or later.
+- [ ] Confirm the project is using REVLib `2027.0.0-alpha-4` or later.
+
+<details>
+<summary>Why clearing sticky faults should wait</summary>
+
+Sticky faults and warnings are evidence. Clear them only after recording what they are, otherwise we may lose the clue that explains the strange encoder and velocity reporting.
+
+</details>
 
 ## Related Code
 
-- `src/main/java/first/robot/Robot.java`
-- `src/main/java/first/robot/ArmJointZeroPidTest.java`
-- `build.gradle`, artifact `armJoint0Log`
+| File | Purpose |
+| --- | --- |
+| `src/main/java/first/robot/Robot.java` | Defines `armJoint0` on `CANBusMap.CAN_D4` |
+| `src/main/java/first/robot/ArmJointZeroPidTest.java` | Runs the D4 arm joint test and writes telemetry logs |
+| `build.gradle` | Includes the `armJoint0Log` deploy action for retrieving log output |
 

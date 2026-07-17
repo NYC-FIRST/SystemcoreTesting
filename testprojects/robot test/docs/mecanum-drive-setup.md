@@ -1,10 +1,26 @@
 # Mecanum Drive Setup
 
-This project uses four A301 motors with WPILib's `MecanumDrive` helper.
+> [!NOTE]
+> This project uses WPILib's `MecanumDrive` helper with four REV A301 motors on Motioncore channels `D0-D3`. The code is currently configured for REVLib 4 / `2027.0.0-alpha-4`.
+
+## At A Glance
+
+| Area | Setup |
+| --- | --- |
+| Drive helper | `org.wpilib.drive.MecanumDrive` |
+| Motor type | REV A301 |
+| Front left | `CANBusMap.CAN_D0` |
+| Rear left | `CANBusMap.CAN_D1` |
+| Front right | `CANBusMap.CAN_D2` |
+| Rear right | `CANBusMap.CAN_D3` |
+| Right-side inversion | Enabled |
+| Teleop OpMode | `DefaultTeleMode` |
+| Max output range | `15%` to `50%` |
+| Joystick deadband | `0.08` |
 
 ## Motor Layout
 
-The drivetrain is configured in `Robot.java`:
+The drivetrain is defined in `Robot.java`:
 
 ```java
 public final A301 frontLeft = new A301(CANBusMap.CAN_D0);
@@ -15,14 +31,22 @@ public final A301 rearRight = new A301(CANBusMap.CAN_D3);
 public final MecanumDrive drive = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
 ```
 
-Current channel mapping:
+| Robot Corner | Code Name | Motioncore Channel |
+| --- | --- | --- |
+| Front left | `frontLeft` | `D0` |
+| Rear left | `rearLeft` | `D1` |
+| Front right | `frontRight` | `D2` |
+| Rear right | `rearRight` | `D3` |
 
-| Position | Motioncore Channel |
-| --- | --- |
-| Front left | `D0` |
-| Rear left | `D1` |
-| Front right | `D2` |
-| Rear right | `D3` |
+```mermaid
+flowchart TB
+    subgraph Robot["Robot top view"]
+        FL["frontLeft<br/>D0"] --- FR["frontRight<br/>D2"]
+        RL["rearLeft<br/>D1"] --- RR["rearRight<br/>D3"]
+        FL --- RL
+        FR --- RR
+    end
+```
 
 ## Motor Inversion
 
@@ -33,13 +57,14 @@ frontRight.setInverted(true);
 rearRight.setInverted(true);
 ```
 
-This matches the common drivetrain convention where left and right motors face opposite physical directions. If forward/backward works but strafe or rotation is backwards, the first thing to check is usually the joystick axis signs in teleop, not necessarily motor inversion.
+This matches the common drivetrain convention where the motors on opposite sides of the robot face opposite physical directions.
 
-In this project, forward drive was correct after keeping right-side inversion and adjusting the joystick inputs.
+> [!TIP]
+> If forward/backward is correct but strafe or rotation is backwards, check the joystick axis signs in `driveCartesian(...)` first. Changing motor inversion affects that wheel in every drive direction.
 
 ## Teleop Controls
 
-Teleop control is in `DefaultTeleMode.java`:
+Teleop control lives in `DefaultTeleMode.java`:
 
 ```java
 double scale = 0.15 + (0.35 * gamepad.getRightTriggerAxis());
@@ -50,56 +75,59 @@ robot.drive.driveCartesian(
     applyDeadband(gamepad.getRightX()));
 ```
 
-The controls are:
-
-| Joystick input | Mecanum input | Robot action |
+| Gamepad Input | `driveCartesian` Input | Robot Motion |
 | --- | --- | --- |
 | Left stick Y | `ySpeed` | Forward/backward |
 | Left stick X | `xSpeed` | Strafe left/right |
 | Right stick X | `zRotation` | Rotate left/right |
-| Right trigger | `setMaxOutput` scale | More available speed |
+| Right trigger | `setMaxOutput(...)` | Increases allowed speed |
 
-The left Y axis is negated because gamepads usually report pushing the stick forward as a negative value. Negating it makes pushing the stick forward drive the robot forward.
+The left Y value is negated because gamepads usually report forward stick motion as a negative number.
+
+```java
+-applyDeadband(gamepad.getLeftY())
+```
+
+That makes pushing the left stick forward drive the robot forward.
 
 ## Speed Limiting
 
-The drivetrain output is intentionally limited during bring-up:
+During bring-up, the robot intentionally runs below full power:
 
 ```java
 double scale = 0.15 + (0.35 * gamepad.getRightTriggerAxis());
 robot.drive.setMaxOutput(scale);
 ```
 
-That gives:
+| Right Trigger | Max Output |
+| ---: | ---: |
+| Released | `15%` |
+| Half pressed | About `32.5%` |
+| Fully pressed | `50%` |
 
-- No trigger: `15%` max output
-- Full right trigger: `50%` max output
-
-This keeps early mecanum testing slower and easier to control.
+> [!IMPORTANT]
+> Keep this limit low while validating wheel direction, strafe behavior, and rotation behavior.
 
 ## Deadband
 
-There are two deadbands:
+Small joystick values near zero are ignored so the robot does not creep.
 
-- `drive.setDeadband(0.08)` in `Robot.java`
-- `applyDeadband(..., 0.08)` behavior in `DefaultTeleMode.java`
-
-The goal is to ignore tiny joystick values near zero so the robot does not creep when the sticks are released.
+| Location | Deadband |
+| --- | ---: |
+| `Robot.java` | `drive.setDeadband(0.08)` |
+| `DefaultTeleMode.java` | `applyDeadband(...)` returns `0.0` below `0.08` |
 
 ## Direction Debugging
 
-If the robot does not move as expected, test one behavior at a time:
+Use small inputs and test one movement at a time.
 
-1. Push left stick forward.
-   - Expected: robot drives forward.
-2. Push left stick right.
-   - Expected: robot strafes right.
-3. Push right stick right.
-   - Expected: robot rotates clockwise.
+| Test | Input | Expected Motion | If It Is Backwards |
+| --- | --- | --- | --- |
+| Forward | Push left stick forward | Robot drives forward | Check left Y sign |
+| Strafe | Push left stick right | Robot strafes right | Check left X sign |
+| Rotate | Push right stick right | Robot rotates clockwise | Check right X sign |
 
-If only strafe or rotation is backwards while forward is correct, change the sign of the corresponding joystick input in `driveCartesian`.
-
-For example:
+### Flip Only Strafe
 
 ```java
 robot.drive.driveCartesian(
@@ -108,13 +136,48 @@ robot.drive.driveCartesian(
     applyDeadband(gamepad.getRightX()));
 ```
 
-would flip only strafe direction.
+### Flip Only Rotation
 
-Changing motor inversion is a bigger change because it affects all drive directions for that wheel. Use motor inversion when an individual wheel spins opposite from what it should during single-wheel testing.
+```java
+robot.drive.driveCartesian(
+    -applyDeadband(gamepad.getLeftY()),
+    applyDeadband(gamepad.getLeftX()),
+    -applyDeadband(gamepad.getRightX()));
+```
+
+### Flip Only Forward/Backward
+
+```java
+robot.drive.driveCartesian(
+    applyDeadband(gamepad.getLeftY()),
+    applyDeadband(gamepad.getLeftX()),
+    applyDeadband(gamepad.getRightX()));
+```
+
+<details>
+<summary>When to change motor inversion instead</summary>
+
+Change motor inversion when an individual wheel spins opposite from what it should during single-wheel testing.
+
+Change joystick signs when the drivetrain moves correctly in one axis but a whole movement direction, such as strafe or rotation, feels reversed.
+
+</details>
+
+## Bring-Up Checklist
+
+- [ ] Confirm each wheel is connected to the expected Motioncore channel.
+- [ ] Confirm right-side inversion makes forward drive correct.
+- [ ] Confirm left stick Y drives forward/backward.
+- [ ] Confirm left stick X strafes left/right.
+- [ ] Confirm right stick X rotates left/right.
+- [ ] Keep output limited while validating controls.
+- [ ] Increase output only after all directions are predictable.
 
 ## Related Code
 
-- `src/main/java/first/robot/Robot.java`
-- `src/main/java/first/robot/DefaultTeleMode.java`
-- `src/main/java/first/robot/DefaultAutoMode.java`
+| File | Purpose |
+| --- | --- |
+| `src/main/java/first/robot/Robot.java` | Defines A301 drive motors, inversion, and `MecanumDrive` |
+| `src/main/java/first/robot/DefaultTeleMode.java` | Maps gamepad input to `driveCartesian(...)` |
+| `src/main/java/first/robot/DefaultAutoMode.java` | Pulses drive motors for basic bring-up testing |
 
