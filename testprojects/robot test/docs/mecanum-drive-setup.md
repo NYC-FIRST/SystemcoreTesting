@@ -38,15 +38,20 @@ public final MecanumDrive drive = new MecanumDrive(frontLeft, rearLeft, frontRig
 | Front right | `frontRight` | `D2` |
 | Rear right | `rearRight` | `D3` |
 
-```mermaid
-flowchart TB
-    subgraph Robot["Robot top view"]
-        FL["frontLeft<br/>D0"] --- FR["frontRight<br/>D2"]
-        RL["rearLeft<br/>D1"] --- RR["rearRight<br/>D3"]
-        FL --- RL
-        FR --- RR
-    end
-```
+<div align="center">
+
+**Robot Top View**
+
+Front is up/north.
+
+|  | Left / West | Right / East |
+| --- | --- | --- |
+| Front / North | **`frontLeft`**<br>`D0` | **`frontRight`**<br>`D2` |
+| Rear / South | **`rearLeft`**<br>`D1` | **`rearRight`**<br>`D3` |
+
+Rear is down/south.
+
+</div>
 
 ## Motor Inversion
 
@@ -180,4 +185,3 @@ Change joystick signs when the drivetrain moves correctly in one axis but a whol
 | `src/main/java/first/robot/Robot.java` | Defines A301 drive motors, inversion, and `MecanumDrive` |
 | `src/main/java/first/robot/DefaultTeleMode.java` | Maps gamepad input to `driveCartesian(...)` |
 | `src/main/java/first/robot/DefaultAutoMode.java` | Pulses drive motors for basic bring-up testing |
-
