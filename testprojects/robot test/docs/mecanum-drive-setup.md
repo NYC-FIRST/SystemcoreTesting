@@ -40,27 +40,20 @@ public final MecanumDrive drive = new MecanumDrive(frontLeft, rearLeft, frontRig
 
 ```mermaid
 flowchart TB
-    FRONT["Front / North"]
-    FL["frontLeft<br/>D0"]
-    FR["frontRight<br/>D2"]
-    RL["rearLeft<br/>D1"]
-    RR["rearRight<br/>D3"]
-    REAR["Rear / South"]
+    subgraph FRONT_ROW["Front / North"]
+        direction LR
+        FL["frontLeft<br/>D0"] ~~~ FR["frontRight<br/>D2"]
+    end
 
-    FRONT ~~~ FL
-    FRONT ~~~ FR
+    subgraph REAR_ROW["Rear / South"]
+        direction LR
+        RL["rearLeft<br/>D1"] ~~~ RR["rearRight<br/>D3"]
+    end
 
-    FL ~~~ FR
-    RL ~~~ RR
+    FRONT_ROW ~~~ REAR_ROW
 
-    FL ~~~ RL
-    FR ~~~ RR
-
-    RL ~~~ REAR
-    RR ~~~ REAR
-
-    classDef label fill:transparent,stroke:transparent,color:currentColor,font-weight:bold;
-    class FRONT,REAR label;
+    style FRONT_ROW fill:transparent,stroke:#666,color:currentColor
+    style REAR_ROW fill:transparent,stroke:#666,color:currentColor
 ```
 
 ## Motor Inversion
