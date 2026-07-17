@@ -41,24 +41,23 @@ public final MecanumDrive drive = new MecanumDrive(frontLeft, rearLeft, frontRig
 ```mermaid
 flowchart TB
     FRONT["Front / North"]
-
-    subgraph FRONT_ROW[""]
-        direction LR
-        FL["frontLeft<br/>D0"] ~~~ FR["frontRight<br/>D2"]
-    end
-
-    subgraph REAR_ROW[""]
-        direction LR
-        RL["rearLeft<br/>D1"] ~~~ RR["rearRight<br/>D3"]
-    end
-
+    FL["frontLeft<br/>D0"]
+    FR["frontRight<br/>D2"]
+    RL["rearLeft<br/>D1"]
+    RR["rearRight<br/>D3"]
     REAR["Rear / South"]
 
-    FRONT ~~~ FRONT_ROW
-    FRONT_ROW ~~~ REAR_ROW
-    REAR_ROW ~~~ REAR
+    FRONT ~~~ FL
+    FRONT ~~~ FR
+
+    FL ~~~ FR
+    RL ~~~ RR
+
     FL ~~~ RL
     FR ~~~ RR
+
+    RL ~~~ REAR
+    RR ~~~ REAR
 
     classDef label fill:transparent,stroke:transparent,color:currentColor,font-weight:bold;
     class FRONT,REAR label;
