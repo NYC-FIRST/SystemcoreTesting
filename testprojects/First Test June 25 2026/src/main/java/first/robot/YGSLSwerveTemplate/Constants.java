@@ -53,19 +53,19 @@ public final class Constants {
 
     public static final class CAN {
 
-        // MotionCore Bus IDs
+        // MotionCore A301 bus IDs
         public static final int CAN_D0 = 5;
         public static final int CAN_D1 = 6;
         public static final int CAN_D2 = 7;
         public static final int CAN_D3 = 8;
 
-        // Drive Motors
+        // Drive motor CAN IDs
         public static final int FRONT_LEFT_DRIVE = 1;
         public static final int FRONT_RIGHT_DRIVE = 2;
         public static final int BACK_LEFT_DRIVE = 3;
         public static final int BACK_RIGHT_DRIVE = 4;
 
-        // Steering Motors
+        // Steering motor CAN IDs
         public static final int FRONT_LEFT_STEER = 5;
         public static final int FRONT_RIGHT_STEER = 6;
         public static final int BACK_LEFT_STEER = 7;
@@ -74,14 +74,14 @@ public final class Constants {
 
     public static final class GearRatios {
 
-        // Replace these with your real module ratios later
+        // Update these when the final module ratios are known
         public static final double DRIVE = 6.75;
         public static final double STEER = 12.8;
     }
 
     public static final class PID {
 
-        // Steering PID
+        // Steering PID (temporary)
         public static final double STEER_kP = 1.0;
         public static final double STEER_kI = 0.0;
         public static final double STEER_kD = 0.05;

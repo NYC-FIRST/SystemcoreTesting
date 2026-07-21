@@ -76,3 +76,7 @@ public class DriveSubsystem extends SubsystemBase {
         // - Publish telemetry
     }
 }
+// According to a301 documentation, get absEncoderPos returns 
+// rotations not degrees
+// since ill rewrite the pids anyway ill convert the encoder values
+// later, it needs to be rotations to degrees or the other way around 

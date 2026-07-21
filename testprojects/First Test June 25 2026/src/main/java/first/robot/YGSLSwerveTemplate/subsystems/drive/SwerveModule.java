@@ -1,8 +1,8 @@
 package first.robot.YGSLSwerveTemplate.subsystems.drive;
 
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
-import edu.wpi.first.math.geometry.Rotation2d;
 
 /**
  * Represents one complete swerve module.
@@ -44,7 +44,7 @@ public class SwerveModule {
 
         return new SwerveModuleState(
                 driveMotor.getVelocity(),
-                Rotation2d.fromDegrees(
+                Rotation2d.fromRotations(
                         steeringMotor.getAngle()));
     }
 
@@ -55,7 +55,7 @@ public class SwerveModule {
 
         return new SwerveModulePosition(
                 driveMotor.getPosition(),
-                Rotation2d.fromDegrees(
+                Rotation2d.fromRotations(
                         steeringMotor.getAngle()));
     }
 

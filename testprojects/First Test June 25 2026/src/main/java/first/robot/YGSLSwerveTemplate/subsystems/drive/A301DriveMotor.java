@@ -41,17 +41,24 @@ public class A301DriveMotor {
     }
 
     /**
-     * Placeholder until encoder API is finalized.
+     * Returns the relative encoder position in rotations.
      */
     public double getPosition() {
-        return 0.0;
+        return motor.getRelativeEncoderPosition().get();
     }
 
     /**
-     * Placeholder until encoder API is finalized.
+     * Returns the encoder velocity in RPM.
      */
     public double getVelocity() {
-        return 0.0;
+        return motor.getEncoderVelocity().get();
+    }
+
+    /**
+     * Returns the absolute encoder position in rotations.
+     */
+    public double getAbsolutePosition() {
+        return motor.getAbsoluteEncoderPosition().get();
     }
 
     /**

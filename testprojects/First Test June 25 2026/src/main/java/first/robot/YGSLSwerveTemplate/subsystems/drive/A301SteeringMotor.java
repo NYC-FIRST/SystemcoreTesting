@@ -31,10 +31,6 @@ public class A301SteeringMotor {
 
     /**
      * Rotate to a desired angle.
-     *
-     * NOTE:
-     * Encoder feedback will be added once the
-     * A301 encoder API is finalized.
      */
     public void setDesiredAngle(double desiredAngle) {
 
@@ -46,10 +42,10 @@ public class A301SteeringMotor {
     }
 
     /**
-     * Placeholder until encoder support is added.
+     * Returns the absolute encoder position.
      */
     public double getAngle() {
-        return 0.0;
+        return motor.getAbsoluteEncoderPosition().get();
     }
 
     /**

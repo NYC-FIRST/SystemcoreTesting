@@ -2,19 +2,38 @@
 
 ## Overview
 
-The **YGSL A301 Swerve Drive Template** is a modular swerve drive framework designed for the REV A301 motor platform running on MotionCore/SystemCore.
+The **YGSL A301 Swerve Drive Template** is a modular swerve drive framework designed for the REV Robotics A301 motor platform running on MotionCore/SystemCore.
 
-The goal of this project is to establish a clean, reusable swerve architecture before integrating the complete A301 hardware implementation. By separating the software architecture from the hardware-specific implementation, the drivetrain can be developed, tested, and expanded more efficiently.
+The project is structured so that all hardware-specific functionality is isolated within dedicated wrapper classes (`A301DriveMotor` and `A301SteeringMotor`). This allows the higher-level swerve architecture to remain independent of the underlying motor implementation while making future API updates easier to integrate.
+
+The current implementation follows the documented REV A301 Java API and serves as the foundation for future custom steering PID control, odometry, and autonomous functionality.
+
+---
+
+# Official REV Documentation
+
+## REV A301 Java API
+
+https://codedocs.revrobotics.com/java/com/revrobotics/spark/a301
+
+## REV Java Documentation Index
+
+https://codedocs.revrobotics.com/java/
+
+## REV Signal API
+
+https://codedocs.revrobotics.com/java/com/revrobotics/util/Signal.html
 
 ---
 
 # Project Goals
 
-- Create a reusable swerve drive framework
-- Follow standard WPILib subsystem architecture
-- Keep drive and steering motors independent
-- Make hardware changes isolated to motor wrapper classes
-- Allow future integration of A301 encoder feedback and MotionCore features
+- Build a reusable swerve drive framework
+- Follow WPILib subsystem architecture
+- Keep drive and steering hardware isolated from drivetrain logic
+- Use documented REV A301 Java API methods
+- Allow future custom steering PID implementation
+- Support future MotionCore and SystemCore updates
 
 ---
 
@@ -54,7 +73,7 @@ DriveCommand
 DriveSubsystem
         │
         ▼
- 4 × SwerveModule
+4 × SwerveModule
         │
  ┌──────┴──────┐
  ▼             ▼
@@ -62,7 +81,33 @@ Drive Motor   Steering Motor
    (A301)        (A301)
 ```
 
-Each software layer has a single responsibility, making the system easier to maintain and expand.
+Each software layer has a single responsibility. Hardware-specific functionality is isolated inside the A301 wrapper classes.
+
+---
+
+# A301 Java API Usage
+
+The wrapper classes use documented methods from the REV A301 Java API.
+
+## Drive Control
+
+- `setThrottle(double)`
+- `setVelocity(double)`
+- `disable()`
+
+## Encoder Feedback
+
+- `getRelativeEncoderPosition()`
+- `getEncoderVelocity()`
+- `getAbsoluteEncoderPosition()`
+
+All encoder values are retrieved through the documented `Signal<T>` interface using:
+
+```java
+signal.get();
+```
+
+This allows wrapper classes to expose simple `double` values while preserving the underlying REV API.
 
 ---
 
@@ -70,42 +115,50 @@ Each software layer has a single responsibility, making the system easier to mai
 
 ## Constants.java
 
-Stores robot-wide constants including:
+Stores robot-wide constants.
+
+Includes:
 
 - Robot dimensions
 - Swerve kinematics
-- CAN IDs
 - MotionCore bus IDs
-- PID constants
+- CAN IDs
 - Gear ratios
-- Driver controller configuration
+- PID constants
+- Driver configuration
 
 ---
 
 ## A301DriveMotor.java
 
-Wrapper around a single A301 drive motor.
+Hardware wrapper around one A301 drive motor.
 
 Responsibilities:
 
-- Initialize motor
-- Set throttle
+- Create A301 instance
+- Set throttle output
 - Set velocity
+- Read relative encoder position
+- Read encoder velocity
+- Read absolute encoder position
 - Stop motor
-- Future encoder support
 
 ---
 
 ## A301SteeringMotor.java
 
-Wrapper around a single A301 steering motor.
+Hardware wrapper around one A301 steering motor.
 
 Responsibilities:
 
-- Initialize steering motor
-- Rotate wheel using PID control
-- Future encoder feedback
+- Create A301 instance
+- Read absolute encoder position
+- Temporary steering PID control
 - Stop motor
+
+Future work:
+
+- Replace temporary PID with a custom steering PID using absolute encoder feedback.
 
 ---
 
@@ -120,40 +173,32 @@ Contains:
 
 Responsibilities:
 
-- Receive desired module state
-- Control wheel speed
-- Control wheel angle
+- Apply desired wheel speed
+- Apply desired steering angle
+- Report module state
 - Report module position
 
 ---
 
 ## DriveSubsystem.java
 
-Controls the entire drivetrain.
-
-Contains:
-
-- Front Left Module
-- Front Right Module
-- Back Left Module
-- Back Right Module
+Controls the complete drivetrain.
 
 Responsibilities:
 
 - Convert chassis speeds into module states
-- Send commands to each module
-- Future odometry
+- Command all four swerve modules
+- Future odometry support
 - Future gyro integration
 
 ---
 
 ## DriveCommand.java
 
-Reads driver controller input.
+Reads controller input.
 
 Responsibilities:
 
-- Read PS5 controller
 - Apply joystick deadband
 - Generate chassis speeds
 - Command DriveSubsystem
@@ -162,44 +207,46 @@ Responsibilities:
 
 ## RobotContainer.java
 
-Connects all robot components.
+Creates the robot configuration.
 
 Responsibilities:
 
-- Create subsystem
+- Create subsystems
 - Create controller
-- Set default drive command
-- Configure future button bindings
+- Configure default commands
+- Future button bindings
 
 ---
 
-# Current Status
+# Current Implementation
 
-Implemented:
+Completed:
 
-- Project architecture
-- Swerve module abstraction
-- Drive subsystem
-- Driver command
+- Modular swerve architecture
+- WPILib command framework
 - PS5 controller support
-- MotionCore CAN bus structure
+- MotionCore CAN mapping
+- A301 hardware wrapper classes
+- Relative encoder support
+- Absolute encoder support
+- Encoder velocity support
+- Swerve module abstraction
 
 ---
 
 # Planned Improvements
 
-Future development includes:
-
-- A301 encoder integration
-- Steering encoder calibration
-- Closed-loop drive control
+- Custom steering PID
+- Steering calibration
+- Closed-loop drive tuning
 - Module optimization
-- Field-oriented driving
 - Gyro integration
 - Swerve odometry
+- Field-oriented driving
 - Autonomous path following
 - Motion profiling
-- Telemetry and diagnostics
+- Telemetry
+- Diagnostics
 
 ---
 
@@ -216,8 +263,6 @@ Future development includes:
 
 # Driver Controls
 
-PS5 Controller
-
 | Control | Function |
 |----------|----------|
 | Left Stick Y | Forward / Reverse |
@@ -226,10 +271,23 @@ PS5 Controller
 
 ---
 
+# Phoenix 6 Integration Strategy
+
+The project is intentionally designed around hardware abstraction.
+
+Higher-level swerve code interacts only with:
+
+- Wheel speed
+- Steering angle
+- Module position
+- Module state
+
+The A301 wrapper classes provide the hardware-specific implementation using the documented REV API. This architecture mirrors the abstraction used by Phoenix 6, allowing the drivetrain logic to remain independent of the underlying motor hardware.
+
+---
+
 # Design Philosophy
 
-This project emphasizes modular software design.
+The project emphasizes modular software design and hardware abstraction.
 
-Rather than embedding hardware logic throughout the codebase, each software layer has a clearly defined responsibility. This allows future hardware changes—including updates to the REV A301 API—to be isolated to the motor wrapper classes without requiring significant changes to the overall drivetrain architecture.
-
-The result is a clean, maintainable, and extensible swerve drive framework suitable for future development and integration with MotionCore.
+Hardware-specific functionality is isolated inside the A301 wrapper classes while the drivetrain logic remains hardware-independent. This minimizes the impact of future API changes and simplifies integration of additional MotionCore features, custom steering PID control, odometry, and autonomous functionality.

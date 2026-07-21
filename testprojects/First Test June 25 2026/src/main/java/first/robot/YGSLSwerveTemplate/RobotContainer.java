@@ -6,8 +6,7 @@ import first.robot.YGSLSwerveTemplate.subsystems.drive.DriveSubsystem;
 
 public class RobotContainer {
 
-    private final DriveSubsystem driveSubsystem =
-            new DriveSubsystem();
+    private final DriveSubsystem driveSubsystem = new DriveSubsystem();
 
     // PS5 controller on USB port 0
     private final CommandPS5Controller driver =
@@ -16,19 +15,17 @@ public class RobotContainer {
     public RobotContainer() {
 
         driveSubsystem.setDefaultCommand(
-
                 new DriveCommand(
                         driveSubsystem,
 
-                        // Left stick forward/back
+                        // Forward / Backward
                         () -> -driver.getLeftY(),
 
-                        // Left stick left/right
+                        // Left / Right
                         () -> -driver.getLeftX(),
 
-                        // Right stick rotation
+                        // Rotation
                         () -> -driver.getRightX()
-
                 )
         );
     }
