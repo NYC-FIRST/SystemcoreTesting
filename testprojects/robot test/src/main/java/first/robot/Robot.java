@@ -14,7 +14,7 @@ import com.revrobotics.spark.A301;
 import com.revrobotics.util.Signal;
 
 /**
- * A bring-up program for A301 motors connected to Motioncore CAN channels D0-D3.
+ * A bring-up program for A301 motors connected to Motioncore CAN channels.
  */
 @UserControlsInstance(DefaultUserControls.class)
 public class Robot extends OpModeRobot {
@@ -23,6 +23,8 @@ public class Robot extends OpModeRobot {
   public final A301 frontRight = new A301(CANBusMap.CAN_D2);
   public final A301 rearRight = new A301(CANBusMap.CAN_D3);
   public final A301 armJoint0 = new A301(CANBusMap.CAN_D4);
+  public final A301 swerveTheta = new A301(CANBusMap.CAN_D11);
+  public final A301 swerveDrive = new A301(CANBusMap.CAN_D10);
 
   public final MecanumDrive drive = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
   public final A301[] motors = {frontLeft, rearLeft, frontRight, rearRight};
@@ -61,6 +63,17 @@ public class Robot extends OpModeRobot {
     System.out.printf(
         "A301 armJoint0 D4: bus=%d device=%d firmware=%s%n",
         armJoint0.getBusId(), armJoint0.getDeviceId(), armJoint0.getFirmwareString());
+
+    configureOpenLoopTestMotor(swerveTheta);
+    swerveTheta.absoluteEncoderPositionPeriodMs(20);
+    configureOpenLoopTestMotor(swerveDrive);
+    swerveDrive.relativeEncoderPositionPeriodMs(20).encoderVelocityPeriodMs(100);
+    System.out.printf(
+        "A301 swerveTheta D11: bus=%d device=%d firmware=%s%n",
+        swerveTheta.getBusId(), swerveTheta.getDeviceId(), swerveTheta.getFirmwareString());
+    System.out.printf(
+        "A301 swerveDrive D10: bus=%d device=%d firmware=%s%n",
+        swerveDrive.getBusId(), swerveDrive.getDeviceId(), swerveDrive.getFirmwareString());
   }
 
   public void setAllThrottles(double... throttles) {
@@ -74,6 +87,13 @@ public class Robot extends OpModeRobot {
       motor.disable();
     }
     armJoint0.disable();
+    swerveTheta.disable();
+    swerveDrive.disable();
+  }
+
+  public void printSwerveStatus() {
+    printOpenLoopStatus("swerveTheta D11", swerveTheta);
+    printOpenLoopStatus("swerveDrive D10", swerveDrive);
   }
 
   public void printA301Status() {
@@ -97,5 +117,24 @@ public class Robot extends OpModeRobot {
       return "invalid(" + signal.getError() + ")";
     }
     return String.valueOf(signal.get());
+  }
+
+  private static void configureOpenLoopTestMotor(A301 motor) {
+    motor
+        .busVoltagePeriodMs(100)
+        .motorCurrentPeriodMs(100)
+        .faultsPeriodMs(250)
+        .warningsPeriodMs(250);
+  }
+
+  private static void printOpenLoopStatus(String name, A301 motor) {
+    System.out.printf(
+        "A301 %s: throttle=%.2f volts=%s current=%s fault=%s warning=%s%n",
+        name,
+        motor.getThrottle(),
+        format(motor.getBusVoltage()),
+        format(motor.getMotorCurrent()),
+        format(motor.hasActiveFault()),
+        format(motor.hasActiveWarning()));
   }
 }
