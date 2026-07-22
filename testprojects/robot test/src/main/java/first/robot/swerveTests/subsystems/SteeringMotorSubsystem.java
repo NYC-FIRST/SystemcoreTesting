@@ -8,12 +8,11 @@ import org.wpilib.command2.SubsystemBase;
 
 public class SteeringMotorSubsystem extends SubsystemBase {
 
-    private final A301SteeringMotor steeringMotor =
-            new A301SteeringMotor(
-                    new A301(
-                            8,
-                            Constants.CAN.CAN_D0));
-
+private final A301SteeringMotor steeringMotor =
+        new A301SteeringMotor(
+                new A301(
+                        Constants.CAN.MOTIONCORE_CAN_D0_BUS_ID,
+                        Constants.CAN.STEER_TEST_CAN_ID));
     /**
      * Open-loop steering control.
      */

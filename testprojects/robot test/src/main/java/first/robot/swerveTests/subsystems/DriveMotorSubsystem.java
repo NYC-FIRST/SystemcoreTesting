@@ -9,11 +9,11 @@ import org.wpilib.command2.SubsystemBase;
 public class DriveMotorSubsystem extends SubsystemBase {
 
     // Physical drive motor (Device ID 9)
-    private final A301DriveMotor driveMotor =
-            new A301DriveMotor(
-                    new A301(
-                            9,
-                            Constants.CAN.CAN_D0));
+private final A301DriveMotor driveMotor =
+        new A301DriveMotor(
+                new A301(
+                        Constants.CAN.MOTIONCORE_CAN_D0_BUS_ID,
+                        Constants.CAN.DRIVE_TEST_CAN_ID));
 
     /**
      * Sets the drive motor throttle.
