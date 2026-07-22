@@ -8,7 +8,6 @@ import org.wpilib.command2.SubsystemBase;
 
 public class SteeringMotorSubsystem extends SubsystemBase {
 
-    // Physical steering motor (CAN ID 8)
     private final A301SteeringMotor steeringMotor =
             new A301SteeringMotor(
                     new A301(
@@ -16,32 +15,28 @@ public class SteeringMotorSubsystem extends SubsystemBase {
                             Constants.CAN.CAN_D0));
 
     /**
-     * Rotate to a desired angle.
-     *
-     * @param rotations Desired angle in rotations (-0.5 to 0.5)
+     * Open-loop steering control.
+     */
+    public void setThrottle(double throttle) {
+        steeringMotor.setThrottle(throttle);
+    }
+
+    /**
+     * PID steering control.
      */
     public void setDesiredAngle(double rotations) {
         steeringMotor.setDesiredAngleRotations(rotations);
     }
 
-    /**
-     * Stop the steering motor.
-     */
     public void stop() {
         steeringMotor.stop();
     }
 
-    /**
-     * Current absolute encoder position.
-     */
     public double getAngleRotations() {
         return steeringMotor.getAngleRotations();
     }
 
-    /**
-     * Returns the underlying wrapper.
-     */
-    public A301SteeringMotor getSteeringMotor() {
-        return steeringMotor;
+    public double getAngleDegrees() {
+        return getAngleRotations() * 360.0;
     }
 }
