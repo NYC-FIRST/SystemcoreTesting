@@ -11,7 +11,7 @@ public class A301SteeringMotor {
 
     private final A301 motor;
     private final PIDController pid;
-    private static final double kMaxSteeringThrottle = 0.20;
+    private static final double kMaxSteeringThrottle = 0.90;
 
     /**
      * Wraps an A301 steering motor owned by the active robot.

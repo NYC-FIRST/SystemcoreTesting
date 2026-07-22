@@ -104,7 +104,7 @@ public final class Constants {
 
     public static final class SinglePod {
 
-        public static final double FORWARD_ABSOLUTE_POSITION_ROTATIONS = 0.298;
+        public static final double FORWARD_ABSOLUTE_POSITION_ROTATIONS = 0.00;
         public static final double STICK_DIRECTION_DEADBAND = 0.12;
     }
 }
