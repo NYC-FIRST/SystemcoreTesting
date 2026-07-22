@@ -1,22 +1,80 @@
-# YGSL/YAGSL SystemCore Swerve Template Notes
+# SystemCore Swerve Bring-Up Notes
 
-This folder is the current SystemCore swerve bring-up area. It started from an
-FRC/RoboRIO style swerve structure and was adapted to compile against the
-SystemCore WPILib package layout and the REV A301 motor API.
+This folder documents the current swerve bring-up work for SystemCore using REV
+A301 hardware. It is meant to help new contributors quickly understand what this
+code is, what it is not, what is safe to test, and which assumptions still need
+hardware validation.
 
-Important naming note: the folder is currently named `YGSLSwerveTemplate`. The
-intended reference is likely YAGSL, "Yet Another Generic Swerve Library", which
-is an open source swerve library that can support CTRE Phoenix 6 hardware. This
-folder is not currently using upstream YAGSL or Phoenix 6 directly.
+## Read This First
 
-## Current Status
+| Topic | Current answer | Why it matters |
+| --- | --- | --- |
+| Primary test target | One swerve pod | Do not assume the full four-module drivetrain is validated. |
+| Hardware API in use | REV A301 / REVLib | The code does not currently instantiate CTRE Phoenix 6 devices. |
+| Steering control mode | Open-loop throttle from software PID | This is intentionally conservative after unstable behavior from deeper motor control paths. |
+| Steering feedback | Built-in motor-side absolute encoder | This is a weak estimate when the steering motor is geared before the pod. |
+| Current mechanical issue | 16T to 36T steering reduction, or 2.25:1 | Motor rotation does not map directly to pod rotation. |
+| Near-term mechanical direction | 1:1 steering ratio | Makes the built-in absolute encoder more useful for pod-angle control. |
 
-We are currently using this folder to test a single swerve pod, not a complete
-four-module drivetrain.
+## What This Folder Is
 
-The active single-pod path is:
+This is a SystemCore-compatible swerve template and test area. It started from a
+normal FRC/RoboRIO-style Java swerve structure and was remapped to compile
+against the package layout available in this SystemCore project.
+
+The original FRC style commonly uses imports under `edu.wpi.first.*`. In this
+project, the relevant WPILib imports are under `org.wpilib.*`.
+
+Examples used here:
+
+| FRC concept | SystemCore import used here |
+| --- | --- |
+| Command base class | `org.wpilib.command2.Command` |
+| Subsystem base class | `org.wpilib.command2.SubsystemBase` |
+| Chassis speed object | `org.wpilib.math.kinematics.ChassisVelocities` |
+| Swerve kinematics | `org.wpilib.math.kinematics.SwerveDriveKinematics` |
+| Swerve module velocity | `org.wpilib.math.kinematics.SwerveModuleVelocity` |
+| Software PID | `org.wpilib.math.controller.PIDController` |
+
+The hardware layer is mapped to REV A301 classes:
+
+| Hardware concept | API used here |
+| --- | --- |
+| Motor object | `com.revrobotics.spark.A301` |
+| Sensor/status return wrapper | `com.revrobotics.util.Signal` |
+| Safe output path currently used | `A301.setThrottle(...)` |
+
+## Naming And Scope
+
+The folder is currently named `YGSLSwerveTemplate`. The intended reference may
+be YAGSL, "Yet Another Generic Swerve Library", which is an open source swerve
+library that can support CTRE Phoenix 6 hardware.
+
+That name is important, but it should not be read as proof that upstream YAGSL is
+currently running in this repo.
+
+At this snapshot:
+
+- There are no `swervelib.*` imports.
+- There are no `com.ctre.phoenix6.*` imports.
+- There is no Phoenix 6 vendordep.
+- There are no CTRE classes such as `TalonFX`, `CANcoder`, or `Pigeon2`.
+- There are no YAGSL JSON configuration files defining CTRE motors, encoders, or
+  IMU hardware.
+
+Conclusion: this folder is currently a local SystemCore/REV A301 swerve bring-up
+path. It is not an upstream YAGSL implementation and it is not a Phoenix 6
+implementation.
+
+## Current Runtime Path
+
+The active hardware test path is the single-pod teleop mode:
 
 ```text
+Robot
+  owns robot.swerveDrive and robot.swerveTheta
+        |
+        v
 SinglePodYgslTeleop
         |
         v
@@ -35,62 +93,12 @@ SwerveModule
 - `robot.swerveDrive`
 - `robot.swerveTheta`
 
-This avoids constructing duplicate motor objects for the same hardware.
+That ownership model is intentional. It avoids constructing duplicate software
+objects for the same physical motor controllers.
 
-## What Was Changed From FRC/RoboRIO Code
+## Control Strategy
 
-The original structure followed a normal FRC Java style, where code commonly
-imports packages under `edu.wpi.first.*`.
-
-For SystemCore, those imports had to be remapped to the package layout available
-in this project, mostly under `org.wpilib.*`.
-
-Examples used in this folder include:
-
-- `org.wpilib.command2.Command`
-- `org.wpilib.command2.SubsystemBase`
-- `org.wpilib.math.kinematics.ChassisVelocities`
-- `org.wpilib.math.kinematics.SwerveDriveKinematics`
-- `org.wpilib.math.kinematics.SwerveModuleVelocity`
-- `org.wpilib.math.controller.PIDController`
-
-The hardware side was also mapped to REV A301 classes:
-
-- `com.revrobotics.spark.A301`
-- `com.revrobotics.util.Signal`
-
-## Phoenix 6 / CTRE Status
-
-This folder does not currently use CTRE Phoenix 6.
-
-During the repo scan, we did not find:
-
-- `swervelib.*` imports
-- `com.ctre.phoenix6.*` imports
-- Phoenix 6 vendordeps
-- `TalonFX`
-- `CANcoder`
-- `Pigeon2`
-- YAGSL JSON configuration files for CTRE motors, encoders, or IMU hardware
-
-So even though the folder name references a YAGSL-like template, the current
-implementation is a local SystemCore/REV A301 bring-up path.
-
-## Why The Steering Is Open Loop Right Now
-
-At the moment, we are intentionally controlling the steering motor through
-`setThrottle(...)`.
-
-We tried paths that depended on deeper motor-object control and target setting,
-but the motor behavior became unreliable. Observed failure modes included:
-
-- The reported position fluctuating continuously between about `-0.5` and `0.5`
-- The pod entering a zigzag or oscillating control pattern
-- The absolute encoder value stopping or becoming unreliable
-- Recovery sometimes requiring firmware flashing before the motor reported
-  correctly again
-
-Because of that, the safest current test path is:
+The steering motor is currently controlled in open loop:
 
 ```text
 desired pod angle
@@ -99,105 +107,138 @@ desired pod angle
 software PID calculation
         |
         v
-clamped throttle output
+clamped throttle command
         |
         v
 A301.setThrottle(...)
 ```
 
-This is not the most accurate control method, but it lets us test the swerve
-concept without depending on closed-loop motor APIs that are not yet behaving
-reliably in this setup.
+This is not the final desired control strategy. It is the current safe test
+strategy.
 
-## Current Mechanical Limitation
+The team observed unstable behavior when trying to depend on deeper motor-object
+control paths or direct target-setting. Reported symptoms included:
 
-The current pod has a gear reduction between the steering motor and the rotating
-pod. The known reduction is:
+- Position reporting repeatedly fluctuating around the `-0.5` to `0.5` range.
+- Continuous zigzag or oscillating steering behavior.
+- Absolute encoder values stopping or becoming unreliable.
+- Recovery sometimes requiring firmware flashing before values reported
+  correctly again.
+
+Because of that, this code keeps the risky part outside the motor controller:
+
+1. Read the absolute encoder through the A301 API.
+2. Run the steering PID in Java.
+3. Clamp the output.
+4. Send only throttle to the motor.
+
+This reduces precision, but it lets us test the steering concept without relying
+on closed-loop APIs that have not yet behaved reliably on this hardware setup.
+
+## Mechanical Feedback Constraint
+
+The current steering design has a gear reduction between the rotation motor and
+the actual pod:
 
 ```text
 16 tooth gear -> 36 tooth gear
 ratio: 36 / 16 = 2.25:1
 ```
 
-That means the motor's absolute encoder does not directly represent the final
-pod angle. One motor rotation does not equal one pod rotation.
+This means the built-in absolute encoder is measuring motor-side rotation, not
+the final pod angle directly.
 
-This matters because many swerve control assumptions expect the steering
-feedback to describe the actual final pod angle. If the encoder is on the motor
-side of a reduction, then a normalized range such as `-0.5` to `0.5` motor
-rotations is not the same thing as one full pod rotation.
+For swerve steering, that distinction is critical. A normal pod-angle controller
+wants feedback from the final steering shaft or from a mechanism that maps
+cleanly to the final pod angle. With the current 2.25:1 ratio, one motor
+rotation is not one pod rotation, so a normalized motor encoder range such as
+`-0.5` to `0.5` cannot be treated as one clean pod revolution.
 
-Because of this, the current estimate of pod angle is poor when using only the
+The practical result is poor pod-angle estimation when using only the built-in
 motor-side absolute encoder.
 
 ## Mechanical Direction
 
-The next design direction is to move to a 1:1 steering ratio so that the built-in
-absolute encoder more closely reports the real pod rotation.
+The near-term mechanical fix is to test a 1:1 steering ratio. That should make
+the built-in absolute encoder much closer to the actual pod rotation and remove
+one major source of estimation error.
 
-Longer term, we may consider adding an external absolute encoder, such as a CAN
-encoder, on the actual final steering shaft. That is the common FRC-style
-approach because the control loop then closes around the real pod angle instead
-of an inferred motor-side angle.
+The longer-term FRC-style option is to place an external absolute encoder on the
+final steering shaft or the rotating pod assembly. That would let the steering
+loop close around the real pod angle instead of inferred motor-side rotation.
 
-The tradeoff is that using an external encoder may reduce the value of the
-built-in absolute encoder on the current motor. For now, the 1:1 design is the
-cleaner intermediate step because it lets us keep using the built-in encoder
-while improving the relationship between motor position and pod position.
+Tradeoff:
+
+| Option | Benefit | Cost |
+| --- | --- | --- |
+| Built-in encoder with 1:1 steering | Simpler wiring and uses existing motor sensor | Still depends on motor sensor behavior and alignment. |
+| External absolute encoder on final shaft | Best representation of actual pod angle | Additional hardware, wiring, configuration, and integration work. |
 
 ## File Map
 
-- `SinglePodYgslTeleop.java`
-  - Current single-pod teleop test.
-  - Reads driver stick input and commands the single pod.
+| File | Role | Status |
+| --- | --- | --- |
+| `SinglePodYgslTeleop.java` | Current single-pod teleop test entry point | Active test path |
+| `subsystems/drive/SinglePodDriveSubsystem.java` | Converts joystick direction into one module target | Active test path |
+| `subsystems/drive/SwerveModule.java` | Combines drive and steering motor wrappers | Active test path |
+| `subsystems/drive/A301DriveMotor.java` | Drive motor wrapper using A301 throttle and encoder reads | Active test path |
+| `subsystems/drive/A301SteeringMotor.java` | Steering wrapper using software PID and A301 throttle | Active test path |
+| `subsystems/drive/DriveSubsystem.java` | Four-module drivetrain skeleton using WPILib kinematics | Structural, not primary test path |
+| `commands/DriveCommand.java` | Four-module command skeleton for chassis velocity control | Structural, not primary test path |
+| `Constants.java` | Dimensions, kinematics, PID constants, and single-pod tuning | Shared |
+| `RobotContainer.java` | Command-based wiring skeleton for full drivetrain | Structural |
+| `util/SwerveUtils.java` | Placeholder utility class | Not implemented |
 
-- `subsystems/drive/SinglePodDriveSubsystem.java`
-  - Converts joystick direction into a target pod angle and wheel speed for one
-    module.
+## How To Assess Changes
 
-- `subsystems/drive/SwerveModule.java`
-  - Combines one drive motor wrapper and one steering motor wrapper.
-  - Applies desired wheel velocity and steering angle.
+Use this checklist when reviewing future changes to this folder.
 
-- `subsystems/drive/A301DriveMotor.java`
-  - Hardware wrapper for the drive A301.
-  - Uses throttle output and reads relative encoder velocity/position.
+| Question | Good sign | Warning sign |
+| --- | --- | --- |
+| Is the change for single-pod testing or full drivetrain work? | The target is clearly stated. | Full drivetrain assumptions are mixed into single-pod bring-up. |
+| Does it create new motor objects? | It reuses `Robot`-owned A301 instances. | It constructs duplicate objects for the same hardware. |
+| Does it rely on closed-loop motor APIs? | It explains why the API is now safe. | It bypasses the current throttle-only safety constraint. |
+| Does it account for steering ratio? | It uses 1:1 hardware or an explicit conversion. | It assumes motor rotations equal pod rotations on reduced hardware. |
+| Does it claim Phoenix 6/YAGSL support? | It includes actual imports, vendordeps, and config files. | It relies on naming or architecture similarity only. |
 
-- `subsystems/drive/A301SteeringMotor.java`
-  - Hardware wrapper for the steering A301.
-  - Runs the software PID and sends clamped throttle to the motor.
-  - Reads the absolute encoder value through the A301 API.
+## Safe Bring-Up Procedure
 
-- `subsystems/drive/DriveSubsystem.java`
-  - Four-module drivetrain skeleton.
-  - Uses WPILib kinematics, but is not the primary active test path right now.
+1. Start from `SinglePodYgslTeleop`.
+2. Confirm `robot.swerveDrive` and `robot.swerveTheta` report valid status.
+3. Confirm the absolute encoder reports a stable value before commanding motion.
+4. Use the open-loop `setThrottle(...)` path for steering.
+5. Keep steering PID output clamped.
+6. Watch for repeated `-0.5` to `0.5` jumps, zigzag motion, or encoder dropout.
+7. Stop testing if encoder reporting becomes unreliable.
+8. Do not promote changes into `DriveSubsystem` until the single pod is stable.
 
-- `commands/DriveCommand.java`
-  - Four-module command skeleton for converting controller inputs to chassis
-    velocities.
+## Known Risks
 
-- `Constants.java`
-  - Drive dimensions, speed limits, kinematics, PID values, and single-pod
-    tuning constants.
+| Risk | Impact | Current mitigation |
+| --- | --- | --- |
+| Motor API instability during target-setting | Motor can behave unpredictably | Use software PID and `setThrottle(...)` only. |
+| Motor-side encoder does not equal pod angle | Poor steering accuracy | Move toward 1:1 ratio or final-shaft encoder. |
+| Folder name suggests YAGSL/Phoenix support | Contributors may assume unsupported features exist | Keep this README explicit about current dependencies. |
+| Full drivetrain skeleton exists before full validation | Easy to overestimate readiness | Treat four-module code as structural until single pod is stable. |
 
-- `RobotContainer.java`
-  - Command-based wiring skeleton for the full drivetrain.
+## Next Milestones
 
-## How To Use This Folder Safely
+| Priority | Milestone | Exit criteria |
+| --- | --- | --- |
+| P0 | Stable single-pod steering on throttle control | Pod can hold and move to target angles without oscillation or encoder dropout. |
+| P0 | Validate 1:1 steering mechanism | Built-in absolute encoder maps predictably to pod rotation. |
+| P1 | Tune software PID around real hardware | Steering response is repeatable across startup and direction changes. |
+| P1 | Decide final steering feedback source | Team chooses built-in 1:1 encoder or external final-shaft absolute encoder. |
+| P2 | Promote back into four-module drivetrain | `DriveSubsystem` is wired only after one-pod behavior is understood. |
+| P2 | Re-evaluate YAGSL/Phoenix 6 integration | Only after dependency, licensing, and hardware access questions are resolved. |
 
-1. Start with `SinglePodYgslTeleop` for hardware testing.
-2. Keep steering output open-loop through `setThrottle(...)` until the A301
-   closed-loop behavior is better understood and repeatable.
-3. Watch the absolute encoder reporting before and after each code change.
-4. Do not assume motor rotations equal pod rotations unless the mechanical ratio
-   is 1:1 or an explicit conversion is applied.
-5. Treat the four-module `DriveSubsystem` as a structure skeleton until the
-   single-pod control path is mechanically and electrically stable.
+## Bottom Line
 
-## Practical Summary
+This folder is for proving a SystemCore-compatible swerve control path with REV
+A301 hardware. The current implementation is intentionally conservative:
+single-pod first, software PID second, throttle output only, and no Phoenix
+6/YAGSL dependency assumptions.
 
-This folder is for proving the SystemCore swerve concept with REV A301 hardware.
-It is not currently a Phoenix 6 implementation and it is not currently upstream
-YAGSL. The immediate goal is to make one pod steer predictably using a safe
-software-PID-to-throttle path, then move toward cleaner mechanical feedback and
-eventually a full drivetrain.
+The main engineering question is not whether the code can produce a swerve-like
+command. It can. The main question is whether the feedback signal represents the
+real pod angle well enough to control the mechanism safely and repeatably.
