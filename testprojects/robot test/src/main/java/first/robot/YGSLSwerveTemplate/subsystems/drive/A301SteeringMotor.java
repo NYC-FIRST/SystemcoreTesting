@@ -32,7 +32,7 @@ public class A301SteeringMotor {
     }
 
     /**
-     * Rotate to a desired angle.
+     * Rotate to a desired angle using PID.
      */
     public void setDesiredAngleRotations(double desiredAngleRotations) {
 
@@ -51,11 +51,26 @@ public class A301SteeringMotor {
                 Math.max(Math.abs(output), kMinSteeringThrottle),
                 errorRotations);
 
-        motor.setThrottle(clamp(output, -kMaxSteeringThrottle, kMaxSteeringThrottle));
+        motor.setThrottle(
+                clamp(output,
+                        -kMaxSteeringThrottle,
+                        kMaxSteeringThrottle));
     }
 
     /**
-     * Returns the absolute encoder position.
+     * Open-loop steering motor control.
+     * Used for standalone hardware testing.
+     */
+    public void setThrottle(double throttle) {
+
+        motor.setThrottle(
+                clamp(throttle,
+                        -kMaxSteeringThrottle,
+                        kMaxSteeringThrottle));
+    }
+
+    /**
+     * Returns the absolute encoder position in rotations.
      */
     public double getAngleRotations() {
         Signal<Double> angle = motor.getAbsoluteEncoderPosition();

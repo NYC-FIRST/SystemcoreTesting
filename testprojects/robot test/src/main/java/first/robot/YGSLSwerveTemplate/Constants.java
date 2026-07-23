@@ -54,26 +54,40 @@ public final class Constants {
                         BACK_RIGHT_LOCATION);
     }
 
-    public static final class CAN {
+   public static final class CAN {
 
-        // MotionCore A301 bus IDs
-        public static final int CAN_D0 = CANBusMap.CAN_D0;
-        public static final int CAN_D1 = CANBusMap.CAN_D1;
-        public static final int CAN_D2 = CANBusMap.CAN_D2;
-        public static final int CAN_D3 = CANBusMap.CAN_D3;
+    /*
+     * REV MotionCore Alpha
+     * MotionCore CAN_D0 is raw bus ID 5.
+     */
+    public static final int MOTIONCORE_CAN_D0_BUS_ID = 5;
 
-        // Drive motor CAN IDs
-        public static final int FRONT_LEFT_DRIVE = 1;
-        public static final int FRONT_RIGHT_DRIVE = 2;
-        public static final int BACK_LEFT_DRIVE = 3;
-        public static final int BACK_RIGHT_DRIVE = 4;
+    // -------------------------
+    // Single Motor Test Setup
+    // -------------------------
 
-        // Steering motor CAN IDs
-        public static final int FRONT_LEFT_STEER = 5;
-        public static final int FRONT_RIGHT_STEER = 6;
-        public static final int BACK_LEFT_STEER = 7;
-        public static final int BACK_RIGHT_STEER = 8;
-    }
+    // Drive motor (plugged into MotionCore D8)
+    public static final int DRIVE_TEST_CAN_ID = 3;
+
+    // Steering motor (plugged into MotionCore D9)
+    public static final int STEER_TEST_CAN_ID = 3;
+
+    // -------------------------
+    // Full Swerve CAN IDs
+    // -------------------------
+
+    // Drive motors
+    public static final int FRONT_LEFT_DRIVE = 1;
+    public static final int FRONT_RIGHT_DRIVE = 2;
+    public static final int BACK_LEFT_DRIVE = 3;
+    public static final int BACK_RIGHT_DRIVE = 4;
+
+    // Steering motors
+    public static final int FRONT_LEFT_STEER = 5;
+    public static final int FRONT_RIGHT_STEER = 6;
+    public static final int BACK_LEFT_STEER = 7;
+    public static final int BACK_RIGHT_STEER = 8;
+}
 
     public static final class GearRatios {
 
