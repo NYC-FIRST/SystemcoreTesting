@@ -36,6 +36,15 @@ public class SwerveModule {
     }
 
     /**
+     * Sets the steering angle and open-loop drive throttle for bring-up testing.
+     */
+    public void setDesiredThrottle(double driveThrottle, Rotation2d desiredAngle) {
+
+        steeringMotor.setDesiredAngleRotations(desiredAngle.getRotations());
+        driveMotor.setThrottle(driveThrottle);
+    }
+
+    /**
      * Returns the current module velocity.
      */
     public SwerveModuleVelocity getVelocity() {

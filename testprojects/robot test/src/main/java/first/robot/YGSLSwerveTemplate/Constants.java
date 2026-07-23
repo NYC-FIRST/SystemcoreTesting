@@ -77,17 +77,16 @@ public final class Constants {
 
     public static final class GearRatios {
 
-        // Update these when the final module ratios are known
         public static final double DRIVE = 6.75;
-        public static final double STEER = 12.8;
+        public static final double STEER = 1.0;
     }
 
     public static final class PID {
 
         // Steering PID (temporary)
-        public static final double STEER_kP = 1.0;
+        public static final double STEER_kP = 2.0;
         public static final double STEER_kI = 0.0;
-        public static final double STEER_kD = 0.05;
+        public static final double STEER_kD = 0.0;
 
         // Drive PID
         public static final double DRIVE_kP = 0.5;
@@ -104,7 +103,10 @@ public final class Constants {
 
     public static final class SinglePod {
 
-        public static final double FORWARD_ABSOLUTE_POSITION_ROTATIONS = 0.00;
+        // Absolute encoder reading when the pod points robot-forward.
+        public static final double FORWARD_ABSOLUTE_POSITION_ROTATIONS = -0.074;
         public static final double STICK_DIRECTION_DEADBAND = 0.12;
+        public static final double DRIVE_DIRECTION = -1.0;
+        public static final double MAX_DRIVE_THROTTLE = 0.25;
     }
 }

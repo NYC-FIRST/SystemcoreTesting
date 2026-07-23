@@ -2,7 +2,6 @@ package first.robot.YGSLSwerveTemplate.subsystems.drive;
 
 import com.revrobotics.spark.A301;
 import org.wpilib.math.geometry.Rotation2d;
-import org.wpilib.math.kinematics.SwerveModuleVelocity;
 import first.robot.YGSLSwerveTemplate.Constants;
 
 /**
@@ -23,14 +22,16 @@ public class SinglePodDriveSubsystem {
             return;
         }
 
-        double directionRotations = Math.atan2(x, y) / (2.0 * Math.PI);
+        double directionRotations = stickDirectionToRotations(x, y);
         double targetRotations = wrapRotations(
                 Constants.SinglePod.FORWARD_ABSOLUTE_POSITION_ROTATIONS + directionRotations);
 
-        module.setDesiredVelocity(
-                new SwerveModuleVelocity(
-                        magnitude * Constants.Drive.MAX_SPEED,
-                        Rotation2d.fromRotations(targetRotations)));
+        double driveThrottle =
+                Constants.SinglePod.DRIVE_DIRECTION
+                        * magnitude
+                        * Constants.SinglePod.MAX_DRIVE_THROTTLE;
+
+        module.setDesiredThrottle(driveThrottle, Rotation2d.fromRotations(targetRotations));
     }
 
     public void stop() {
@@ -39,5 +40,9 @@ public class SinglePodDriveSubsystem {
 
     private static double wrapRotations(double rotations) {
         return rotations - Math.floor(rotations + 0.5);
+    }
+
+    private static double stickDirectionToRotations(double x, double y) {
+        return Math.atan2(x, y) / (2.0 * Math.PI);
     }
 }
