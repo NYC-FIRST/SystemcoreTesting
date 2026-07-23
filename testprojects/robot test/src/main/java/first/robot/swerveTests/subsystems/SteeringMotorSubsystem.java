@@ -8,11 +8,12 @@ import org.wpilib.command2.SubsystemBase;
 
 public class SteeringMotorSubsystem extends SubsystemBase {
 
-private final A301SteeringMotor steeringMotor =
-        new A301SteeringMotor(
-                new A301(
-                        Constants.CAN.MOTIONCORE_CAN_D0_BUS_ID,
-                        Constants.CAN.STEER_TEST_CAN_ID));
+    private final A301SteeringMotor steeringMotor =
+            new A301SteeringMotor(
+                    new A301(
+                            Constants.CAN.MOTIONCORE_CAN_D0_BUS_ID,
+                            Constants.CAN.STEER_TEST_CAN_ID));
+
     /**
      * Open-loop steering control.
      */
@@ -27,15 +28,52 @@ private final A301SteeringMotor steeringMotor =
         steeringMotor.setDesiredAngleRotations(rotations);
     }
 
+    /**
+     * Stops the steering motor.
+     */
     public void stop() {
         steeringMotor.stop();
     }
 
+    /**
+     * Current steering angle (rotations).
+     */
     public double getAngleRotations() {
         return steeringMotor.getAngleRotations();
     }
 
+    /**
+     * Current steering angle (degrees).
+     */
     public double getAngleDegrees() {
         return getAngleRotations() * 360.0;
+    }
+
+    /**
+     * Absolute encoder position (rotations).
+     */
+    public double getAbsolutePosition() {
+        return steeringMotor.getAbsolutePosition();
+    }
+
+    /**
+     * Absolute encoder position (degrees).
+     */
+    public double getAbsolutePositionDegrees() {
+        return getAbsolutePosition() * 360.0;
+    }
+
+    /**
+     * Steering motor velocity (RPM).
+     */
+    public double getMotorVelocityRpm() {
+        return steeringMotor.getMotorVelocityRpm();
+    }
+
+    /**
+     * Current commanded motor output (-1.0 to 1.0).
+     */
+    public double getMotorOutput() {
+        return steeringMotor.getThrottle();
     }
 }

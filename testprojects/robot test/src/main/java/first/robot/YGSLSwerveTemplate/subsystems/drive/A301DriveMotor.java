@@ -11,6 +11,9 @@ public class A301DriveMotor {
 
     private final A301 motor;
 
+    /** Stores the last commanded throttle. */
+    private double throttle = 0.0;
+
     /**
      * Wraps an A301 drive motor owned by the active robot.
      */
@@ -22,17 +25,28 @@ public class A301DriveMotor {
      * Open-loop control.
      */
     public void setThrottle(double throttle) {
-        motor.setThrottle(clamp(
+
+        this.throttle = clamp(
                 throttle,
                 -Constants.Drive.MAX_OPEN_LOOP_THROTTLE,
-                Constants.Drive.MAX_OPEN_LOOP_THROTTLE));
+                Constants.Drive.MAX_OPEN_LOOP_THROTTLE);
+
+        motor.setThrottle(this.throttle);
     }
 
     /**
      * Stops the motor.
      */
     public void stop() {
+        throttle = 0.0;
         motor.setThrottle(0.0);
+    }
+
+    /**
+     * Returns the last commanded throttle.
+     */
+    public double getThrottle() {
+        return throttle;
     }
 
     /**
@@ -49,11 +63,17 @@ public class A301DriveMotor {
         return getOrZero(motor.getEncoderVelocity());
     }
 
+    /**
+     * Returns wheel position in meters.
+     */
     public double getWheelPositionMeters() {
         double wheelRotations = getMotorPositionRotations() / Constants.GearRatios.DRIVE;
         return wheelRotations * Constants.Drive.WHEEL_CIRCUMFERENCE;
     }
 
+    /**
+     * Returns wheel velocity in meters per second.
+     */
     public double getWheelVelocityMetersPerSecond() {
         double wheelRpm = getMotorVelocityRpm() / Constants.GearRatios.DRIVE;
         return wheelRpm * Constants.Drive.WHEEL_CIRCUMFERENCE / 60.0;

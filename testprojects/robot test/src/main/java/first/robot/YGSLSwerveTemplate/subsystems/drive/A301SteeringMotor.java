@@ -12,6 +12,10 @@ public class A301SteeringMotor {
 
     private final A301 motor;
     private final PIDController pid;
+
+    /** Last commanded throttle. */
+    private double throttle = 0.0;
+
     private static final double kSteeringToleranceRotations = 0.010;
     private static final double kMinSteeringThrottle = 0.15;
     private static final double kMaxSteeringThrottle = 0.90;
@@ -41,8 +45,10 @@ public class A301SteeringMotor {
 
         double output = pid.calculate(currentAngleRotations, targetAngleRotations);
         double errorRotations = wrapRotations(targetAngleRotations - currentAngleRotations);
+
         if (Math.abs(errorRotations) <= kSteeringToleranceRotations) {
             pid.reset();
+            throttle = 0.0;
             motor.setThrottle(0.0);
             return;
         }
@@ -51,36 +57,65 @@ public class A301SteeringMotor {
                 Math.max(Math.abs(output), kMinSteeringThrottle),
                 errorRotations);
 
-        motor.setThrottle(
-                clamp(output,
-                        -kMaxSteeringThrottle,
-                        kMaxSteeringThrottle));
+        throttle = clamp(
+                output,
+                -kMaxSteeringThrottle,
+                kMaxSteeringThrottle);
+
+        motor.setThrottle(throttle);
     }
 
     /**
      * Open-loop steering motor control.
-     * Used for standalone hardware testing.
      */
     public void setThrottle(double throttle) {
 
-        motor.setThrottle(
-                clamp(throttle,
-                        -kMaxSteeringThrottle,
-                        kMaxSteeringThrottle));
+        this.throttle = clamp(
+                throttle,
+                -kMaxSteeringThrottle,
+                kMaxSteeringThrottle);
+
+        motor.setThrottle(this.throttle);
     }
 
     /**
-     * Returns the absolute encoder position in rotations.
+     * Returns the last commanded throttle.
+     */
+    public double getThrottle() {
+        return throttle;
+    }
+
+    /**
+     * Returns steering angle (rotations).
      */
     public double getAngleRotations() {
         Signal<Double> angle = motor.getAbsoluteEncoderPosition();
-        return angle.isValid() ? wrapRotations(angle.get() / Constants.GearRatios.STEER) : 0.0;
+        return angle.isValid()
+                ? wrapRotations(angle.get() / Constants.GearRatios.STEER)
+                : 0.0;
+    }
+
+    /**
+     * Returns absolute encoder position (raw rotations).
+     */
+    public double getAbsolutePosition() {
+        Signal<Double> angle = motor.getAbsoluteEncoderPosition();
+        return angle.isValid() ? angle.get() : 0.0;
+    }
+
+    /**
+     * Returns steering motor velocity (RPM).
+     */
+    public double getMotorVelocityRpm() {
+        Signal<Double> velocity = motor.getEncoderVelocity();
+        return velocity.isValid() ? velocity.get() : 0.0;
     }
 
     /**
      * Stop steering motor.
      */
     public void stop() {
+        throttle = 0.0;
         motor.setThrottle(0.0);
     }
 

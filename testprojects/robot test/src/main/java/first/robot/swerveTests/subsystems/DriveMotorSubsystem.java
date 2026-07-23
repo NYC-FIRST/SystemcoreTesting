@@ -8,44 +8,61 @@ import org.wpilib.command2.SubsystemBase;
 
 public class DriveMotorSubsystem extends SubsystemBase {
 
-    // Physical drive motor (Device ID 9)
-private final A301DriveMotor driveMotor =
+    private final A301DriveMotor driveMotor =
         new A301DriveMotor(
-                new A301(
-                        Constants.CAN.MOTIONCORE_CAN_D0_BUS_ID,
-                        Constants.CAN.DRIVE_TEST_CAN_ID));
+            new A301(
+                Constants.CAN.MOTIONCORE_CAN_D0_BUS_ID,
+                Constants.CAN.DRIVE_TEST_CAN_ID));
 
-    /**
-     * Sets the drive motor throttle.
-     */
     public void setThrottle(double throttle) {
         driveMotor.setThrottle(throttle);
     }
 
-    /**
-     * Stops the drive motor.
-     */
     public void stop() {
         driveMotor.stop();
     }
 
+    // -------------------------
+    // Telemetry
+    // -------------------------
+
+    /** Motor position (rotations). */
     public double getMotorPositionRotations() {
         return driveMotor.getMotorPositionRotations();
     }
 
+    /** Motor position (degrees). */
+    public double getMotorPositionDegrees() {
+        return getMotorPositionRotations() * 360.0;
+    }
+
+    /** Motor velocity (RPM). */
     public double getMotorVelocityRpm() {
         return driveMotor.getMotorVelocityRpm();
     }
 
+    /** Wheel position (meters). */
     public double getWheelPositionMeters() {
         return driveMotor.getWheelPositionMeters();
     }
 
+    /** Wheel velocity (m/s). */
     public double getWheelVelocityMetersPerSecond() {
         return driveMotor.getWheelVelocityMetersPerSecond();
     }
 
+    /** Absolute encoder position (rotations). */
     public double getAbsolutePosition() {
         return driveMotor.getAbsolutePosition();
+    }
+
+    /** Absolute encoder position (degrees). */
+    public double getAbsolutePositionDegrees() {
+        return getAbsolutePosition() * 360.0;
+    }
+
+    /** Current motor output (-1.0 to 1.0). */
+    public double getMotorOutput() {
+        return driveMotor.getThrottle();
     }
 }
