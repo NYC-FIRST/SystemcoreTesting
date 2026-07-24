@@ -43,6 +43,6 @@ public class SinglePodDriveSubsystem {
     }
 
     private static double stickDirectionToRotations(double x, double y) {
-        return Math.atan2(x, y) / (2.0 * Math.PI);
+        return Math.atan2(Constants.SinglePod.STEERING_DIRECTION * x, y) / (2.0 * Math.PI);
     }
 }

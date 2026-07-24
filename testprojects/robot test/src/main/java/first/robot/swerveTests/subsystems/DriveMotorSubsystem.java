@@ -2,17 +2,16 @@ package first.robot.swerveTests.subsystems;
 
 import com.revrobotics.spark.A301;
 
-import first.robot.YGSLSwerveTemplate.Constants;
 import first.robot.YGSLSwerveTemplate.subsystems.drive.A301DriveMotor;
 import org.wpilib.command2.SubsystemBase;
 
 public class DriveMotorSubsystem extends SubsystemBase {
 
-    private final A301DriveMotor driveMotor =
-        new A301DriveMotor(
-            new A301(
-                Constants.CAN.MOTIONCORE_CAN_D0_BUS_ID,
-                Constants.CAN.DRIVE_TEST_CAN_ID));
+    private final A301DriveMotor driveMotor;
+
+    public DriveMotorSubsystem(A301 motor) {
+        driveMotor = new A301DriveMotor(motor);
+    }
 
     public void setThrottle(double throttle) {
         driveMotor.setThrottle(throttle);

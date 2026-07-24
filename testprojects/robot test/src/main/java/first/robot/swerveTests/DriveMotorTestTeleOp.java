@@ -18,7 +18,7 @@ public class DriveMotorTestTeleOp extends PeriodicOpMode {
                                 DefaultUserControls userControls) {
 
         this.userControls = userControls;
-        this.driveSubsystem = new DriveMotorSubsystem();
+        this.driveSubsystem = new DriveMotorSubsystem(robot.swerveDrive);
     }
 
     @Override

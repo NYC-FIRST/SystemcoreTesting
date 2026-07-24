@@ -100,7 +100,7 @@ public final class Constants {
         // Steering PID (temporary)
         public static final double STEER_kP = 2.0;
         public static final double STEER_kI = 0.0;
-        public static final double STEER_kD = 0.0;
+        public static final double STEER_kD = 0.08;
 
         // Drive PID
         public static final double DRIVE_kP = 0.5;
@@ -118,9 +118,10 @@ public final class Constants {
     public static final class SinglePod {
 
         // Absolute encoder reading when the pod points robot-forward.
-        public static final double FORWARD_ABSOLUTE_POSITION_ROTATIONS = -0.074;
+        public static final double FORWARD_ABSOLUTE_POSITION_ROTATIONS = -0.240;
         public static final double STICK_DIRECTION_DEADBAND = 0.12;
-        public static final double DRIVE_DIRECTION = -1.0;
-        public static final double MAX_DRIVE_THROTTLE = 0.25;
+        public static final double STEERING_DIRECTION = 1.0;
+        public static final double DRIVE_DIRECTION = 1.0;
+        public static final double MAX_DRIVE_THROTTLE = 0.75;
     }
 }
