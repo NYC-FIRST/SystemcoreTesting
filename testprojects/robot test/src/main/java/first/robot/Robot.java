@@ -137,4 +137,9 @@ public class Robot extends OpModeRobot {
         format(motor.hasActiveFault()),
         format(motor.hasActiveWarning()));
   }
+
+  public static Object getBooleanTopic(String string) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getBooleanTopic'");
+  }
 }

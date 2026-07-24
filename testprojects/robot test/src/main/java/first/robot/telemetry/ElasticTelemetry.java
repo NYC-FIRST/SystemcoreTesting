@@ -3,6 +3,7 @@ package first.robot.telemetry;
 import org.wpilib.networktables.DoublePublisher;
 import org.wpilib.networktables.NetworkTable;
 import org.wpilib.networktables.NetworkTableInstance;
+import org.wpilib.networktables.StringPublisher;
 
 import first.robot.swerveTests.subsystems.DriveMotorSubsystem;
 import first.robot.swerveTests.subsystems.SteeringMotorSubsystem;
@@ -30,6 +31,9 @@ public class ElasticTelemetry {
     private final DoublePublisher steeringMotorVelocityRPM;
     private final DoublePublisher steeringMotorOutput;
 
+    // Robot publishers
+    private final StringPublisher driveMode;
+
     public ElasticTelemetry(
             DriveMotorSubsystem drive,
             SteeringMotorSubsystem steering) {
@@ -37,65 +41,78 @@ public class ElasticTelemetry {
         this.drive = drive;
         this.steering = steering;
 
-        NetworkTable root = NetworkTableInstance.getDefault().getTable("Elastic");
+        NetworkTable root =
+                NetworkTableInstance.getDefault().getTable("Elastic");
 
-        NetworkTable driveTable = root.getSubTable("Drive");
-        NetworkTable steeringTable = root.getSubTable("Steering");
+        NetworkTable driveTable =
+                root.getSubTable("Drive Motor Telemetry");
 
-        // Drive publishers
+        NetworkTable steeringTable =
+                root.getSubTable("Steering Motor Telemetry");
+
+        NetworkTable robotTable =
+                root.getSubTable("Robot Telemetry");
+
+        // Robot
+        driveMode =
+                robotTable.getStringTopic("Drive Mode").publish();
+
+        // Drive
         driveMotorPositionRotations =
-                driveTable.getDoubleTopic("MotorPositionRotations").publish();
+                driveTable.getDoubleTopic("Motor Rotations").publish();
 
         driveMotorPositionDegrees =
-                driveTable.getDoubleTopic("MotorPositionDegrees").publish();
+                driveTable.getDoubleTopic("Motor Degrees").publish();
 
         driveMotorVelocityRPM =
-                driveTable.getDoubleTopic("MotorVelocityRPM").publish();
+                driveTable.getDoubleTopic("Motor RPM").publish();
 
         driveWheelPositionMeters =
-                driveTable.getDoubleTopic("WheelPositionMeters").publish();
+                driveTable.getDoubleTopic("Wheel Position (m)").publish();
 
         driveWheelVelocityMetersPerSecond =
-                driveTable.getDoubleTopic("WheelVelocityMetersPerSecond").publish();
+                driveTable.getDoubleTopic("Wheel Velocity (m/s)").publish();
 
         driveAbsolutePosition =
-                driveTable.getDoubleTopic("AbsolutePosition").publish();
+                driveTable.getDoubleTopic("Absolute Encoder").publish();
 
         driveAbsolutePositionDegrees =
-                driveTable.getDoubleTopic("AbsolutePositionDegrees").publish();
+                driveTable.getDoubleTopic("Absolute Encoder Degrees").publish();
 
         driveMotorOutput =
-                driveTable.getDoubleTopic("MotorOutput").publish();
+                driveTable.getDoubleTopic("Motor Output").publish();
 
-        // Steering publishers
+        // Steering
         steeringAngleRotations =
-                steeringTable.getDoubleTopic("AngleRotations").publish();
+                steeringTable.getDoubleTopic("Motor Rotations").publish();
 
         steeringAngleDegrees =
-                steeringTable.getDoubleTopic("AngleDegrees").publish();
+                steeringTable.getDoubleTopic("Motor Degrees").publish();
 
         steeringAbsolutePosition =
-                steeringTable.getDoubleTopic("AbsolutePosition").publish();
+                steeringTable.getDoubleTopic("Absolute Encoder").publish();
 
         steeringAbsolutePositionDegrees =
-                steeringTable.getDoubleTopic("AbsolutePositionDegrees").publish();
+                steeringTable.getDoubleTopic("Absolute Encoder Degrees").publish();
 
         steeringMotorVelocityRPM =
-                steeringTable.getDoubleTopic("MotorVelocityRPM").publish();
+                steeringTable.getDoubleTopic("Motor RPM").publish();
 
         steeringMotorOutput =
-                steeringTable.getDoubleTopic("MotorOutput").publish();
+                steeringTable.getDoubleTopic("Motor Output").publish();
     }
 
-    /**
-     * Call once every robot loop.
-     */
     public void update() {
         publishDrive();
         publishSteering();
     }
 
+    public void setDriveMode(String mode) {
+        driveMode.set(mode);
+    }
+
     private void publishDrive() {
+
         driveMotorPositionRotations.set(drive.getMotorPositionRotations());
         driveMotorPositionDegrees.set(drive.getMotorPositionDegrees());
         driveMotorVelocityRPM.set(drive.getMotorVelocityRpm());
@@ -107,6 +124,7 @@ public class ElasticTelemetry {
     }
 
     private void publishSteering() {
+
         steeringAngleRotations.set(steering.getAngleRotations());
         steeringAngleDegrees.set(steering.getAngleDegrees());
         steeringAbsolutePosition.set(steering.getAbsolutePosition());
