@@ -17,7 +17,7 @@ public class A301SteeringMotor {
     private double throttle = 0.0;
 
     private static final double kSteeringToleranceRotations = 0.010;
-    private static final double kMinSteeringThrottle = 0.15;
+    private static final double kMinSteeringThrottle = 0.12;
     private static final double kMaxSteeringThrottle = 0.90;
 
     /**

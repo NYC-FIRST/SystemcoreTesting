@@ -2,17 +2,16 @@ package first.robot.swerveTests.subsystems;
 
 import com.revrobotics.spark.A301;
 
-import first.robot.YGSLSwerveTemplate.Constants;
 import first.robot.YGSLSwerveTemplate.subsystems.drive.A301SteeringMotor;
 import org.wpilib.command2.SubsystemBase;
 
 public class SteeringMotorSubsystem extends SubsystemBase {
 
-    private final A301SteeringMotor steeringMotor =
-            new A301SteeringMotor(
-                    new A301(
-                            Constants.CAN.MOTIONCORE_CAN_D0_BUS_ID,
-                            Constants.CAN.STEER_TEST_CAN_ID));
+    private final A301SteeringMotor steeringMotor;
+
+    public SteeringMotorSubsystem(A301 motor) {
+        steeringMotor = new A301SteeringMotor(motor);
+    }
 
     /**
      * Open-loop steering control.

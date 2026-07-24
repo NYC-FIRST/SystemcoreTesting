@@ -18,7 +18,7 @@ public class SteeringMotorTestTeleOp extends PeriodicOpMode {
                                    DefaultUserControls userControls) {
 
         this.userControls = userControls;
-        this.steeringSubsystem = new SteeringMotorSubsystem();
+        this.steeringSubsystem = new SteeringMotorSubsystem(robot.swerveTheta);
     }
 
     @Override
