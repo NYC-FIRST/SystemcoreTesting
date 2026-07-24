@@ -1,100 +1,100 @@
-// package first.robot.telemetry;
+package first.robot.telemetry;
 
-// import edu.wpi.first.networktables.NetworkTable;
-// import edu.wpi.first.networktables.NetworkTableInstance;
+import org.wpilib.networktables.NetworkTable;
+import org.wpilib.networktables.NetworkTableInstance;
 
-// import first.robot.swerveTests.subsystems.DriveMotorSubsystem;
-// import first.robot.swerveTests.subsystems.SteeringMotorSubsystem;
+import first.robot.swerveTests.subsystems.DriveMotorSubsystem;
+import first.robot.swerveTests.subsystems.SteeringMotorSubsystem;
 
-// public class ElasticTelemetry {
+public class ElasticTelemetry {
 
-//     private final NetworkTable root =
-//             NetworkTableInstance.getDefault().getTable("Elastic");
+    private final NetworkTable root =
+            NetworkTableInstance.getDefault().getTable("Elastic");
 
-//     private final DriveMotorSubsystem drive;
-//     private final SteeringMotorSubsystem steering;
+    private final DriveMotorSubsystem drive;
+    private final SteeringMotorSubsystem steering;
 
-//     public ElasticTelemetry(
-//             DriveMotorSubsystem drive,
-//             SteeringMotorSubsystem steering) {
+    public ElasticTelemetry(
+            DriveMotorSubsystem drive,
+            SteeringMotorSubsystem steering) {
 
-//         this.drive = drive;
-//         this.steering = steering;
-//     }
+        this.drive = drive;
+        this.steering = steering;
+    }
 
-//     /**
-//      * Call once every robot loop.
-//      */
-//     public void update() {
+    /**
+     * Call once every robot loop.
+     */
+    public void update() {
 
-//         publishDrive();
+        publishDrive();
 
-//         publishSteering();
-//     }
+        publishSteering();
+    }
 
-//     private void publishDrive() {
+    private void publishDrive() {
 
-//         NetworkTable table = root.getSubTable("Drive");
+        NetworkTable table = root.getSubTable("Drive");
 
-//         table.getDoubleTopic("MotorPositionRotations")
-//                 .publish()
-//                 .set(drive.getMotorPositionRotations());
+        table.getDoubleTopic("MotorPositionRotations")
+                .publish()
+                .set(drive.getMotorPositionRotations());
 
-//         table.getDoubleTopic("MotorPositionDegrees")
-//                 .publish()
-//                 .set(drive.getMotorPositionDegrees());
+        table.getDoubleTopic("MotorPositionDegrees")
+                .publish()
+                .set(drive.getMotorPositionDegrees());
 
-//         table.getDoubleTopic("MotorVelocityRPM")
-//                 .publish()
-//                 .set(drive.getMotorVelocityRpm());
+        table.getDoubleTopic("MotorVelocityRPM")
+                .publish()
+                .set(drive.getMotorVelocityRpm());
 
-//         table.getDoubleTopic("WheelPositionMeters")
-//                 .publish()
-//                 .set(drive.getWheelPositionMeters());
+        table.getDoubleTopic("WheelPositionMeters")
+                .publish()
+                .set(drive.getWheelPositionMeters());
 
-//         table.getDoubleTopic("WheelVelocityMetersPerSecond")
-//                 .publish()
-//                 .set(drive.getWheelVelocityMetersPerSecond());
+        table.getDoubleTopic("WheelVelocityMetersPerSecond")
+                .publish()
+                .set(drive.getWheelVelocityMetersPerSecond());
 
-//         table.getDoubleTopic("AbsolutePosition")
-//                 .publish()
-//                 .set(drive.getAbsolutePosition());
+        table.getDoubleTopic("AbsolutePosition")
+                .publish()
+                .set(drive.getAbsolutePosition());
 
-//         table.getDoubleTopic("AbsolutePositionDegrees")
-//                 .publish()
-//                 .set(drive.getAbsolutePositionDegrees());
+        table.getDoubleTopic("AbsolutePositionDegrees")
+                .publish()
+                .set(drive.getAbsolutePositionDegrees());
 
-//         table.getDoubleTopic("MotorOutput")
-//                 .publish()
-//                 .set(drive.getMotorOutput());
-//     }
+        table.getDoubleTopic("MotorOutput")
+                .publish()
+                .set(drive.getMotorOutput());
+    }
 
-//     private void publishSteering() {
+    private void publishSteering() {
 
-//         NetworkTable table = root.getSubTable("Steering");
+        NetworkTable table = root.getSubTable("Steering");
 
-//         table.getDoubleTopic("AngleRotations")
-//                 .publish()
-//                 .set(steering.getAngleRotations());
+        table.getDoubleTopic("AngleRotations")
+                .publish()
+                .set(steering.getAngleRotations());
 
-//         table.getDoubleTopic("AngleDegrees")
-//                 .publish()
-//                 .set(steering.getAngleDegrees());
+        table.getDoubleTopic("AngleDegrees")
+                .publish()
+                .set(steering.getAngleDegrees());
 
-//         table.getDoubleTopic("AbsolutePosition")
-//                 .publish()
-//                 .set(steering.getAbsolutePosition());
+        table.getDoubleTopic("AbsolutePosition")
+                .publish()
+                .set(steering.getAbsolutePosition());
 
-//         table.getDoubleTopic("AbsolutePositionDegrees")
-//                 .publish()
-//                 .set(steering.getAbsolutePositionDegrees());
+        table.getDoubleTopic("AbsolutePositionDegrees")
+                .publish()
+                .set(steering.getAbsolutePositionDegrees());
 
-//         table.getDoubleTopic("MotorVelocityRPM")
-//                 .publish()
-//                 .set(steering.getMotorVelocityRpm());
+        table.getDoubleTopic("MotorVelocityRPM")
+                .publish()
+                .set(steering.getMotorVelocityRpm());
 
-//         table.getDoubleTopic("MotorOutput")
-//                 .publish()
-//                 .set(steering.getMotorOutput());
-//     }
-// }
+        table.getDoubleTopic("MotorOutput")
+                .publish()
+                .set(steering.getMotorOutput());
+    }
+}
