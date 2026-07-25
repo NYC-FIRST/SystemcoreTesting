@@ -9,6 +9,8 @@ import org.wpilib.driverstation.UserControlsInstance;
 import org.wpilib.drive.MecanumDrive;
 import org.wpilib.framework.OpModeRobot;
 import org.wpilib.hardware.hal.CANBusMap;
+import org.wpilib.net.WebServer;
+import org.wpilib.system.Filesystem;
 
 import com.revrobotics.spark.A301;
 import com.revrobotics.util.Signal;
@@ -32,6 +34,8 @@ public class Robot extends OpModeRobot {
 
   /** Called once at the beginning of the robot program. */
   public Robot() {
+    WebServer.start(5800, Filesystem.getDeployDirectory().getPath());
+
     // Start with the common FRC drivetrain convention. Flip these if the mecanum test shows a
     // wheel driving opposite its matching side.
     frontRight.setInverted(true);

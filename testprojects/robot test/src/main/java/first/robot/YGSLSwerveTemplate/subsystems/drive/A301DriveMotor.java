@@ -46,7 +46,7 @@ public class A301DriveMotor {
      * Returns the last commanded throttle.
      */
     public double getThrottle() {
-        return throttle;
+        return motor.getThrottle();
     }
 
     /**

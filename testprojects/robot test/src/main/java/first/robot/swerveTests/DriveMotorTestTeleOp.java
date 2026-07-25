@@ -27,7 +27,7 @@ public class DriveMotorTestTeleOp extends PeriodicOpMode {
         this.userControls = userControls;
 
         driveSubsystem = new DriveMotorSubsystem(robot.swerveDrive);
-        steeringSubsystem = new SteeringMotorSubsystem(robot.swerveDrive);
+        steeringSubsystem = new SteeringMotorSubsystem(robot.swerveTheta);
 
         telemetry = new ElasticTelemetry(
                 driveSubsystem,

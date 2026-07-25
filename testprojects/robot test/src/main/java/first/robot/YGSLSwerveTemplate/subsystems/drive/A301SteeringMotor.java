@@ -82,7 +82,7 @@ public class A301SteeringMotor {
      * Returns the last commanded throttle.
      */
     public double getThrottle() {
-        return throttle;
+        return motor.getThrottle();
     }
 
     /**

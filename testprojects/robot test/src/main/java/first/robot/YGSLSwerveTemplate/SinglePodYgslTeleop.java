@@ -2,6 +2,9 @@ package first.robot.YGSLSwerveTemplate;
 
 import first.robot.Robot;
 import first.robot.YGSLSwerveTemplate.subsystems.drive.SinglePodDriveSubsystem;
+import first.robot.swerveTests.subsystems.DriveMotorSubsystem;
+import first.robot.swerveTests.subsystems.SteeringMotorSubsystem;
+import first.robot.telemetry.ElasticTelemetry;
 import org.wpilib.driverstation.DefaultUserControls;
 import org.wpilib.driverstation.Gamepad;
 import org.wpilib.opmode.PeriodicOpMode;
@@ -17,12 +20,16 @@ public class SinglePodYgslTeleop extends PeriodicOpMode {
     private final Robot robot;
     private final DefaultUserControls userControls;
     private final SinglePodDriveSubsystem singlePod;
+    private final ElasticTelemetry telemetry;
     private final Timer statusTimer = new Timer();
 
     public SinglePodYgslTeleop(Robot robot, DefaultUserControls userControls) {
         this.robot = robot;
         this.userControls = userControls;
         singlePod = new SinglePodDriveSubsystem(robot.swerveDrive, robot.swerveTheta);
+        telemetry = new ElasticTelemetry(
+                new DriveMotorSubsystem(robot.swerveDrive),
+                new SteeringMotorSubsystem(robot.swerveTheta));
     }
 
     @Override
@@ -38,6 +45,8 @@ public class SinglePodYgslTeleop extends PeriodicOpMode {
         double x = gamepad.getLeftX();
         double y = -gamepad.getLeftY();
         singlePod.driveToward(x, y);
+        telemetry.setDriveMode("YGSL Single Pod Test");
+        telemetry.update();
 
         if (statusTimer.advanceIfElapsed(0.5)) {
             robot.printSwerveStatus();
