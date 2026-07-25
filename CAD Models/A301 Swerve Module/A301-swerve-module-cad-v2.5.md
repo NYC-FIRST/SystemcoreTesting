@@ -3,7 +3,7 @@
 > [!NOTE]
 > CAD package for V2.5 (Main Version) of the A301-based swerve module used for Systemcore, Motioncore, and A301 testing.
 
-![A301 swerve module V2.5](<Screenshot_2024-07-23_225447.png>)
+![A301 swerve module V2.5](<download.jpg>)
 
 ## At A Glance
 
@@ -46,8 +46,8 @@ flowchart LR
 | --- | --- |
 | `A301 Swerve Direct turning V2.5.f3z` | Fusion 360 archive |
 | `A301 Swerve Direct turning V2.5.step` | STEP export |
-| `Screenshot_2024-07-23_225430.png` | Additional CAD render |
-| `Screenshot_2024-07-23_225447.png` | Reference CAD image |
+| `download.jpg` | Reference image 1 |
+| `download1.jpg` | Reference image 2 |
 
 ## Build Notes
 
