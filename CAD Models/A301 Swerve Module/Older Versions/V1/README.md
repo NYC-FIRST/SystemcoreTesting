@@ -32,9 +32,9 @@ flowchart LR
 
 | File | Purpose |
 | --- | --- |
-| `V1 A301 Swerve Module.f3z` | Fusion 360 archive |
-| `V1 A301 Swerve Module.step` | STEP export |
-| `Screenshot 2026-07-21 220702.png` | Reference image |
+| [`V1 A301 Swerve Module.f3z`](<./V1 A301 Swerve Module.f3z>) | Fusion 360 archive |
+| [`V1 A301 Swerve Module.step`](<./V1 A301 Swerve Module.step>) | STEP export |
+| [`Screenshot 2026-07-21 220702.png`](<./Screenshot 2026-07-21 220702.png>) | Reference image |
 
 ## Pulley Options
 
