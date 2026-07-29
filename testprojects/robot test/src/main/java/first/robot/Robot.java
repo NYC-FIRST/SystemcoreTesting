@@ -52,8 +52,8 @@ public class Robot extends OpModeRobot {
           .warningsPeriodMs(250);
 
       System.out.printf(
-          "A301 %s: bus=%d device=%d firmware=%s%n",
-          motorNames[i], motors[i].getBusId(), motors[i].getDeviceId(), motors[i].getFirmwareString());
+          "A301 %s registered: bus=%d device=%d%n",
+          motorNames[i], motors[i].getBusId(), motors[i].getDeviceId());
     }
 
     armJoint0
@@ -65,19 +65,19 @@ public class Robot extends OpModeRobot {
         .faultsPeriodMs(250)
         .warningsPeriodMs(250);
     System.out.printf(
-        "A301 armJoint0 D4: bus=%d device=%d firmware=%s%n",
-        armJoint0.getBusId(), armJoint0.getDeviceId(), armJoint0.getFirmwareString());
+        "A301 armJoint0 D4 registered: bus=%d device=%d%n",
+        armJoint0.getBusId(), armJoint0.getDeviceId());
 
     configureOpenLoopTestMotor(swerveTheta);
     swerveTheta.absoluteEncoderPositionPeriodMs(20);
     configureOpenLoopTestMotor(swerveDrive);
     swerveDrive.relativeEncoderPositionPeriodMs(20).encoderVelocityPeriodMs(100);
     System.out.printf(
-        "A301 swerveTheta D11: bus=%d device=%d firmware=%s%n",
-        swerveTheta.getBusId(), swerveTheta.getDeviceId(), swerveTheta.getFirmwareString());
+        "A301 swerveTheta D11 registered: bus=%d device=%d%n",
+        swerveTheta.getBusId(), swerveTheta.getDeviceId());
     System.out.printf(
-        "A301 swerveDrive D10: bus=%d device=%d firmware=%s%n",
-        swerveDrive.getBusId(), swerveDrive.getDeviceId(), swerveDrive.getFirmwareString());
+        "A301 swerveDrive D10 registered: bus=%d device=%d%n",
+        swerveDrive.getBusId(), swerveDrive.getDeviceId());
   }
 
   public void setAllThrottles(double... throttles) {

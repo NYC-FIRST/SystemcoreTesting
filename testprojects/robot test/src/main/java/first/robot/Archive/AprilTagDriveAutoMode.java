@@ -1,7 +1,5 @@
 package first.robot.Archive;
 
-import java.util.Optional;
-import org.wpilib.opmode.Autonomous;
 import org.wpilib.opmode.PeriodicOpMode;
 
 import first.robot.Robot;
@@ -12,7 +10,6 @@ import first.robot.Robot;
  * <p>For initial testing, put tag 1 in front of the robot, lift the wheels, and verify every axis
  * before allowing the robot to drive on the floor.
  */
-@Autonomous
 public class AprilTagDriveAutoMode extends PeriodicOpMode {
   private static final int DESIRED_TAG_ID = 1;
   private static final double DESIRED_RANGE_METERS = 0.30;

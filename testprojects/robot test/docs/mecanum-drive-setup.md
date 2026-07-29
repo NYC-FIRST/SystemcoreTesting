@@ -85,10 +85,11 @@ robot.drive.driveCartesian(
 
 | Gamepad Input | `driveCartesian` Input | Robot Motion |
 | --- | --- | --- |
-| Left stick Y | `ySpeed` | Forward/backward |
-| Left stick X | `xSpeed` | Strafe left/right |
+| Left stick Y | `xVelocity` | Forward/backward |
+| Left stick X | `yVelocity` | Strafe left/right |
 | Right stick X | `zRotation` | Rotate left/right |
 | Right trigger | `setMaxOutput(...)` | Increases allowed speed |
+| Hold right bumper | AprilTag assist | Drives toward and aligns with SystemCore's best visible tag |
 
 The left Y value is negated because gamepads usually report forward stick motion as a negative number.
 
@@ -97,6 +98,40 @@ The left Y value is negated because gamepads usually report forward stick motion
 ```
 
 That makes pushing the left stick forward drive the robot forward.
+
+## Right-Bumper AprilTag Assist
+
+SystemCore owns the Logitech USB camera and publishes detections even during manual driving.
+`DefaultTeleMode` subscribes to those results. While the right bumper is held and a fresh tag is visible,
+`AprilTagAssistController` temporarily supplies all three mecanum axes:
+
+| AprilTag Measurement | Error / Goal | Mecanum Command |
+| --- | --- | --- |
+| Range | `range - DESIRED_RANGE_METERS` | Forward/backward |
+| Yaw | Tag face angle relative to the camera | Left/right strafe |
+| Bearing | Tag direction relative to camera center | Counterclockwise/clockwise turn |
+
+This is the proportional-control pattern used by the FTC SDK
+`RobotAutoDriveToAprilTagOmni` sample. Each error is multiplied by a named gain and capped by a
+named maximum in `AprilTagAssistController`.
+
+- If no fresh tag is visible while the bumper is held, the drivetrain stops rather than driving
+  blind.
+- Releasing the bumper immediately returns control to the joysticks and right-trigger speed scale.
+- Live measurements, errors, and commands are published under
+  `Elastic/AprilTag Assist` in NetworkTables.
+- The robot log prints `RIGHT BUMPER PRESSED` and the camera topic state on every press. This
+  distinguishes a controller/button problem from a missing or stale vision pose.
+- SystemCore's `limelightsc0` service owns the USB camera. Robot code reads its processed result
+  through Limelight's Classic NetworkTables API; it must not open `/dev/video0` through
+  `CameraServer`.
+
+Configure and calibrate the camera, AprilTag family, tag size, and robot-to-camera transform in the
+SystemCore vision interface. In the pipeline's **Output & Crosshair** tab, set **Use Classic NT
+API?** to **Yes**. Current SystemCore firmware publishes the result as
+`/<camera>/results_msgpack`; the assist discovers that table automatically and decodes the selected
+fiducial's ID and `t6t_rs` robot-space pose. Standard Limelight `tv`, `tid`, and
+`targetpose_robotspace` topics remain supported as a fallback, so no camera nickname is required.
 
 ## Speed Limiting
 
