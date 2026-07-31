@@ -1,17 +1,19 @@
 package first.robot.fieldcentric;
 
+import first.robot.Robot;
+
 public class FieldCentricDrive {
 
     private final Gyro gyro;
     private final Odometry odometry;
 
-    public FieldCentricDrive() {
+    public FieldCentricDrive(Robot robot) {
 
         gyro = new Gyro();
         odometry = new Odometry();
 
     }
-    
+
 
     public void drive(
             double xSpeed,

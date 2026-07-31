@@ -146,4 +146,9 @@ public class Robot extends OpModeRobot {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'getBooleanTopic'");
   }
+
+  public static Robot getInstance() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getInstance'");
+  }
 }
