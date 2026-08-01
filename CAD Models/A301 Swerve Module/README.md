@@ -3,6 +3,8 @@
 > [!NOTE]
 > CAD package for V3, the current main version of the A301-based swerve module used for Systemcore, Motioncore, and A301 testing.
 
+[![Watch the A301 V3 swerve module video](https://img.youtube.com/vi/2v5tu2qvoQQ/maxresdefault.jpg)](https://youtube.com/shorts/2v5tu2qvoQQ)
+
 ![A301 V3 swerve module, underside view](<A301 Ratchet Swerve .75mm inc v62.png>)
 ![A301 V3 swerve module, top view](<A301 Ratchet Swerve .75mm inc v6.png>)
 
@@ -52,7 +54,6 @@ flowchart LR
 | [`A301 Ratchet Swerve .75mm inc.step`](<./A301 Ratchet Swerve .75mm inc.step>) | STEP export |
 | [`A301 Ratchet Swerve .75mm inc v62.png`](<./A301 Ratchet Swerve .75mm inc v62.png>) | Underside reference image |
 | [`A301 Ratchet Swerve .75mm inc v6.png`](<./A301 Ratchet Swerve .75mm inc v6.png>) | Top reference image |
-| [`VID_20260729_213441240.mp4`](<./VID_20260729_213441240.mp4>) | Prototype video |
 
 ## Build Notes
 
@@ -65,4 +66,3 @@ flowchart LR
 ## Older Versions
 
 Previous releases are preserved in [`Older Versions`](<./Older Versions/>), including the archived [`V2.5 Swerve (Direct Turning)`](<./Older Versions/V2.5 Swerve (Direct Turning)/>) release.
-
