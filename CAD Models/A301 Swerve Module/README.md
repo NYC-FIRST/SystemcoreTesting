@@ -3,7 +3,13 @@
 > [!NOTE]
 > CAD package for V3, the current main version of the A301-based swerve module used for Systemcore, Motioncore, and A301 testing.
 
-[![Watch the A301 V3 swerve module video](https://img.youtube.com/vi/2v5tu2qvoQQ/maxresdefault.jpg)](https://youtube.com/shorts/2v5tu2qvoQQ)
+## ▶ V3 Prototype Video
+
+### [▶ Click to watch on YouTube](https://youtube.com/shorts/2v5tu2qvoQQ)
+
+[![▶ Play the A301 V3 swerve module video on YouTube](https://img.youtube.com/vi/2v5tu2qvoQQ/maxresdefault.jpg)](https://youtube.com/shorts/2v5tu2qvoQQ)
+
+> **This is a video preview. Click the image or the link above to play it on YouTube.**
 
 ![A301 V3 swerve module, underside view](<A301 Ratchet Swerve .75mm inc v62.png>)
 ![A301 V3 swerve module, top view](<A301 Ratchet Swerve .75mm inc v6.png>)
