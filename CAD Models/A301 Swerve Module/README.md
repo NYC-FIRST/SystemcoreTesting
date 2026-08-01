@@ -5,11 +5,9 @@
 
 ## ▶ V3 Prototype Video
 
-### [▶ Click to watch on YouTube](https://youtube.com/shorts/2v5tu2qvoQQ)
-
 [![▶ Play the A301 V3 swerve module video on YouTube](https://img.youtube.com/vi/2v5tu2qvoQQ/maxresdefault.jpg)](https://youtube.com/shorts/2v5tu2qvoQQ)
 
-> **This is a video preview. Click the image or the link above to play it on YouTube.**
+> **This is a video preview.** Click the image to play it. To keep this page open, use **Ctrl+click** (Windows/Linux), **Cmd+click** (macOS), or middle-click to open the video in a new tab.
 
 ![A301 V3 swerve module, underside view](<A301 Ratchet Swerve .75mm inc v62.png>)
 ![A301 V3 swerve module, top view](<A301 Ratchet Swerve .75mm inc v6.png>)
