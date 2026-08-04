@@ -45,7 +45,9 @@ The upper portion of the robot uses two instances of the current **A301 V3 swerv
 
 Two passive caster wheels sit on the opposite sides of the upper swerve section from the powered pods. These casters are the chassis's **dead wheels**: they support the swerve section and roll freely but do not provide drive or steering force. The dead wheels are present on the physical prototype but were not accounted for in the CAD, so they do not appear in the CAD renders.
 
-![Upper swerve section CAD](images/cad-upper-swerve-section.png)
+| CAD | Physical prototype |
+| --- | --- |
+| ![Upper swerve section CAD](images/cad-upper-swerve-section.png) | ![Physical upper swerve wheel with the NYC FIRST logo in the background](images/passive-caster-wheel.jpg) |
 
 ### Lower Mecanum Section
 
@@ -53,7 +55,9 @@ The lower portion is a complete A301-powered mecanum chassis. It has four mecanu
 
 Mecanum was intentionally retained as a testing option for FTC students adopting Systemcore. Many FTC students already know mecanum drivetrains built around brushed motors, a Control Hub, and an Expansion Hub, so this lower drivetrain provides a more familiar and accessible starting point for testing the new control system.
 
-![Lower mecanum section CAD](images/cad-lower-mecanum-section.png)
+| CAD | Physical prototype |
+| --- | --- |
+| ![Lower mecanum section CAD](images/cad-lower-mecanum-section.png) | ![Physical mecanum wheel pod and lower-frame interface](images/mecanum-pod-detail.jpg) |
 
 ![Mecanum wheel pod shown outside the chassis](images/cad-mecanum-wheel-out.png)
 
@@ -92,12 +96,6 @@ The render above shows the intended combined configuration: the V3 swerve sectio
 | Upper-section passive caster/dead wheel | [Open full resolution](images/passive-caster-wheel.jpg) |
 | Mecanum pod and lower-frame interface | [Open full resolution](images/mecanum-pod-detail.jpg) |
 | Upper swerve assembly, front view | [Open full resolution](images/upper-swerve-front.jpg) |
-
-<p align="center">
-  <img src="images/passive-caster-wheel.jpg" alt="Passive caster wheel used as a dead wheel on the upper swerve section" width="32%" />
-  <img src="images/mecanum-pod-detail.jpg" alt="Mecanum pod and lower-frame interface" width="32%" />
-  <img src="images/upper-swerve-front.jpg" alt="Upper swerve assembly front view" width="32%" />
-</p>
 
 ![Systemcore and Motioncore wiring inside the prototype](images/systemcore-motioncore-wiring.jpg)
 
