@@ -1,6 +1,5 @@
 package first.robot.YGSLSwerveTemplate;
 
-import org.wpilib.hardware.hal.CANBusMap;
 import org.wpilib.math.geometry.Translation2d;
 import org.wpilib.math.kinematics.SwerveDriveKinematics;
 
@@ -10,22 +9,30 @@ public final class Constants {
 
     public static final class Drive {
 
+        // ==========================
         // Robot Dimensions (meters)
-        public static final double TRACK_WIDTH = 0.6096;      // 24 in
-        public static final double WHEEL_BASE = 0.6096;       // 24 in
+        // ==========================
+        public static final double TRACK_WIDTH = 0.6096;   // 24 in
+        public static final double WHEEL_BASE = 0.6096;    // 24 in
 
-        public static final double WHEEL_DIAMETER = 0.1016;   // 4 in
+        public static final double WHEEL_DIAMETER = 0.1016; // 4 in
         public static final double WHEEL_CIRCUMFERENCE =
                 WHEEL_DIAMETER * Math.PI;
 
-        // Maximum Speeds
-        public static final double MAX_SPEED = 4.5;
-        public static final double MAX_ANGULAR_SPEED =
-                Math.PI * 2.0;
+        // ==========================
+        // Robot Performance
+        // ==========================
+        public static final double MAX_SPEED = 4.5; // m/s
+        public static final double MAX_ANGULAR_SPEED = 2.0 * Math.PI; // rad/s
 
         public static final double MAX_OPEN_LOOP_THROTTLE = 1.0;
 
-        // Swerve Module Locations
+        // 20ms robot loop
+        public static final double LOOP_PERIOD = 0.020;
+
+        // ==========================
+        // Module Locations
+        // ==========================
         public static final Translation2d FRONT_LEFT_LOCATION =
                 new Translation2d(
                         WHEEL_BASE / 2.0,
@@ -54,55 +61,58 @@ public final class Constants {
                         BACK_RIGHT_LOCATION);
     }
 
-   public static final class CAN {
+    public static final class CAN {
 
-    /*
-     * REV MotionCore Alpha
-     * MotionCore CAN_D0 is raw bus ID 5.
-     */
-    public static final int MOTIONCORE_CAN_D0_BUS_ID = 5;
+        /*
+         * MotionCore CAN Bus
+         * (Keep this unless your mentor tells you otherwise.)
+         */
+        public static final int MOTIONCORE_CAN_D0_BUS_ID = 5;
 
-    // -------------------------
-    // Single Motor Test Setup
-    // -------------------------
+        // ==========================
+        // Temporary Single-Pod Testing
+        // ==========================
+        public static final int DRIVE_TEST_CAN_ID = 3;
+        public static final int STEER_TEST_CAN_ID = 3;
 
-    // Drive motor (plugged into MotionCore D8)
-    public static final int DRIVE_TEST_CAN_ID = 3;
+        // ==========================
+        // Full Swerve CAN IDs
+        // ==========================
 
-    // Steering motor (plugged into MotionCore D9)
-    public static final int STEER_TEST_CAN_ID = 3;
+        // Drive Motors
+        public static final int FRONT_LEFT_DRIVE = 20;
+        public static final int FRONT_RIGHT_DRIVE = 21;
+        public static final int BACK_LEFT_DRIVE = 22;
+        public static final int BACK_RIGHT_DRIVE = 23;
 
-    // -------------------------
-    // Full Swerve CAN IDs
-    // -------------------------
-
-    // Drive motors
-    public static final int FRONT_LEFT_DRIVE = 1;
-    public static final int FRONT_RIGHT_DRIVE = 2;
-    public static final int BACK_LEFT_DRIVE = 3;
-    public static final int BACK_RIGHT_DRIVE = 4;
-
-    // Steering motors
-    public static final int FRONT_LEFT_STEER = 5;
-    public static final int FRONT_RIGHT_STEER = 6;
-    public static final int BACK_LEFT_STEER = 7;
-    public static final int BACK_RIGHT_STEER = 8;
-}
+        // Steering Motors
+        public static final int FRONT_LEFT_STEER = 30;
+        public static final int FRONT_RIGHT_STEER = 31;
+        public static final int BACK_LEFT_STEER = 32;
+        public static final int BACK_RIGHT_STEER = 33;
+    }
 
     public static final class GearRatios {
 
+        // TODO: Replace with your actual module ratios
         public static final double DRIVE = 6.75;
         public static final double STEER = 1.0;
     }
 
     public static final class PID {
 
-        // Steering PID (temporary)
+        // ==========================
+        // Steering PID
+        // ==========================
         public static final double STEER_kP = 2.0;
         public static final double STEER_kI = 0.0;
         public static final double STEER_kD = 0.08;
 
+        public static final double STEER_TOLERANCE_DEGREES = 2.0;
+
+        // ==========================
         // Drive PID
+        // ==========================
         public static final double DRIVE_kP = 0.5;
         public static final double DRIVE_kI = 0.0;
         public static final double DRIVE_kD = 0.0;
@@ -115,13 +125,21 @@ public final class Constants {
         public static final double DEADBAND = 0.05;
     }
 
+    /*
+     * Keep these while we're converting the project from
+     * a single module to a complete four-module drivetrain.
+     * We'll remove them once everything is working.
+     */
     public static final class SinglePod {
 
-        // Absolute encoder reading when the pod points robot-forward.
         public static final double FORWARD_ABSOLUTE_POSITION_ROTATIONS = -0.240;
+
         public static final double STICK_DIRECTION_DEADBAND = 0.12;
+
         public static final double STEERING_DIRECTION = 1.0;
+
         public static final double DRIVE_DIRECTION = 1.0;
+
         public static final double MAX_DRIVE_THROTTLE = 0.75;
     }
 }

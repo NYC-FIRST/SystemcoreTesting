@@ -2,21 +2,27 @@ package first.robot.YGSLSwerveTemplate.subsystems.drive;
 
 import com.revrobotics.spark.A301;
 import org.wpilib.command2.SubsystemBase;
+import org.wpilib.math.geometry.Pose2d;
+import org.wpilib.math.geometry.Rotation2d;
 import org.wpilib.math.kinematics.ChassisVelocities;
 import org.wpilib.math.kinematics.SwerveDriveKinematics;
+import org.wpilib.math.kinematics.SwerveDriveOdometry;
+import org.wpilib.math.kinematics.SwerveModulePosition;
 import org.wpilib.math.kinematics.SwerveModuleVelocity;
+
 import first.robot.YGSLSwerveTemplate.Constants;
 
-/**
- * Main swerve drive subsystem.
- * Owns all four swerve modules.
- */
 public class DriveSubsystem extends SubsystemBase {
 
     private final SwerveModule frontLeft;
     private final SwerveModule frontRight;
     private final SwerveModule backLeft;
     private final SwerveModule backRight;
+
+    // TODO: Replace with the actual SystemCore IMU wrapper later
+    // private final SystemCoreGyro gyro;
+
+    private SwerveDriveOdometry odometry;
 
     public DriveSubsystem(
             A301 frontLeftDrive,
@@ -45,16 +51,24 @@ public class DriveSubsystem extends SubsystemBase {
         this.frontRight = frontRight;
         this.backLeft = backLeft;
         this.backRight = backRight;
+
+        odometry = new SwerveDriveOdometry(
+                Constants.Drive.KINEMATICS,
+                Rotation2d.kZero,
+                new SwerveModulePosition[]{
+                        frontLeft.getPosition(),
+                        frontRight.getPosition(),
+                        backLeft.getPosition(),
+                        backRight.getPosition()
+                });
     }
 
-    /**
-     * Drives the robot using chassis speeds.
-     */
     public void drive(ChassisVelocities speeds) {
 
         SwerveModuleVelocity[] velocities =
                 Constants.Drive.KINEMATICS.toSwerveModuleVelocities(speeds);
-        velocities = SwerveDriveKinematics.desaturateWheelVelocities(
+
+        SwerveDriveKinematics.desaturateWheelVelocities(
                 velocities,
                 Constants.Drive.MAX_SPEED);
 
@@ -64,22 +78,52 @@ public class DriveSubsystem extends SubsystemBase {
         backRight.setDesiredVelocity(velocities[3]);
     }
 
-    /**
-     * Stops every module.
-     */
     public void stop() {
-
         frontLeft.stop();
         frontRight.stop();
         backLeft.stop();
         backRight.stop();
     }
 
+    public Pose2d getPose() {
+        return odometry.getPose();
+    }
+
+    public void resetPose(Pose2d pose) {
+        odometry.resetPosition(
+                Rotation2d.kZero,
+                new SwerveModulePosition[]{
+                        frontLeft.getPosition(),
+                        frontRight.getPosition(),
+                        backLeft.getPosition(),
+                        backRight.getPosition()
+                },
+                pose);
+    }
+
+    public Rotation2d getHeading() {
+        // Replace with SystemCore IMU heading
+        return Rotation2d.kZero;
+    }
+
+    public void zeroHeading() {
+        // TODO: gyro.reset();
+    }
+
     @Override
     public void periodic() {
-        // Future:
-        // - Update odometry
-        // - Read gyro
-        // - Publish telemetry
+
+        odometry.update(
+                getHeading(),
+                new SwerveModulePosition[]{
+                        frontLeft.getPosition(),
+                        frontRight.getPosition(),
+                        backLeft.getPosition(),
+                        backRight.getPosition()
+                });
+
+        // TODO:
+        // ElasticTelemetry.publishPose(getPose());
+        // ElasticTelemetry.publishModules(...);
     }
 }
