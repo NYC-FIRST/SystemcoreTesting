@@ -63,20 +63,20 @@ public class DriveSubsystem extends SubsystemBase {
                 });
     }
 
-    public void drive(ChassisVelocities speeds) {
+public void drive(ChassisVelocities speeds) {
 
-        SwerveModuleVelocity[] velocities =
-                Constants.Drive.KINEMATICS.toSwerveModuleVelocities(speeds);
+    SwerveModuleVelocity[] velocities =
+            Constants.Drive.KINEMATICS.toSwerveModuleVelocities(speeds);
 
-        SwerveDriveKinematics.desaturateWheelVelocities(
-                velocities,
-                Constants.Drive.MAX_SPEED);
+    velocities = SwerveDriveKinematics.desaturateWheelVelocities(
+            velocities,
+            Constants.Drive.MAX_SPEED);
 
-        frontLeft.setDesiredVelocity(velocities[0]);
-        frontRight.setDesiredVelocity(velocities[1]);
-        backLeft.setDesiredVelocity(velocities[2]);
-        backRight.setDesiredVelocity(velocities[3]);
-    }
+    frontLeft.setDesiredVelocity(velocities[0]);
+    frontRight.setDesiredVelocity(velocities[1]);
+    backLeft.setDesiredVelocity(velocities[2]);
+    backRight.setDesiredVelocity(velocities[3]);
+}
 
     public void stop() {
         frontLeft.stop();
