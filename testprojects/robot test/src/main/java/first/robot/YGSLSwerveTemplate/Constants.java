@@ -52,6 +52,12 @@ public final class Constants {
                         FRONT_RIGHT_LOCATION,
                         BACK_LEFT_LOCATION,
                         BACK_RIGHT_LOCATION);
+
+        // Powered pods are on opposite corners; the other two corners use passive swivel wheels.
+        public static final SwerveDriveKinematics DIAGONAL_TWO_POD_KINEMATICS =
+                new SwerveDriveKinematics(
+                        FRONT_LEFT_LOCATION,
+                        BACK_RIGHT_LOCATION);
     }
 
    public static final class CAN {
@@ -117,11 +123,15 @@ public final class Constants {
 
     public static final class SinglePod {
 
-        // Absolute encoder reading when the pod points robot-forward.
-        public static final double FORWARD_ABSOLUTE_POSITION_ROTATIONS = -0.240;
+        // Absolute encoder readings when each pod points robot-forward.
+        public static final double POD_1_FORWARD_ABSOLUTE_POSITION_ROTATIONS = -0.240;
+        // Initial value only: measure D13 with pod 2 pointing forward and update this value.
+        public static final double POD_2_FORWARD_ABSOLUTE_POSITION_ROTATIONS = -0.240;
         public static final double STICK_DIRECTION_DEADBAND = 0.12;
-        public static final double STEERING_DIRECTION = 1.0;
-        public static final double DRIVE_DIRECTION = 1.0;
+        public static final double POD_1_STEERING_DIRECTION = 1.0;
+        public static final double POD_2_STEERING_DIRECTION = 1.0;
+        public static final double POD_1_DRIVE_DIRECTION = 1.0;
+        public static final double POD_2_DRIVE_DIRECTION = 1.0;
         public static final double MAX_DRIVE_THROTTLE = 0.75;
     }
 }

@@ -10,9 +10,29 @@ import first.robot.YGSLSwerveTemplate.Constants;
 public class SinglePodDriveSubsystem {
 
     private final SwerveModule module;
+    private final double forwardAbsolutePositionRotations;
+    private final double steeringDirection;
+    private final double driveDirection;
 
     public SinglePodDriveSubsystem(A301 driveMotor, A301 steeringMotor) {
+        this(
+                driveMotor,
+                steeringMotor,
+                Constants.SinglePod.POD_1_FORWARD_ABSOLUTE_POSITION_ROTATIONS,
+                Constants.SinglePod.POD_1_STEERING_DIRECTION,
+                Constants.SinglePod.POD_1_DRIVE_DIRECTION);
+    }
+
+    public SinglePodDriveSubsystem(
+            A301 driveMotor,
+            A301 steeringMotor,
+            double forwardAbsolutePositionRotations,
+            double steeringDirection,
+            double driveDirection) {
         module = new SwerveModule(driveMotor, steeringMotor);
+        this.forwardAbsolutePositionRotations = forwardAbsolutePositionRotations;
+        this.steeringDirection = steeringDirection;
+        this.driveDirection = driveDirection;
     }
 
     public void driveToward(double x, double y) {
@@ -24,10 +44,10 @@ public class SinglePodDriveSubsystem {
 
         double directionRotations = stickDirectionToRotations(x, y);
         double targetRotations = wrapRotations(
-                Constants.SinglePod.FORWARD_ABSOLUTE_POSITION_ROTATIONS + directionRotations);
+                forwardAbsolutePositionRotations + directionRotations);
 
         double driveThrottle =
-                Constants.SinglePod.DRIVE_DIRECTION
+                driveDirection
                         * magnitude
                         * Constants.SinglePod.MAX_DRIVE_THROTTLE;
 
@@ -42,7 +62,7 @@ public class SinglePodDriveSubsystem {
         return rotations - Math.floor(rotations + 0.5);
     }
 
-    private static double stickDirectionToRotations(double x, double y) {
-        return Math.atan2(Constants.SinglePod.STEERING_DIRECTION * x, y) / (2.0 * Math.PI);
+    private double stickDirectionToRotations(double x, double y) {
+        return Math.atan2(steeringDirection * x, y) / (2.0 * Math.PI);
     }
 }

@@ -1,7 +1,7 @@
 package first.robot.YGSLSwerveTemplate;
 
 import first.robot.Robot;
-import first.robot.YGSLSwerveTemplate.subsystems.drive.SinglePodDriveSubsystem;
+import first.robot.YGSLSwerveTemplate.subsystems.drive.DiagonalTwoPodDriveSubsystem;
 import first.robot.swerveTests.subsystems.DriveMotorSubsystem;
 import first.robot.swerveTests.subsystems.SteeringMotorSubsystem;
 import first.robot.telemetry.ElasticTelemetry;
@@ -12,21 +12,25 @@ import org.wpilib.opmode.Teleop;
 import org.wpilib.system.Timer;
 
 @Teleop(
-        name = "YGSL Single Pod Test",
+        name = "YGSL Diagonal Two Pod Test",
         group = "Test",
-        description = "YGSL wrapper on Robot single swerve pod")
+        description = "Front-left D10/D11 and back-right D12/D13 powered pods")
 public class SinglePodYgslTeleop extends PeriodicOpMode {
 
     private final Robot robot;
     private final DefaultUserControls userControls;
-    private final SinglePodDriveSubsystem singlePod;
+    private final DiagonalTwoPodDriveSubsystem diagonalDrive;
     private final ElasticTelemetry telemetry;
     private final Timer statusTimer = new Timer();
 
     public SinglePodYgslTeleop(Robot robot, DefaultUserControls userControls) {
         this.robot = robot;
         this.userControls = userControls;
-        singlePod = new SinglePodDriveSubsystem(robot.swerveDrive, robot.swerveTheta);
+        diagonalDrive = new DiagonalTwoPodDriveSubsystem(
+                robot.swerveDrive,
+                robot.swerveTheta,
+                robot.swerveDrive2,
+                robot.swerveTheta2);
         telemetry = new ElasticTelemetry(
                 new DriveMotorSubsystem(robot.swerveDrive),
                 new SteeringMotorSubsystem(robot.swerveTheta));
@@ -42,10 +46,11 @@ public class SinglePodYgslTeleop extends PeriodicOpMode {
     public void periodic() {
         Gamepad gamepad = userControls.getGamepad(Constants.Operator.DRIVER_CONTROLLER);
 
-        double x = gamepad.getLeftX();
-        double y = -gamepad.getLeftY();
-        singlePod.driveToward(x, y);
-        telemetry.setDriveMode("YGSL Single Pod Test");
+        double forward = -gamepad.getLeftY();
+        double left = -gamepad.getLeftX();
+        double rotation = -gamepad.getRightX();
+        diagonalDrive.drive(forward, left, rotation);
+        telemetry.setDriveMode("YGSL Diagonal Two Pod Test");
         telemetry.update();
 
         if (statusTimer.advanceIfElapsed(0.5)) {
@@ -55,6 +60,6 @@ public class SinglePodYgslTeleop extends PeriodicOpMode {
 
     @Override
     public void end() {
-        singlePod.stop();
+        diagonalDrive.stop();
     }
 }

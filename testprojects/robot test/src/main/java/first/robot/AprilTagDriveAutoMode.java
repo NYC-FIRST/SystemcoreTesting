@@ -42,6 +42,12 @@ public class AprilTagDriveAutoMode extends PeriodicOpMode {
 
   @Override
   public void periodic() {
+    // OpModes can be interrupted or restarted by the Driver Station. Never let a lifecycle
+    // ordering issue turn a missing vision instance into a robot-program crash.
+    if (vision == null) {
+      robot.drive.stopMotor();
+      return;
+    }
     Optional<AprilTagTarget> target = vision.getTarget();
     if (target.isEmpty()) {
       // Fail safe: unlike the FTC driver-assisted sample, autonomous mode does not search blindly.
