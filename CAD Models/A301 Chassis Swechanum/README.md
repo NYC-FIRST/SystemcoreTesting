@@ -7,9 +7,9 @@
 
 ## Full Chassis Prototype Video
 
-[![Play the A301 full chassis prototype video on YouTube](https://img.youtube.com/vi/yfMuJThyWoQ/maxresdefault.jpg)](https://youtube.com/shorts/yfMuJThyWoQ)
+[Watch the A301 chassis rise on Instagram](https://www.instagram.com/reel/Db8wJIyBqEo/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)
 
-> **This is a video preview.** Click the image to play it. To keep this page open, use **Ctrl+click** on Windows or Linux, **Cmd+click** on macOS, or middle-click to open the video in a new tab.
+> The video opens as an Instagram Reel. To keep this page open, use **Ctrl+click** on Windows or Linux, **Cmd+click** on macOS, or middle-click to open it in a new tab.
 
 ## At a Glance
 
