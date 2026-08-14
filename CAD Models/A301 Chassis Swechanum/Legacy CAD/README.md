@@ -7,6 +7,6 @@ This folder preserves the older repository CAD records and reference files for t
 | [`V1`](V1/) | CAD status record and Systemcore Alpha STEP reference | Legacy |
 
 > [!IMPORTANT]
-> These files are old repository references. Current Swechanum CAD uploads and future revisions were moved to Google Drive.
+> These files are old repository references. [Download the current Swechanum CAD from Google Drive](https://drive.google.com/drive/folders/1VI5ETDA84Cjonxy1SA_M-wRaS0PLGz6y).
 
 [Back to the A301 Swechanum Chassis project](../)

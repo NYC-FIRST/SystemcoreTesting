@@ -63,7 +63,7 @@ The mecanum chassis remained its own mini project even after the internship move
 
 The [`Legacy CAD`](<Legacy CAD/>) folder preserves the versioned record of the older repository CAD package. These archived files and records are kept only for project history.
 
-Current mecanum CAD uploads and future revisions were moved to Google Drive because the full Fusion 360 and STEP files are too large for normal GitHub storage.
+[Download the current mecanum CAD from Google Drive](https://drive.google.com/drive/folders/1Kuxc78ZMYxh6YiVGicnxMk1Pkc9k5txG). The files were moved there because the full Fusion 360 and STEP assemblies are too large for normal GitHub storage.
 
 The reference renders below remain available directly in the repository.
 

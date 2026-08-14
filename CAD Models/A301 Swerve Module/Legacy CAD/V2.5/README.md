@@ -1,6 +1,6 @@
 # A301 Swerve Module CAD (V2.5)
 
-V2.5 is an archived release preserved as part of the module's design history. Current CAD uploads moved to Google Drive.
+V2.5 is an archived release preserved as part of the module's design history. [Download the current swerve pod CAD from Google Drive](https://drive.google.com/drive/folders/1PFXqzIjuWuJsmV0esLAgi1MbDl17urQ1).
 
 ## V2.5 Design Summary
 
@@ -17,8 +17,8 @@ V2.5 is an archived release preserved as part of the module's design history. Cu
 
 <table>
   <tr>
-    <td align="center"><img src="./A301%20Swerve%20Direct%20turning%20V2.5%20v7.png" alt="A301 V2.5 swerve module reference view 1"><br><strong>Reference view 1</strong></td>
-    <td align="center"><img src="./A301%20Swerve%20Direct%20turning%20V2.5%20v8.png" alt="A301 V2.5 swerve module reference view 2"><br><strong>Reference view 2</strong></td>
+    <td align="center"><img src="../../images/A301%20Swerve%20Direct%20turning%20V2.5%20v7.png" alt="A301 V2.5 swerve module reference view 1"><br><strong>Reference view 1</strong></td>
+    <td align="center"><img src="../../images/A301%20Swerve%20Direct%20turning%20V2.5%20v8.png" alt="A301 V2.5 swerve module reference view 2"><br><strong>Reference view 2</strong></td>
   </tr>
 </table>
 

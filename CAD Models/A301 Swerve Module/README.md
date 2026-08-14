@@ -2,16 +2,16 @@
 
 # A301 Swerve Module CAD
 
-### V3 custom drive-and-steer pod for Systemcore and Motioncore testing
+### V3.1 CNC-ready drive-and-steer pod for Systemcore and Motioncore testing
 
-![Version](https://img.shields.io/badge/Version-V3-6f42c1?style=flat-square)
+![Version](https://img.shields.io/badge/Version-V3.1-6f42c1?style=flat-square)
 ![Motors](https://img.shields.io/badge/Motors-2_A301-0a7f5a?style=flat-square)
 ![Reduction](https://img.shields.io/badge/Drive_Reduction-3.1%3A1-f57c00?style=flat-square)
 ![CAD](https://img.shields.io/badge/CAD-Legacy_Archive-0078d4?style=flat-square)
 
-<img src="a301-swerve-pods-installed.png" alt="A301 V3 swerve pods installed on the robot" width="820">
+<img src="images/a301-swerve-pods-installed.png" alt="A301 V3 swerve pods installed on the robot" width="820">
 
-The final custom swerve pod developed for the four-module A301 robot during the six-week internship.
+The updated custom swerve pod developed after manufacturing and testing the four-module A301 robot.
 
 [Watch the prototype](#prototype-video) | [Browse legacy CAD](#legacy-cad-archive) | [Review the design history](#design-history) | [Back to CAD Models](../)
 
@@ -27,13 +27,13 @@ The final custom swerve pod developed for the four-module A301 robot during the 
 
 ## Project Overview
 
-The A301 V3 swerve module is a compact two-motor pod designed for the final Systemcore robot. One A301 motor drives the wheel through a fully geared transmission, while a second A301 motor rotates the pod directly at its center of rotation.
+The A301 V3.1 swerve module is a compact two-motor pod designed for the Systemcore robot. One A301 motor drives the wheel through a fully geared transmission, while a second A301 motor rotates the pod directly at its center of rotation.
 
-V3 is slimmer than the earlier designs and replaces the V2.5 Axon 2.8:1 bevel with a 3.1:1 offset bevel set. Four copies of this module were installed on the final robot, using eight A301 motors across the complete swerve assembly.
+V3 introduced the slimmer design and replaced the V2.5 Axon 2.8:1 bevel with a 3.1:1 offset bevel set. Four V3 modules were CNC machined and installed on the final robot, using eight A301 motors across the complete swerve assembly. V3.1 keeps that drivetrain layout while correcting the manufacturing tolerances for CNC machining.
 
-The CAD snapshots stored in this repository are now considered legacy versions. Current CAD uploads and future revisions were moved to Google Drive so large design files can be shared without GitHub file-size restrictions.
+The CAD snapshots stored in this repository are now considered legacy versions. [Download the current swerve pod CAD from Google Drive](https://drive.google.com/drive/folders/1PFXqzIjuWuJsmV0esLAgi1MbDl17urQ1).
 
-| Module specification | V3 configuration |
+| Module specification | V3.1 configuration |
 | --- | --- |
 | Drive motor | One A301 |
 | Steering motor | One A301 |
@@ -43,6 +43,12 @@ The CAD snapshots stored in this repository are now considered legacy versions. 
 | Steering output | Direct rotation at the pod center |
 | Overall drive reduction | 3.1:1 |
 | Main development period | Weeks 2 through 4 |
+
+## V3.1 CNC Tolerance Update
+
+V3 was CNC machined instead of 3D printed. During assembly, the main bearing hole was too tight, which compressed the bearing fit and prevented the pod from rotating smoothly.
+
+V3.1 is toleranced specifically for CNC machining. The revised bearing-hole fit provides the clearance needed for the bearing to seat correctly and allows the steering pod to rotate smoothly without changing the main drivetrain arrangement.
 
 ## Module Layout
 
@@ -60,6 +66,10 @@ The CAD snapshots stored in this repository are now considered legacy versions. 
 | Bevel stage | 3.1:1 | Turns the power path toward the wheel axle |
 | Overall | 3.1:1 | The offset bevel provides the full reduction |
 
+## Print-in-Place Wheel
+
+The wheel and TPU tread are designed to be produced together in one print on a multi-material printer, making tread management easier than the previous bolted-tread design. On FTC mats, this TPU tread also provided a useful traction balance without creating as much friction as rubber tread against the rubber mat.
+
 ## Ratchet Status
 
 > [!NOTE]
@@ -75,14 +85,14 @@ The [`Legacy CAD`](<Legacy CAD/>) folder preserves the older V1, V2, V2.25, V2.5
 | [`A301 Ratchet Swerve .75mm inc.step`](<Legacy CAD/V3/A301 Ratchet Swerve .75mm inc.step>) | STEP | Legacy neutral V3 module export |
 
 > [!IMPORTANT]
-> Current CAD uploads are maintained on Google Drive. The repository archive remains available only for older versions and design-history reference.
+> [Download the current V3.1 swerve pod CAD from Google Drive](https://drive.google.com/drive/folders/1PFXqzIjuWuJsmV0esLAgi1MbDl17urQ1). The repository archive remains available only for older versions and design-history reference.
 
 ### CAD Reference Views
 
 <table>
   <tr>
-    <td align="center"><img src="A301%20Ratchet%20Swerve%20.75mm%20inc%20v62.png" alt="A301 V3 swerve module underside CAD"><br><strong>Underside CAD</strong></td>
-    <td align="center"><img src="A301%20Ratchet%20Swerve%20.75mm%20inc%20v6.png" alt="A301 V3 swerve module top CAD"><br><strong>Top CAD</strong></td>
+    <td align="center"><img src="images/A301%20Ratchet%20Swerve%20.75mm%20inc%20v62.png" alt="A301 V3 swerve module underside CAD"><br><strong>Underside CAD</strong></td>
+    <td align="center"><img src="images/A301%20Ratchet%20Swerve%20.75mm%20inc%20v6.png" alt="A301 V3 swerve module top CAD"><br><strong>Top CAD</strong></td>
   </tr>
 </table>
 
@@ -90,9 +100,9 @@ The [`Legacy CAD`](<Legacy CAD/>) folder preserves the older V1, V2, V2.25, V2.5
 
 <table>
   <tr>
-    <td align="center"><img src="a301-swerve-pods-installed.png" alt="A301 swerve pods installed on the chassis"><br><strong>Installed pods</strong></td>
-    <td align="center"><img src="a301-swerve-module-gearing.png" alt="A301 swerve module motors and gearing"><br><strong>Motors and gearing</strong></td>
-    <td align="center"><img src="a301-swerve-wheel-assembly.png" alt="A301 swerve wheel and steering assembly"><br><strong>Wheel assembly</strong></td>
+    <td align="center"><img src="images/a301-swerve-pods-installed.png" alt="A301 swerve pods installed on the chassis"><br><strong>Installed pods</strong></td>
+    <td align="center"><img src="images/a301-swerve-module-gearing.png" alt="A301 swerve module motors and gearing"><br><strong>Motors and gearing</strong></td>
+    <td align="center"><img src="images/a301-swerve-wheel-assembly.png" alt="A301 swerve wheel and steering assembly"><br><strong>Wheel assembly</strong></td>
   </tr>
 </table>
 
@@ -106,12 +116,13 @@ The module was revised throughout the internship as the team tested packaging, s
 | V2 | Direct bolted center shaft | Fully geared 2.8:1 Axon bevel path |
 | V2.5 | Direct center shaft | Revised geared packaging |
 | V3 | Direct motor at the center of rotation | Slimmer fully geared 3.1:1 offset bevel path |
+| V3.1 | CNC-toleranced center bearing fit | V3 drivetrain with corrected machining clearance |
 
 ## Build Notes
 
 - One A301 powers the wheel and one A301 controls steering.
 - The two spur stages remain 1:1, so the offset bevel provides the complete 3.1:1 reduction.
-- V3 uses a slimmer package than V2.5 while continuing to use goBILDA structural parts.
+- V3.1 keeps the slimmer V3 package while adding CNC-ready bearing-hole tolerances.
 - The steering motor is directly attached at the center of pod rotation.
 - Ratchet mounting holes are ready for a future installation.
 

@@ -6,6 +6,6 @@ V1 records the Swechanum CAD package that was previously prepared for this repos
 | --- | --- |
 | [`Systemcore v Alpha.step`](<Systemcore v Alpha.step>) | Legacy Systemcore Alpha reference used during chassis development |
 
-The chassis documentation, physical-build photos, and CAD render remain in the parent folder. Current CAD uploads and future revisions moved to Google Drive.
+The chassis documentation, physical-build photos, and CAD render remain in the parent folder. [Download the current Swechanum CAD from Google Drive](https://drive.google.com/drive/folders/1VI5ETDA84Cjonxy1SA_M-wRaS0PLGz6y).
 
 [Back to the Legacy CAD index](../)

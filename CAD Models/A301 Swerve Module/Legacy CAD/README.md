@@ -11,6 +11,6 @@ This folder preserves the older repository CAD snapshots created during the swer
 | [`V3`](V3/) | Fusion 360 archive and STEP export | Final repository snapshot, now legacy |
 
 > [!IMPORTANT]
-> All CAD files in this folder are old repository snapshots. Current CAD uploads and future revisions were moved to Google Drive.
+> All CAD files in this folder are old repository snapshots. [Download the current swerve pod CAD from Google Drive](https://drive.google.com/drive/folders/1PFXqzIjuWuJsmV0esLAgi1MbDl17urQ1).
 
 [Back to the A301 Swerve Module project](../)

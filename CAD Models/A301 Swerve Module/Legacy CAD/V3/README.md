@@ -1,6 +1,6 @@
 # A301 Swerve Module CAD V3
 
-V3 is the final swerve-module CAD snapshot that was stored directly in this repository. It matches the version documented on the main project page, but it is now considered legacy because current CAD uploads moved to Google Drive.
+V3 is the final swerve-module CAD snapshot stored directly in this repository. It is the CNC-machined version that exposed the tight bearing-hole fit later corrected in V3.1. [Download the current V3.1 CAD from Google Drive](https://drive.google.com/drive/folders/1PFXqzIjuWuJsmV0esLAgi1MbDl17urQ1).
 
 | File | Purpose |
 | --- | --- |

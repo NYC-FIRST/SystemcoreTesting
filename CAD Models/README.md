@@ -32,7 +32,7 @@ The project began with a simple mecanum chassis for early Systemcore and Motionc
 The final drivetrain uses **four custom A301 V3 swerve pods** and **eight A301 motors**. Each pod has one drive motor and one steering motor. The lower mecanum wheels on the hybrid chassis are passive and use zero motors.
 
 > [!NOTE]
-> The STEP and Fusion 360 files kept in this repository are versioned legacy snapshots. Current CAD uploads and future revisions for all three mini projects were moved to Google Drive.
+> The STEP and Fusion 360 files kept in this repository are versioned legacy snapshots. Current downloads: [Swerve Pod CAD](https://drive.google.com/drive/folders/1PFXqzIjuWuJsmV0esLAgi1MbDl17urQ1), [Mecanum CAD](https://drive.google.com/drive/folders/1Kuxc78ZMYxh6YiVGicnxMk1Pkc9k5txG), and [Swechanum CAD](https://drive.google.com/drive/folders/1VI5ETDA84Cjonxy1SA_M-wRaS0PLGz6y).
 
 | Final system | Configuration |
 | --- | --- |
@@ -49,9 +49,9 @@ The final drivetrain uses **four custom A301 V3 swerve pods** and **eight A301 m
 
 ### 01 / [A301 Swerve Module](<A301 Swerve Module/>)
 
-![A301 V3 swerve module](<A301 Swerve Module/A301 Ratchet Swerve .75mm inc v6.png>)
+![A301 V3 swerve module](<A301 Swerve Module/images/A301 Ratchet Swerve .75mm inc v6.png>)
 
-The custom A301 swerve module project. The main folder documents **V3**, the slimmer final physical module used on the current robot, with reference renders, gearing details, and build notes. Repository CAD snapshots from V1 through V3 are preserved in `Legacy CAD`, while current uploads moved to Google Drive.
+The custom A301 swerve module project. The main folder documents the **V3.1** CNC-toleranced revision developed after the physical V3 build revealed an overly tight bearing hole. Repository CAD snapshots from V1 through V3 are preserved in `Legacy CAD`. [Download the current swerve pod CAD from Google Drive](https://drive.google.com/drive/folders/1PFXqzIjuWuJsmV0esLAgi1MbDl17urQ1).
 
 | Module specification | V3 design |
 | --- | --- |
@@ -70,7 +70,7 @@ The custom A301 swerve module project. The main folder documents **V3**, the sli
 
 The simple mecanum prototype created during the first week of the internship. It provided a quick platform for testing Systemcore, Motioncore, A301 motors, and the 18-volt battery pack before the project moved deeper into custom swerve development.
 
-During the final week, the chassis design was cut from metal so the nose drawer could be mounted above it. The folder contains mecanum CAD reference renders, a versioned `Legacy CAD` archive, and space for real-life build photos. Current CAD uploads moved to Google Drive.
+During the final week, the chassis design was cut from metal so the nose drawer could be mounted above it. The folder contains mecanum CAD reference renders, a versioned `Legacy CAD` archive, and space for real-life build photos. [Download the current mecanum CAD from Google Drive](https://drive.google.com/drive/folders/1Kuxc78ZMYxh6YiVGicnxMk1Pkc9k5txG).
 
 | Chassis specification | Mecanum prototype |
 | --- | --- |
@@ -90,7 +90,7 @@ During the final week, the chassis design was cut from metal so the nose drawer 
 
 The full hybrid prototype that combines the upper swerve structure with a lower mecanum base. This folder documents the chassis CAD reference and the updated physical robot. The current build has **four powered swerve pods, zero caster wheels, and zero powered mecanum motors**.
 
-It also includes current chassis photos, a versioned `Legacy CAD` archive, a full hybrid reference render, motor allocation, Systemcore and Motioncore layout, and the final robot video. Current CAD uploads moved to Google Drive.
+It also includes current chassis photos, a versioned `Legacy CAD` archive, a full hybrid reference render, motor allocation, Systemcore and Motioncore layout, and the final robot video. [Download the current Swechanum CAD from Google Drive](https://drive.google.com/drive/folders/1VI5ETDA84Cjonxy1SA_M-wRaS0PLGz6y).
 
 | Chassis specification | Final hybrid robot |
 | --- | --- |

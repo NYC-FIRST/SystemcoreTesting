@@ -4,9 +4,9 @@
 > CAD package for an A301-based swerve module used for Systemcore, Motioncore, and A301 testing.
 
 > [!IMPORTANT]
-> V1 is a legacy repository snapshot. Current CAD uploads moved to Google Drive.
+> V1 is a legacy repository snapshot. [Download the current swerve pod CAD from Google Drive](https://drive.google.com/drive/folders/1PFXqzIjuWuJsmV0esLAgi1MbDl17urQ1).
 
-![A301 swerve module](<Screenshot 2026-07-21 220702.png>)
+![A301 swerve module](<../../images/Screenshot 2026-07-21 220702.png>)
 
 ## At A Glance
 
