@@ -64,38 +64,28 @@ This replaces the earlier setup described in this folder. The current robot does
 
 ## Updated Prototype Photos
 
-| View | Image |
-| --- | --- |
-| Front view | [Open full resolution](images/updated-chassis-front.png) |
-| Side view | [Open full resolution](images/updated-chassis-side.png) |
-| Low angle view | [Open full resolution](images/updated-chassis-angle.png) |
+<table>
+  <tr>
+    <td align="center"><img src="images/updated-chassis-front.png" alt="Updated Swechanum front view"><br><strong>Front view</strong></td>
+    <td align="center"><img src="images/updated-chassis-side.png" alt="Updated Swechanum side view"><br><strong>Side view</strong></td>
+    <td align="center"><img src="images/updated-chassis-angle.png" alt="Updated Swechanum low angle view"><br><strong>Low angle view</strong></td>
+  </tr>
+</table>
 
 ## CAD Views
 
-![Full hybrid chassis CAD](images/cad-full-chassis.png)
-
 The included CAD renders document an earlier design stage and may not show the four-pod, zero-caster configuration of the updated physical prototype.
 
-| CAD view | File |
-| --- | --- |
-| Full hybrid chassis | [Open full resolution](images/cad-full-chassis.png) |
-| Upper swerve section | [Open full resolution](images/cad-upper-swerve-section.png) |
-| Lower mecanum section | [Open full resolution](images/cad-lower-mecanum-section.png) |
-| Extended mecanum wheel | [Open full resolution](images/cad-mecanum-wheel-out.png) |
-
-## Files
-
-| File | Purpose |
-| --- | --- |
-| [`README.md`](README.md) | Current chassis configuration and project overview |
-| [`images/instagram-reel-preview.jpg`](images/instagram-reel-preview.jpg) | Clickable Instagram Reel cover image |
-| [`images/updated-chassis-front.png`](images/updated-chassis-front.png) | Updated front view and cover photo |
-| [`images/updated-chassis-side.png`](images/updated-chassis-side.png) | Updated side view |
-| [`images/updated-chassis-angle.png`](images/updated-chassis-angle.png) | Updated low angle view |
-| [`images/cad-full-chassis.png`](images/cad-full-chassis.png) | Earlier full chassis CAD render |
-| [`images/cad-upper-swerve-section.png`](images/cad-upper-swerve-section.png) | Earlier upper section CAD render |
-| [`images/cad-lower-mecanum-section.png`](images/cad-lower-mecanum-section.png) | Earlier lower section CAD render |
-| [`images/cad-mecanum-wheel-out.png`](images/cad-mecanum-wheel-out.png) | Earlier extended mecanum wheel render |
+<table>
+  <tr>
+    <td align="center"><img src="images/cad-full-chassis.png" alt="Full hybrid chassis CAD"><br><strong>Full hybrid chassis</strong></td>
+    <td align="center"><img src="images/cad-upper-swerve-section.png" alt="Upper swerve section CAD"><br><strong>Upper swerve section</strong></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="images/cad-lower-mecanum-section.png" alt="Lower mecanum section CAD"><br><strong>Lower mecanum section</strong></td>
+    <td align="center"><img src="images/cad-mecanum-wheel-out.png" alt="Extended mecanum wheel CAD"><br><strong>Extended mecanum wheel</strong></td>
+  </tr>
+</table>
 
 ## Build Notes
 

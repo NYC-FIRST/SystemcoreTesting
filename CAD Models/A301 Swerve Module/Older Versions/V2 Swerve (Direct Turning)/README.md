@@ -48,9 +48,6 @@ flowchart LR
 | --- | --- |
 | [`A301 Swerve Direct turning (V2).f3z`](<./A301 Swerve Direct turning (V2).f3z>) | Fusion 360 archive |
 | [`A301 Swerve Direct turning (V2).step`](<./A301 Swerve Direct turning (V2).step>) | STEP export |
-| [`IMG_20260723_203749662.jpg`](<./IMG_20260723_203749662.jpg>) | Reference physical image 1 |
-| [`IMG_20260723_203833159.jpg`](<./IMG_20260723_203833159.jpg>) | Reference physical image 2 |
-| [`IMG_20260723_203846978.jpg`](<./IMG_20260723_203846978.jpg>) | Reference physical image 3 |
 
 ## Build Notes
 

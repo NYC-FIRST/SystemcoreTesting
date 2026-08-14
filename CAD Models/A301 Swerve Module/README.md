@@ -56,8 +56,6 @@ flowchart LR
 | --- | --- |
 | [`A301 Ratchet Swerve .75mm inc.f3z`](<./A301 Ratchet Swerve .75mm inc.f3z>) | Fusion 360 archive |
 | [`A301 Ratchet Swerve .75mm inc.step`](<./A301 Ratchet Swerve .75mm inc.step>) | STEP export |
-| [`A301 Ratchet Swerve .75mm inc v62.png`](<./A301 Ratchet Swerve .75mm inc v62.png>) | Underside reference image |
-| [`A301 Ratchet Swerve .75mm inc v6.png`](<./A301 Ratchet Swerve .75mm inc v6.png>) | Top reference image |
 
 ## Build Notes
 
