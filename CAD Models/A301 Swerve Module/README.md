@@ -1,20 +1,29 @@
-# A301 Swerve Module CAD (V2.5)
+# A301 Swerve Module CAD (V3)
 
 > [!NOTE]
-> CAD package for V2.5 (Main Version) of the A301-based swerve module used for Systemcore, Motioncore, and A301 testing.
+> CAD package for V3, the current main version of the A301-based swerve module used for Systemcore, Motioncore, and A301 testing.
 
-![A301 swerve module V2.5](<A301 Swerve Direct turning V2.5 v7.png>)
-![A301 swerve module V2.5](<A301 Swerve Direct turning V2.5 v8.png>)
+## ▶ V3 Prototype Video
 
-## At A Glance
+[![▶ Play the A301 V3 swerve module video on YouTube](https://img.youtube.com/vi/2v5tu2qvoQQ/maxresdefault.jpg)](https://youtube.com/shorts/2v5tu2qvoQQ)
+
+> **This is a video preview.** Click the image to play it. To keep this page open, use **Ctrl+click** (Windows/Linux), **Cmd+click** (macOS), or middle-click to open the video in a new tab.
+
+![A301 V3 swerve module, underside view](<A301 Ratchet Swerve .75mm inc v62.png>)
+![A301 V3 swerve module, top view](<A301 Ratchet Swerve .75mm inc v6.png>)
+
+## At a Glance
 
 | Area | Detail |
 | --- | --- |
+| Version | V3 |
 | Drive motor | A301 |
 | Steering motor | A301 |
-| Structure | goBILDA |
-| Drive output | Fully geared transmission (Compact) |
-| Steering output | Direct drive via bolted center shaft |
+| Structure | goBILDA parts |
+| Packaging | Slimmer than V2.5 |
+| Drive output | Fully geared transmission |
+| Steering output | Motor directly attached at the center of rotation |
+| Overall drive reduction | 3.1:1 |
 | CAD source | Fusion 360 archive |
 | Neutral export | STEP |
 
@@ -22,44 +31,42 @@
 
 ```mermaid
 flowchart LR
-    DRIVE["A301 drive motor (62T)"] --> INTERMEDIATE["Intermediate shaft (80T & 20T)"]
-    INTERMEDIATE --> BEVEL_IN["Bevel input (20T)"]
-    BEVEL_IN --> BEVEL["Axon bevel (2.8:1)"]
+    DRIVE["A301 drive motor (64T)"] --> FIRST["64T driven gear"]
+    FIRST --> SECOND["20T gear"]
+    SECOND --> BEVEL_IN["20T bevel input"]
+    BEVEL_IN --> BEVEL["Offset bevel (3.1:1)"]
     BEVEL --> WHEEL["Wheel axle"]
 
-    THETA["A301 steering motor"] --> SHAFT["Bolted center shaft"]
-    SHAFT --> MODULE["Rotating module"]
+    STEER["A301 steering motor"] --> CENTER["Center of rotation"]
+    CENTER --> MODULE["Rotating module"]
 ```
 
 ## Drive Gear Path
 
-| Stage | Gear | Notes |
+| Stage | Gear pair or ratio | Notes |
 | --- | --- | --- |
-| Motor Pinion | 62T | Drive motor output |
-| Intermediate 1 | 80T | Driven by 62T motor pinion |
-| Intermediate 2 | 20T | Attached to 80T gear, drives next stage |
-| Bevel Input | 20T | Driven by Intermediate 2 (20T) |
-| Bevel Gear | 2.8:1 | Axon bevel gear set to wheel axle |
+| First spur stage | 64T to 64T | 1:1 |
+| Second spur stage | 20T to 20T | 1:1 |
+| Bevel stage | 3.1:1 | Offset bevel set driving the wheel axle |
+| Overall | 3.1:1 | The two spur stages are 1:1, so the offset bevel provides the full reduction |
 
 ## Files
 
 | File | Purpose |
 | --- | --- |
-| [`A301 Swerve Direct turning V2.5.f3z`](<./A301 Swerve Direct turning V2.5.f3z>) | Fusion 360 archive |
-| [`A301 Swerve Direct turning V2.5.step`](<./A301 Swerve Direct turning V2.5.step>) | STEP export |
-| [`A301 Swerve Direct turning V2.5 v7.png`](<./A301 Swerve Direct turning V2.5 v7.png>) | Reference image 1 |
-| [`A301 Swerve Direct turning V2.5 v8.png`](<./A301 Swerve Direct turning V2.5 v8.png>) | Reference image 2 |
+| [`A301 Ratchet Swerve .75mm inc.f3z`](<./A301 Ratchet Swerve .75mm inc.f3z>) | Fusion 360 archive |
+| [`A301 Ratchet Swerve .75mm inc.step`](<./A301 Ratchet Swerve .75mm inc.step>) | STEP export |
+| [`A301 Ratchet Swerve .75mm inc v62.png`](<./A301 Ratchet Swerve .75mm inc v62.png>) | Underside reference image |
+| [`A301 Ratchet Swerve .75mm inc v6.png`](<./A301 Ratchet Swerve .75mm inc v6.png>) | Top reference image |
 
 ## Build Notes
 
-- The module uses one A301 for wheel drive and one A301 for steering.
-- The main structure is built around goBILDA hardware.
-- The drive path is completely geared. Version 2.5 uses a compact set of gears: a 62T motor gear drives an 80T gear, which has a 20T gear attached to it. That 20T gear drives another 20T gear down to the Axon bevel gears (2.8:1 ratio). This setup allows the pod to be wider but significantly shorter in length.
-- The steering path directly drives the rotation of the pod. The shaft goes down to the center and is bolted directly to the pod.
+- V3 is slimmer than V2.5 while continuing to use goBILDA structural parts.
+- One A301 powers the wheel drive, and a second A301 handles steering.
+- The wheel drive remains completely geared. Its power path is 64T to 64T, then 20T to 20T, followed by a 3.1:1 offset bevel set.
+- Unlike the Axon 2.8:1 bevel used in V2.5, V3 uses the offset 3.1:1 bevel.
+- The steering motor is directly attached to the center of rotation.
 
-<details>
-<summary>Design Intent</summary>
+## Older Versions
 
-This is the main version (V2.5) of the A301 swerve module. It features improved packaging over V2, offering a shorter and wider footprint while maintaining the direct-driven steering and fully geared drive path.
-
-</details>
+Previous releases are preserved in [`Older Versions`](<./Older Versions/>), including the archived [`V2.5 Swerve (Direct Turning)`](<./Older Versions/V2.5 Swerve (Direct Turning)/>) release.
