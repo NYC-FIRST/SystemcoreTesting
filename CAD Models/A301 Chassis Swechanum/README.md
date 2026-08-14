@@ -1,50 +1,66 @@
-# A301 Full Hybrid Chassis
+<div align="center">
 
-> [!NOTE]
-> This folder documents the updated A301 Swechanum prototype used for Systemcore, Motioncore, and A301 testing. It combines an upper swerve section with a lower mecanum base.
+# A301 Swechanum Chassis
 
-![Updated A301 Swechanum chassis from the front](images/updated-chassis-front.png)
+### Final four-pod swerve robot on a passive mecanum support base
 
-## Full Chassis Prototype Video
+![Swerve](https://img.shields.io/badge/Swerve_Pods-4_Powered-6f42c1?style=flat-square)
+![Motors](https://img.shields.io/badge/Motors-8_A301-0a7f5a?style=flat-square)
+![Mecanum](https://img.shields.io/badge/Mecanum_Motors-0_Passive-f57c00?style=flat-square)
+![CAD](https://img.shields.io/badge/CAD-Reference_Render-0078d4?style=flat-square)
 
-[![Watch the A301 chassis rise on Instagram](images/instagram-reel-preview.jpg)](https://www.instagram.com/reel/Db8wJIyBqEo/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)
+<img src="images/updated-chassis-front.png" alt="Final A301 Swechanum chassis" width="820">
 
-> **Click the preview to watch the Instagram Reel.** To keep this page open, use **Ctrl+click** on Windows or Linux, **Cmd+click** on macOS, or middle-click to open it in a new tab.
+The final integrated robot developed from the mecanum base, custom swerve pods, and six weeks of Systemcore testing.
 
-## At a Glance
+[Watch the final robot](#final-robot-video) | [Review the architecture](#current-chassis-architecture) | [View the CAD reference](#cad-reference) | [Back to CAD Models](../)
 
-| Area | Current configuration |
+</div>
+
+---
+
+## Final Robot Video
+
+[![Watch the final four-pod A301 swerve robot on Instagram](images/instagram-reel-preview.jpg)](https://www.instagram.com/reel/Db8wJIyBqEo/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)
+
+> **Click the preview to watch the Instagram Reel.** The video shows the final four-pod robot using eight A301 motors and the completed swerve drive code.
+
+## Project Overview
+
+The A301 Swechanum chassis is the final integrated robot from the internship. It combines four powered A301 V3 swerve pods with the lower mecanum structure developed earlier in the project.
+
+The current robot is driven entirely by the upper swerve assembly. Each of the four pods uses one A301 drive motor and one A301 steering motor, for eight powered motors total. The four lower mecanum wheels remain attached as passive support wheels and use zero motors.
+
+| Chassis specification | Final configuration |
 | --- | --- |
-| Project | A301 full hybrid Swechanum chassis |
-| Upper drivetrain | Four powered A301 V3 swerve pods |
-| Upper passive casters | Zero |
-| Lower drivetrain | Four passive mecanum wheels |
-| Swerve motors | Eight A301 motors, with one drive motor and one steering motor in each pod |
-| Mecanum motors | Zero |
+| Control hardware | Systemcore and Motioncore |
+| Powered swerve pods | Four A301 V3 modules |
+| Drive motors | Four A301 motors |
+| Steering motors | Four A301 motors |
 | Total powered motors | Eight |
-| Controls | Systemcore and Motioncore |
+| Passive casters | Zero |
+| Lower support wheels | Four mecanum wheels |
+| Lower mecanum motors | Zero |
 | Structure | Metal goBILDA channel, plates, and hardware |
+| Final development stage | Week 6 |
 
 ## Current Chassis Architecture
 
 | Section | Static system flow |
 | --- | --- |
-| Powered swerve | `Systemcore + Motioncore` → `Upper swerve section` → `4 powered A301 V3 pods` → `8 A301 motors` |
-| Passive mecanum | `Combined chassis` → `Lower mecanum base` → `4 passive mecanum wheels` → `0 mecanum motors` |
+| Powered swerve | `Systemcore + Motioncore` -> `Upper swerve section` -> `4 powered A301 V3 pods` -> `8 A301 motors` |
+| Passive mecanum | `Combined chassis` -> `Lower mecanum base` -> `4 passive mecanum wheels` -> `0 mecanum motors` |
 
-## Upper Swerve Section
+## Development from Two Pods to Four
 
-The updated prototype uses **four A301 V3 swerve pods**. Each pod has one drive motor and one steering motor, so the upper section uses eight A301 motors altogether. The previous version used two powered swerve pods with passive casters. Those casters have been removed, and the current chassis has **zero passive caster or dead wheels**.
+The earlier chassis used two powered swerve pods and caster support while the team developed the steering system and diagonal drive behavior. The final version replaced that arrangement with four powered V3 pods.
 
-The current A301 V3 pod is documented in the neighboring [`A301 Swerve Module`](../A301%20Swerve%20Module/) folder.
+| Development stage | Upper drivetrain | Support system |
+| --- | --- | --- |
+| Weeks 4 and 5 | Two powered swerve pods | Passive caster support |
+| Week 6 final robot | Four powered swerve pods | Zero casters |
 
-![Four powered swerve pods on the updated chassis](images/updated-chassis-side.png)
-
-## Lower Mecanum Section
-
-The lower section still has four mecanum wheels, but they are no longer powered. The current prototype uses **zero motors on the mecanum drivetrain**. The mecanum wheels now act as passive support wheels while the four upper swerve pods provide the powered movement and steering.
-
-![Passive mecanum wheels on the updated lower chassis](images/updated-chassis-angle.png)
+The lower mecanum wheels are not part of the powered drivetrain in the final robot. They remain as passive supports while the four swerve pods handle movement and steering.
 
 ## Motor Allocation
 
@@ -52,11 +68,17 @@ The lower section still has four mecanum wheels, but they are no longer powered.
 | --- | --- | ---: |
 | Upper swerve | Four pods with one drive and one steering motor per pod | 8 |
 | Lower mecanum | Four passive mecanum wheels | 0 |
-| **Total** | Current physical prototype | **8** |
+| **Total** | Final physical robot | **8** |
 
-This replaces the earlier setup described in this folder. The current robot does not use the previous two-swerve-pod and two-caster layout, and it does not use four powered mecanum motors.
+## CAD Reference
 
-## Updated Prototype Photos
+The final editable Fusion 360 and STEP files are maintained outside this public repository because they are too large for normal GitHub storage and this public fork cannot upload new Git LFS objects. The [`CAD`](CAD/) folder documents their repository status.
+
+The image below is a reference render captured during development and may not include every final physical revision.
+
+![Full hybrid chassis CAD reference render](images/cad-full-chassis.png)
+
+## Physical Prototype Gallery
 
 <table>
   <tr>
@@ -66,15 +88,26 @@ This replaces the earlier setup described in this folder. The current robot does
   </tr>
 </table>
 
-## CAD Views
+## Related Mini Projects
 
-The included full chassis render documents an earlier design stage and may not show the four-pod, zero-caster configuration of the updated physical prototype.
-
-![Full hybrid chassis CAD](images/cad-full-chassis.png)
+| Project | Relationship to this chassis |
+| --- | --- |
+| [`A301 Swerve Module`](../A301%20Swerve%20Module/) | Documents the V3 drive-and-steer pod used four times on the final robot |
+| [`A301 Mecanum Chassis`](../A301%20Mecanum%20Chassis/) | Documents the earlier mecanum test base and final metal chassis work |
 
 ## Build Notes
 
-- The current physical chassis has four powered swerve pods and no passive casters.
-- The four mecanum wheels are passive and use zero motors.
-- Systemcore and Motioncore control the eight motors used by the four swerve pods.
-- The new photos show the current physical configuration more accurately than the earlier CAD renders.
+- The final physical chassis uses four powered V3 swerve pods and no caster wheels.
+- Each pod uses one drive motor and one steering motor.
+- Systemcore and Motioncore control all eight powered A301 motors.
+- The four lower mecanum wheels are passive and use zero motors.
+- The oversized final Fusion 360 and STEP source files are stored outside this repository.
+- The physical photos show the current robot more accurately than the earlier reference render.
+
+---
+
+<div align="center">
+
+[Back to the complete CAD Models collection](../)
+
+</div>

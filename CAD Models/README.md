@@ -19,6 +19,12 @@ This folder collects the CAD and build history for the A301 drivetrain prototype
 
 ---
 
+## Final Robot Video
+
+[![Watch the final four-pod A301 swerve robot on Instagram](A301%20Chassis%20Swechanum/images/instagram-reel-preview.jpg)](https://www.instagram.com/reel/Db8wJIyBqEo/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)
+
+> **Click the preview to watch the Instagram Reel.** This is the final four-pod swerve robot using eight A301 motors and the completed drive code linked below.
+
 ## Project Overview
 
 The project began with a simple mecanum chassis for early Systemcore and Motioncore testing. It then moved through several custom A301 swerve pod revisions, an experimental two-pod swerve chassis supported by caster wheels, and finally the complete four-pod swerve robot.
@@ -61,7 +67,7 @@ The complete CAD package for the custom A301 swerve module. The main folder cont
 
 The simple mecanum prototype created during the first week of the internship. It provided a quick platform for testing Systemcore, Motioncore, A301 motors, and the 18-volt battery pack before the project moved deeper into custom swerve development.
 
-During the final week, the chassis design was cut from metal so the nose drawer could be mounted above it. The folder contains the mecanum CAD renders and is organized for the full chassis CAD files and real-life build photos.
+During the final week, the chassis design was cut from metal so the nose drawer could be mounted above it. The folder contains mecanum CAD reference renders, source-file status documentation, and space for real-life build photos.
 
 | Chassis specification | Mecanum prototype |
 | --- | --- |
@@ -79,9 +85,9 @@ During the final week, the chassis design was cut from metal so the nose drawer 
 
 ![Updated A301 Swechanum chassis](A301%20Chassis%20Swechanum/images/updated-chassis-side.png)
 
-The full hybrid prototype that combines the upper swerve structure with a lower mecanum base. This folder documents the earlier CAD concept and the updated physical robot. The current build has **four powered swerve pods, zero caster wheels, and zero powered mecanum motors**.
+The full hybrid prototype that combines the upper swerve structure with a lower mecanum base. This folder documents the chassis CAD reference and the updated physical robot. The current build has **four powered swerve pods, zero caster wheels, and zero powered mecanum motors**.
 
-It also includes current chassis photos, the full hybrid CAD render, motor allocation, Systemcore and Motioncore layout, and the final robot video.
+It also includes current chassis photos, final source-file status documentation, a full hybrid reference render, motor allocation, Systemcore and Motioncore layout, and the final robot video.
 
 | Chassis specification | Final hybrid robot |
 | --- | --- |
@@ -104,12 +110,6 @@ It also includes current chassis photos, the full hybrid CAD render, motor alloc
 | Week 6 | Completed the final four-pod swerve robot using eight A301 motors in the swerve assembly |
 
 The CAD folders preserve the mechanical progression from the first mecanum base to the final four-pod robot. The Java project developed alongside the hardware preserves motor bring-up, pod testing, the earlier two-pod drive, mechanism testing, steering calibration, telemetry, field-centric experiments, vision work, and the final four-module drive mode.
-
-### Final Robot Video
-
-[![Watch the final four-pod A301 swerve robot on Instagram](A301%20Chassis%20Swechanum/images/instagram-reel-preview.jpg)](https://www.instagram.com/reel/Db8wJIyBqEo/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)
-
-> **Click the preview to watch the Instagram Reel.** This is the final four-pod swerve robot using eight A301 motors and the completed drive code linked below.
 
 ## Robot Code
 
