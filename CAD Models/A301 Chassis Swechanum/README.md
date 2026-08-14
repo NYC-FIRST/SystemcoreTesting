@@ -9,7 +9,7 @@
 ![Mecanum](https://img.shields.io/badge/Mecanum_Motors-0_Passive-f57c00?style=flat-square)
 ![CAD](https://img.shields.io/badge/CAD-Current_and_Archive-0078d4?style=flat-square)
 
-<img src="images/final-swechanum.png" alt="Full four-pod A301 Swechanum robot CAD with the passive mecanum base" width="820">
+<img src="images/updated-chassis-front.png" alt="Completed A301 Swechanum chassis viewed from the front" width="820">
 
 The final integrated robot developed from the mecanum base, custom swerve pods, and six weeks of Systemcore testing.
 
@@ -99,19 +99,12 @@ The [`CAD archive`](<Legacy CAD/>) preserves the versioned repository files, inc
 
 <table>
   <tr>
-    <td align="center"><img src="images/final-robot-front.jpeg" alt="Completed Swechanum robot viewed from the front"><br><strong>Completed robot</strong></td>
-    <td align="center"><img src="images/final-robot-angle.jpeg" alt="Completed Swechanum robot showing the Systemcore and Motioncore installation"><br><strong>Final electronics and chassis packaging</strong></td>
-  </tr>
-  <tr>
-    <td align="center"><img src="images/updated-chassis-front.png" alt="Earlier front view of the Swechanum physical prototype"><br><strong>Earlier front view</strong></td>
-    <td align="center"><img src="images/updated-chassis-side.png" alt="Earlier side view of the Swechanum physical prototype"><br><strong>Earlier side view</strong></td>
-  </tr>
-  <tr>
-    <td colspan="2" align="center"><img src="images/updated-chassis-angle.png" alt="Earlier low angle view of the Swechanum physical prototype"><br><strong>Earlier low angle view</strong></td>
+    <td align="center"><img src="images/updated-chassis-side.png" alt="Completed Swechanum robot viewed from the side"><br><strong>Completed robot</strong></td>
+    <td align="center"><img src="images/updated-chassis-angle.png" alt="Swechanum robot showing the final electronics and chassis packaging"><br><strong>Final electronics and chassis packaging</strong></td>
   </tr>
 </table>
 
-These final and earlier build photos show the four-pod robot from multiple angles, including the installed Systemcore and Motioncore hardware, finished wiring, and passive lower mecanum wheels.
+These build photos show the four-pod robot from multiple angles, including the installed Systemcore and Motioncore hardware, finished wiring, and passive lower mecanum wheels.
 
 ## Related Mini Projects
 
