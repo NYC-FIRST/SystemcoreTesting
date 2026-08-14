@@ -7,9 +7,9 @@
 
 ## Full Chassis Prototype Video
 
-[Watch the A301 chassis rise on Instagram](https://www.instagram.com/reel/Db8wJIyBqEo/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)
+[![Watch the A301 chassis rise on Instagram](images/instagram-reel-preview.jpg)](https://www.instagram.com/reel/Db8wJIyBqEo/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)
 
-> The video opens as an Instagram Reel. To keep this page open, use **Ctrl+click** on Windows or Linux, **Cmd+click** on macOS, or middle-click to open it in a new tab.
+> **Click the preview to watch the Instagram Reel.** To keep this page open, use **Ctrl+click** on Windows or Linux, **Cmd+click** on macOS, or middle-click to open it in a new tab.
 
 ## At a Glance
 
@@ -88,6 +88,7 @@ The included CAD renders document an earlier design stage and may not show the f
 | File | Purpose |
 | --- | --- |
 | [`README.md`](README.md) | Current chassis configuration and project overview |
+| [`images/instagram-reel-preview.jpg`](images/instagram-reel-preview.jpg) | Clickable Instagram Reel cover image |
 | [`images/updated-chassis-front.png`](images/updated-chassis-front.png) | Updated front view and cover photo |
 | [`images/updated-chassis-side.png`](images/updated-chassis-side.png) | Updated side view |
 | [`images/updated-chassis-angle.png`](images/updated-chassis-angle.png) | Updated low angle view |
