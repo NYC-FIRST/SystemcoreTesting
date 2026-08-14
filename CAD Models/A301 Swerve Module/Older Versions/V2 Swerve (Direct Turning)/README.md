@@ -21,16 +21,10 @@
 
 ## Module Layout
 
-```mermaid
-flowchart LR
-    DRIVE["A301 drive motor (90T)"] --> INTERMEDIATE["Intermediate shaft (60T & 20T)"]
-    INTERMEDIATE --> BEVEL_IN["Bevel input (20T)"]
-    BEVEL_IN --> BEVEL["Axon bevel (2.8:1)"]
-    BEVEL --> WHEEL["Wheel axle"]
-
-    THETA["A301 steering motor"] --> SHAFT["Bolted center shaft"]
-    SHAFT --> MODULE["Rotating module"]
-```
+| System | Static power path |
+| --- | --- |
+| Wheel drive | `A301 drive motor (90T)` → `Intermediate shaft (60T and 20T)` → `20T bevel input` → `2.8:1 Axon bevel` → `Wheel axle` |
+| Steering | `A301 steering motor` → `Bolted center shaft` → `Rotating module` |
 
 ## Drive Gear Path
 

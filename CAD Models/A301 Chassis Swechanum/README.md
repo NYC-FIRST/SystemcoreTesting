@@ -27,16 +27,10 @@
 
 ## Current Chassis Architecture
 
-```mermaid
-flowchart TB
-    CONTROL["Systemcore + Motioncore"] --> UPPER["Upper swerve section"]
-    CONTROL --> CHASSIS["Combined chassis controls"]
-    UPPER --> PODS["4 powered A301 V3 swerve pods"]
-    PODS --> MOTORS["8 A301 motors total"]
-    CHASSIS --> LOWER["Lower mecanum base"]
-    LOWER --> PASSIVE["4 passive mecanum wheels"]
-    PASSIVE --> NOMOTORS["0 mecanum motors"]
-```
+| Section | Static system flow |
+| --- | --- |
+| Powered swerve | `Systemcore + Motioncore` → `Upper swerve section` → `4 powered A301 V3 pods` → `8 A301 motors` |
+| Passive mecanum | `Combined chassis` → `Lower mecanum base` → `4 passive mecanum wheels` → `0 mecanum motors` |
 
 ## Upper Swerve Section
 
@@ -74,18 +68,9 @@ This replaces the earlier setup described in this folder. The current robot does
 
 ## CAD Views
 
-The included CAD renders document an earlier design stage and may not show the four-pod, zero-caster configuration of the updated physical prototype.
+The included full chassis render documents an earlier design stage and may not show the four-pod, zero-caster configuration of the updated physical prototype.
 
-<table>
-  <tr>
-    <td align="center"><img src="images/cad-full-chassis.png" alt="Full hybrid chassis CAD"><br><strong>Full hybrid chassis</strong></td>
-    <td align="center"><img src="images/cad-upper-swerve-section.png" alt="Upper swerve section CAD"><br><strong>Upper swerve section</strong></td>
-  </tr>
-  <tr>
-    <td align="center"><img src="images/cad-lower-mecanum-section.png" alt="Lower mecanum section CAD"><br><strong>Lower mecanum section</strong></td>
-    <td align="center"><img src="images/cad-mecanum-wheel-out.png" alt="Extended mecanum wheel CAD"><br><strong>Extended mecanum wheel</strong></td>
-  </tr>
-</table>
+![Full hybrid chassis CAD](images/cad-full-chassis.png)
 
 ## Build Notes
 

@@ -15,6 +15,15 @@ During the final week of the internship, the chassis parts were cut out of metal
 
 This folder focuses on the mecanum chassis itself. It includes the original CAD work and will also include images of the CAD model and the completed real-life chassis.
 
+## CAD Views
+
+<table>
+  <tr>
+    <td align="center"><img src="images/cad-lower-mecanum-section.png" alt="Lower mecanum chassis CAD"><br><strong>Lower mecanum chassis</strong></td>
+    <td align="center"><img src="images/cad-mecanum-wheel-out.png" alt="Mecanum chassis with an extended wheel"><br><strong>Extended mecanum wheel</strong></td>
+  </tr>
+</table>
+
 ## Project Timeline
 
 | Stage | Work completed |
@@ -30,4 +39,4 @@ This folder focuses on the mecanum chassis itself. It includes the original CAD 
 | [`CAD`](CAD/) | Full mecanum chassis CAD files |
 | [`images`](images/) | CAD renders and real-life photos of the chassis |
 
-The CAD files and project images will be added after they are placed into these folders.
+Additional CAD files and real-life project photos can be added to these folders as they become available.

@@ -19,14 +19,10 @@
 
 ## Module Layout
 
-```mermaid
-flowchart LR
-    DRIVE["A301 drive motor"] --> BEVEL["Axon bevel gear"]
-    BEVEL --> WHEEL["Wheel axle"]
-
-    THETA["A301 steering motor"] --> PULLEY["Pulley stage"]
-    PULLEY --> MODULE["Rotating module"]
-```
+| System | Static power path |
+| --- | --- |
+| Wheel drive | `A301 drive motor` → `Axon bevel gear` → `Wheel axle` |
+| Steering | `A301 steering motor` → `Pulley stage` → `Rotating module` |
 
 ## Files
 
