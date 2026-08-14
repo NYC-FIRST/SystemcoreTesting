@@ -109,11 +109,6 @@ The [`CAD archive`](<Legacy CAD/>) preserves the older V1, V2, V2.25, V2.5, and 
   <p><strong>Archived A301 V2.5 Swerve Pod CAD</strong><br>Click the older pod preview to open its repository CAD archive.</p>
 </div>
 
-| Archived V3 file | Format | Purpose |
-| --- | --- | --- |
-| [`A301 Ratchet Swerve .75mm inc.f3z`](<Legacy CAD/V3/A301 Ratchet Swerve .75mm inc.f3z>) | Fusion 360 archive | Archived editable V3 module assembly |
-| [`A301 Ratchet Swerve .75mm inc.step`](<Legacy CAD/V3/A301 Ratchet Swerve .75mm inc.step>) | STEP | Archived neutral V3 module export |
-
 ## Physical Prototype Gallery
 
 <table>
