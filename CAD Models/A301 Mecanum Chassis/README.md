@@ -7,7 +7,7 @@
 ![Build](https://img.shields.io/badge/Build-Week_1-6f42c1?style=flat-square)
 ![Wheels](https://img.shields.io/badge/Drive-4_Mecanum_Wheels-0a7f5a?style=flat-square)
 ![Battery](https://img.shields.io/badge/Battery-18_Volts-f57c00?style=flat-square)
-![CAD](https://img.shields.io/badge/CAD-Current_and_Archive-0078d4?style=flat-square)
+![CAD](https://img.shields.io/badge/CAD-Current-0078d4?style=flat-square)
 
 <img src="images/cad-lower-mecanum-section.png" alt="A301 mecanum chassis CAD" width="820">
 
@@ -71,18 +71,7 @@ The latest mecanum CAD is available through the preview below. The current files
 </div>
 
 > [!TIP]
-> The image opens the current CAD download folder. Older repository CAD versions are available in the archive below.
-
-### CAD Archive
-
-The [`CAD archive`](<Legacy CAD/>) preserves the versioned record of the older repository CAD package for project history.
-
-<div align="center">
-  <a href="Legacy%20CAD/" title="Open the archived A301 mecanum chassis CAD">
-    <img src="images/cad-mecanum-wheel-out.png" alt="Open the archived A301 mecanum chassis CAD with the extended-wheel configuration" width="720">
-  </a>
-  <p><strong>Archived A301 Mecanum Chassis CAD</strong><br>Click the older extended-wheel preview to open its repository CAD archive.</p>
-</div>
+> The image opens the current CAD download folder on Google Drive.
 
 ## Project Timeline
 
@@ -97,7 +86,6 @@ The [`CAD archive`](<Legacy CAD/>) preserves the versioned record of the older r
 
 | Folder | Purpose |
 | --- | --- |
-| [`CAD archive`](<Legacy CAD/>) | Versioned archive and source-file status |
 | [`images`](images/) | Mecanum CAD renders and future physical-build photos |
 
 ## Build Notes

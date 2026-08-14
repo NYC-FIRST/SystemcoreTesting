@@ -1,12 +1,11 @@
 # A301 Swechanum Chassis Legacy CAD
 
-This folder preserves the older repository CAD records and reference files for the Swechanum chassis.
+These files are older CAD references from the Swechanum chassis development.
 
-| Version | Archive contents | Status |
-| --- | --- | --- |
-| [`V1`](V1/) | CAD status record and Systemcore Alpha STEP reference | Legacy |
+| File | Purpose |
+| --- | --- |
+| [`Systemcore v Alpha.step`](<Systemcore v Alpha.step>) | Legacy Systemcore Alpha reference used during chassis development |
 
-> [!IMPORTANT]
-> These files are old repository references. [Download the current Swechanum CAD from Google Drive](https://drive.google.com/drive/folders/1VI5ETDA84Cjonxy1SA_M-wRaS0PLGz6y).
+The current chassis documentation, physical-build photos, and CAD render remain in the parent folder. [Download the current Swechanum CAD from Google Drive](https://drive.google.com/drive/folders/1VI5ETDA84Cjonxy1SA_M-wRaS0PLGz6y).
 
 [Back to the A301 Swechanum Chassis project](../)

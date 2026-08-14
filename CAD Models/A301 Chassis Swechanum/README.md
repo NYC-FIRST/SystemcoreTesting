@@ -86,7 +86,7 @@ The latest Swechanum robot CAD is available through the preview below. The curre
 
 ### CAD Archive
 
-The [`CAD archive`](<Legacy CAD/>) preserves the versioned repository files, including the Systemcore Alpha STEP reference used during chassis packaging.
+The [`CAD archive`](<Legacy CAD/>) preserves the older Systemcore Alpha STEP reference used during chassis packaging.
 
 <div align="center">
   <a href="Legacy%20CAD/" title="Open the archived two-pod A301 Swechanum CAD">
@@ -119,7 +119,7 @@ These build photos show the four-pod robot from multiple angles, including the i
 - Each pod uses one drive motor and one steering motor.
 - Systemcore and Motioncore control all eight powered A301 motors.
 - The four lower mecanum wheels are passive and use zero motors.
-- Current full Swechanum CAD uploads are maintained through the preview link above, while the repository keeps only the versioned CAD archive.
+- Current full Swechanum CAD uploads are maintained through the preview link above, while the repository keeps the older Systemcore Alpha STEP reference.
 - The current download preview shows the final four-pod layout, while the CAD archive preserves the earlier two-pod render.
 
 ---

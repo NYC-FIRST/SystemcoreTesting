@@ -80,7 +80,7 @@ The custom A301 swerve module project. The main folder documents the **V3.1** CN
 
 The simple mecanum prototype created during the first week of the internship. It provided a quick platform for testing Systemcore, Motioncore, A301 motors, and the 18-volt battery pack before the project moved deeper into custom swerve development.
 
-During the final week, the chassis design was cut from metal so the nose drawer could be mounted above it. The folder contains mecanum CAD reference renders, a versioned `Legacy CAD` archive, and space for real-life build photos. [Download the current mecanum CAD from Google Drive](https://drive.google.com/drive/folders/1Kuxc78ZMYxh6YiVGicnxMk1Pkc9k5txG).
+During the final week, the chassis design was cut from metal so the nose drawer could be mounted above it. The folder contains mecanum CAD reference renders and space for real-life build photos. [Download the current mecanum CAD from Google Drive](https://drive.google.com/drive/folders/1Kuxc78ZMYxh6YiVGicnxMk1Pkc9k5txG).
 
 | Chassis specification | Mecanum prototype |
 | --- | --- |
@@ -105,7 +105,7 @@ During the final week, the chassis design was cut from metal so the nose drawer 
 
 The full hybrid prototype that combines the upper swerve structure with a lower mecanum base. This folder documents the chassis CAD reference and the updated physical robot. The current build has **four powered swerve pods, zero caster wheels, and zero powered mecanum motors**.
 
-It also includes current chassis photos, a versioned `Legacy CAD` archive, the final four-pod CAD render, motor allocation, Systemcore and Motioncore layout, and the final robot video. [Download the current Swechanum CAD from Google Drive](https://drive.google.com/drive/folders/1VI5ETDA84Cjonxy1SA_M-wRaS0PLGz6y).
+It also includes current chassis photos, an older Systemcore Alpha STEP reference, the final four-pod CAD render, motor allocation, Systemcore and Motioncore layout, and the final robot video. [Download the current Swechanum CAD from Google Drive](https://drive.google.com/drive/folders/1VI5ETDA84Cjonxy1SA_M-wRaS0PLGz6y).
 
 | Chassis specification | Final hybrid robot |
 | --- | --- |
