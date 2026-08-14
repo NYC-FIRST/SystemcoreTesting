@@ -9,7 +9,7 @@
 ![Mecanum](https://img.shields.io/badge/Mecanum_Motors-0_Passive-f57c00?style=flat-square)
 ![CAD](https://img.shields.io/badge/CAD-Current_and_Archive-0078d4?style=flat-square)
 
-<img src="images/updated-chassis-front.png" alt="Final A301 Swechanum chassis" width="820">
+<img src="images/final-robot-front.jpeg" alt="Completed A301 Swechanum chassis at the NYC FIRST Cornell Tech STEM Center" width="820">
 
 The final integrated robot developed from the mecanum base, custom swerve pods, and six weeks of Systemcore testing.
 
@@ -99,11 +99,12 @@ The [`CAD archive`](<Legacy CAD/>) preserves the versioned repository files, inc
 
 <table>
   <tr>
-    <td align="center"><img src="images/updated-chassis-front.png" alt="Updated Swechanum front view"><br><strong>Front view</strong></td>
-    <td align="center"><img src="images/updated-chassis-side.png" alt="Updated Swechanum side view"><br><strong>Side view</strong></td>
-    <td align="center"><img src="images/updated-chassis-angle.png" alt="Updated Swechanum low angle view"><br><strong>Low angle view</strong></td>
+    <td align="center"><img src="images/final-robot-front.jpeg" alt="Completed Swechanum robot viewed from the front"><br><strong>Completed robot</strong></td>
+    <td align="center"><img src="images/final-robot-angle.jpeg" alt="Completed Swechanum robot showing the Systemcore and Motioncore installation"><br><strong>Final electronics and chassis packaging</strong></td>
   </tr>
 </table>
+
+These final build photos show the completed four-pod robot, including the installed Systemcore and Motioncore hardware, finished wiring, and passive lower mecanum wheels.
 
 ## Related Mini Projects
 

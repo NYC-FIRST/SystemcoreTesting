@@ -9,7 +9,7 @@
 [![CAD](https://img.shields.io/badge/CAD-Legacy_Archive-f57c00?style=flat-square)](#cad-collection)
 [![Robot Code](https://img.shields.io/badge/Robot_Code-Java-007396?style=flat-square)](https://github.com/NYC-FIRST/SystemcoreTesting/tree/Revlib4-testing/testprojects/robot%20test/src/main/java/first/robot)
 
-<img src="./A301%20Chassis%20Swechanum/images/updated-chassis-front.png" alt="Final A301 four-pod swerve robot" width="820">
+<img src="./A301%20Chassis%20Swechanum/images/final-robot-front.jpeg" alt="Completed A301 four-pod swerve robot at the NYC FIRST Cornell Tech STEM Center" width="820">
 
 This folder collects the CAD and build history for the A301 drivetrain prototypes developed during a six-week internship at the NYC FIRST Cornell Tech STEM Center.
 
