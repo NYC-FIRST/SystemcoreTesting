@@ -9,7 +9,7 @@
 [![CAD](https://img.shields.io/badge/CAD-Legacy_Archive-f57c00?style=flat-square)](#cad-collection)
 [![Robot Code](https://img.shields.io/badge/Robot_Code-Java-007396?style=flat-square)](https://github.com/NYC-FIRST/SystemcoreTesting/tree/Revlib4-testing/testprojects/robot%20test/src/main/java/first/robot)
 
-<img src="./A301%20Chassis%20Swechanum/images/final-robot-front.jpeg" alt="Completed A301 four-pod swerve robot at the NYC FIRST Cornell Tech STEM Center" width="820">
+<img src="./A301%20Chassis%20Swechanum/images/updated-chassis-front.png" alt="Completed A301 four-pod Swechanum robot viewed from the front" width="820">
 
 This folder collects the CAD and build history for the A301 drivetrain prototypes developed during a six-week internship at the NYC FIRST Cornell Tech STEM Center.
 
@@ -98,7 +98,7 @@ During the final week, the chassis design was cut from metal so the nose drawer 
 
 <div align="center">
   <a href="https://drive.google.com/drive/folders/1VI5ETDA84Cjonxy1SA_M-wRaS0PLGz6y" target="_blank" rel="noopener noreferrer" title="Open the current A301 Swechanum robot CAD downloads">
-    <img src="A301%20Chassis%20Swechanum/images/updated-chassis-front.png" alt="Open the current A301 Swechanum robot CAD downloads from the earlier front-view prototype photo" width="720">
+    <img src="A301%20Chassis%20Swechanum/images/final-swechanum.png" alt="Open the current full four-pod A301 Swechanum robot CAD downloads on Google Drive" width="720">
   </a>
   <p><strong>Current A301 Swechanum Robot CAD</strong><br>Click the preview to open the complete robot files in Google Drive.</p>
 </div>
