@@ -105,7 +105,7 @@ During the final week, the chassis design was cut from metal so the nose drawer 
 
 The full hybrid prototype that combines the upper swerve structure with a lower mecanum base. This folder documents the chassis CAD reference and the updated physical robot. The current build has **four powered swerve pods, zero caster wheels, and zero powered mecanum motors**.
 
-It also includes current chassis photos, a versioned `Legacy CAD` archive, a full hybrid reference render, motor allocation, Systemcore and Motioncore layout, and the final robot video. [Download the current Swechanum CAD from Google Drive](https://drive.google.com/drive/folders/1VI5ETDA84Cjonxy1SA_M-wRaS0PLGz6y).
+It also includes current chassis photos, a versioned `Legacy CAD` archive, the final four-pod CAD render, motor allocation, Systemcore and Motioncore layout, and the final robot video. [Download the current Swechanum CAD from Google Drive](https://drive.google.com/drive/folders/1VI5ETDA84Cjonxy1SA_M-wRaS0PLGz6y).
 
 | Chassis specification | Final hybrid robot |
 | --- | --- |
