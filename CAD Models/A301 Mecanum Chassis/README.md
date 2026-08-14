@@ -77,16 +77,12 @@ The latest mecanum CAD is available through the preview below. The current files
 
 The [`CAD archive`](<Legacy CAD/>) preserves the versioned record of the older repository CAD package for project history.
 
-The reference renders below remain available directly in the repository.
-
-## CAD Gallery
-
-<table>
-  <tr>
-    <td align="center"><img src="images/cad-lower-mecanum-section.png" alt="Lower mecanum chassis CAD"><br><strong>Full mecanum chassis</strong></td>
-    <td align="center"><img src="images/cad-mecanum-wheel-out.png" alt="Mecanum chassis with an extended wheel"><br><strong>Extended wheel configuration</strong></td>
-  </tr>
-</table>
+<div align="center">
+  <a href="Legacy%20CAD/" title="Open the archived A301 mecanum chassis CAD">
+    <img src="images/cad-mecanum-wheel-out.png" alt="Open the archived A301 mecanum chassis CAD with the extended-wheel configuration" width="720">
+  </a>
+  <p><strong>Archived A301 Mecanum Chassis CAD</strong><br>Click the older extended-wheel preview to open its repository CAD archive.</p>
+</div>
 
 ## Project Timeline
 

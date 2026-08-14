@@ -86,6 +86,15 @@ The latest V3.1 CAD is available through the preview below.
   <p><strong>Current A301 V3.1 Swerve Pod CAD</strong><br>Click the CAD preview to open the current swerve pod files in Google Drive.</p>
 </div>
 
+### Current CAD Views
+
+<table>
+  <tr>
+    <td align="center"><img src="images/A301%20Ratchet%20Swerve%20.75mm%20inc%20v62.png" alt="A301 V3.1 swerve module underside CAD"><br><strong>Underside CAD</strong></td>
+    <td align="center"><img src="images/A301%20Ratchet%20Swerve%20.75mm%20inc%20v6.png" alt="A301 V3.1 swerve module top CAD"><br><strong>Top CAD</strong></td>
+  </tr>
+</table>
+
 > [!TIP]
 > The image opens the current CAD download folder. Older repository CAD versions are available in the archive below.
 
@@ -93,19 +102,17 @@ The latest V3.1 CAD is available through the preview below.
 
 The [`CAD archive`](<Legacy CAD/>) preserves the older V1, V2, V2.25, V2.5, and V3 source packages for design-history reference.
 
+<div align="center">
+  <a href="Legacy%20CAD/V2.5/" title="Open the archived A301 V2.5 swerve pod CAD">
+    <img src="images/A301%20Swerve%20Direct%20turning%20V2.5%20v7.png" alt="Open the archived A301 V2.5 swerve pod CAD" width="720">
+  </a>
+  <p><strong>Archived A301 V2.5 Swerve Pod CAD</strong><br>Click the older pod preview to open its repository CAD archive.</p>
+</div>
+
 | Archived V3 file | Format | Purpose |
 | --- | --- | --- |
 | [`A301 Ratchet Swerve .75mm inc.f3z`](<Legacy CAD/V3/A301 Ratchet Swerve .75mm inc.f3z>) | Fusion 360 archive | Archived editable V3 module assembly |
 | [`A301 Ratchet Swerve .75mm inc.step`](<Legacy CAD/V3/A301 Ratchet Swerve .75mm inc.step>) | STEP | Archived neutral V3 module export |
-
-### CAD Reference Views
-
-<table>
-  <tr>
-    <td align="center"><img src="images/A301%20Ratchet%20Swerve%20.75mm%20inc%20v62.png" alt="A301 V3 swerve module underside CAD"><br><strong>Underside CAD</strong></td>
-    <td align="center"><img src="images/A301%20Ratchet%20Swerve%20.75mm%20inc%20v6.png" alt="A301 V3 swerve module top CAD"><br><strong>Top CAD</strong></td>
-  </tr>
-</table>
 
 ## Physical Prototype Gallery
 

@@ -88,9 +88,12 @@ The latest Swechanum robot CAD is available through the preview below. The curre
 
 The [`CAD archive`](<Legacy CAD/>) preserves the versioned repository files, including the Systemcore Alpha STEP reference used during chassis packaging.
 
-The image below is the archived earlier Swechanum CAD render from the two-pod development stage.
-
-![Archived two-pod Swechanum chassis CAD render](images/cad-full-chassis.png)
+<div align="center">
+  <a href="Legacy%20CAD/" title="Open the archived two-pod A301 Swechanum CAD">
+    <img src="images/cad-full-chassis.png" alt="Open the archived two-pod A301 Swechanum chassis CAD" width="720">
+  </a>
+  <p><strong>Archived Two-Pod A301 Swechanum CAD</strong><br>Click the older two-pod and caster-support preview to open its repository CAD archive.</p>
+</div>
 
 ## Physical Prototype Gallery
 
