@@ -49,7 +49,12 @@ The final drivetrain uses **four custom A301 V3 swerve pods** and **eight A301 m
 
 ### 01 / [A301 Swerve Module](<A301 Swerve Module/>)
 
-![A301 V3 swerve module](<A301 Swerve Module/images/A301 Ratchet Swerve .75mm inc v6.png>)
+<div align="center">
+  <a href="https://drive.google.com/drive/folders/1PFXqzIjuWuJsmV0esLAgi1MbDl17urQ1" target="_blank" rel="noopener noreferrer" title="Open the current A301 V3.1 swerve pod CAD downloads">
+    <img src="A301%20Swerve%20Module/images/A301%20Ratchet%20Swerve%20.75mm%20inc%20v6.png" alt="Open the current A301 V3.1 swerve pod CAD downloads on Google Drive" width="720">
+  </a>
+  <p><strong>Current A301 V3.1 Swerve Pod CAD</strong><br>Click the preview to open the current pod files in Google Drive.</p>
+</div>
 
 The custom A301 swerve module project. The main folder documents the **V3.1** CNC-toleranced revision developed after the physical V3 build revealed an overly tight bearing hole. Repository CAD snapshots from V1 through V3 are preserved in `Legacy CAD`. [Download the current swerve pod CAD from Google Drive](https://drive.google.com/drive/folders/1PFXqzIjuWuJsmV0esLAgi1MbDl17urQ1).
 
@@ -66,7 +71,12 @@ The custom A301 swerve module project. The main folder documents the **V3.1** CN
 
 ### 02 / [A301 Mecanum Chassis](<A301 Mecanum Chassis/>)
 
-![A301 mecanum chassis CAD](A301%20Mecanum%20Chassis/images/cad-lower-mecanum-section.png)
+<div align="center">
+  <a href="https://drive.google.com/drive/folders/1Kuxc78ZMYxh6YiVGicnxMk1Pkc9k5txG" target="_blank" rel="noopener noreferrer" title="Open the current A301 mecanum chassis CAD downloads">
+    <img src="A301%20Mecanum%20Chassis/images/cad-lower-mecanum-section.png" alt="Open the current A301 mecanum chassis CAD downloads on Google Drive" width="720">
+  </a>
+  <p><strong>Current A301 Mecanum Chassis CAD</strong><br>Click the preview to open the current mecanum files in Google Drive.</p>
+</div>
 
 The simple mecanum prototype created during the first week of the internship. It provided a quick platform for testing Systemcore, Motioncore, A301 motors, and the 18-volt battery pack before the project moved deeper into custom swerve development.
 
@@ -86,7 +96,12 @@ During the final week, the chassis design was cut from metal so the nose drawer 
 
 ### 03 / [A301 Chassis Swechanum](<A301 Chassis Swechanum/>)
 
-![Updated A301 Swechanum chassis](A301%20Chassis%20Swechanum/images/updated-chassis-side.png)
+<div align="center">
+  <a href="https://drive.google.com/drive/folders/1VI5ETDA84Cjonxy1SA_M-wRaS0PLGz6y" target="_blank" rel="noopener noreferrer" title="Open the current A301 Swechanum robot CAD downloads">
+    <img src="A301%20Chassis%20Swechanum/images/cad-full-chassis.png" alt="Open the current A301 Swechanum robot CAD downloads on Google Drive" width="720">
+  </a>
+  <p><strong>Current A301 Swechanum Robot CAD</strong><br>Click the preview to open the complete robot files in Google Drive.</p>
+</div>
 
 The full hybrid prototype that combines the upper swerve structure with a lower mecanum base. This folder documents the chassis CAD reference and the updated physical robot. The current build has **four powered swerve pods, zero caster wheels, and zero powered mecanum motors**.
 

@@ -74,7 +74,14 @@ The lower mecanum wheels are not part of the powered drivetrain in the final rob
 
 The [`Legacy CAD`](<Legacy CAD/>) folder preserves the versioned repository archive, including the Systemcore Alpha STEP reference used during chassis packaging.
 
-[Download the current Swechanum CAD from Google Drive](https://drive.google.com/drive/folders/1VI5ETDA84Cjonxy1SA_M-wRaS0PLGz6y). The files were moved there because the complete Fusion 360 and STEP assemblies are too large for normal GitHub storage.
+The current files were moved to Google Drive because the complete Fusion 360 and STEP assemblies are too large for normal GitHub storage.
+
+<div align="center">
+  <a href="https://drive.google.com/drive/folders/1VI5ETDA84Cjonxy1SA_M-wRaS0PLGz6y" target="_blank" rel="noopener noreferrer" title="Open the current A301 Swechanum chassis CAD downloads">
+    <img src="images/cad-full-chassis.png" alt="Open the current A301 Swechanum chassis CAD downloads on Google Drive" width="720">
+  </a>
+  <p><strong>Current A301 Swechanum Robot CAD</strong><br>Click the CAD preview to open the complete Swechanum robot files in Google Drive.</p>
+</div>
 
 The image below is a reference render captured during development and may not include every final physical revision.
 
@@ -103,7 +110,7 @@ The image below is a reference render captured during development and may not in
 - Each pod uses one drive motor and one steering motor.
 - Systemcore and Motioncore control all eight powered A301 motors.
 - The four lower mecanum wheels are passive and use zero motors.
-- [Current full Swechanum CAD uploads are maintained on Google Drive](https://drive.google.com/drive/folders/1VI5ETDA84Cjonxy1SA_M-wRaS0PLGz6y), while the repository keeps only the versioned legacy archive.
+- Current full Swechanum CAD uploads are maintained through the preview link above, while the repository keeps only the versioned legacy archive.
 - The physical photos show the current robot more accurately than the earlier reference render.
 
 ---

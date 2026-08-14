@@ -31,7 +31,7 @@ The A301 V3.1 swerve module is a compact two-motor pod designed for the Systemco
 
 V3 introduced the slimmer design and replaced the V2.5 Axon 2.8:1 bevel with a 3.1:1 offset bevel set. Four V3 modules were CNC machined and installed on the final robot, using eight A301 motors across the complete swerve assembly. V3.1 keeps that drivetrain layout while correcting the manufacturing tolerances for CNC machining.
 
-The CAD snapshots stored in this repository are now considered legacy versions. [Download the current swerve pod CAD from Google Drive](https://drive.google.com/drive/folders/1PFXqzIjuWuJsmV0esLAgi1MbDl17urQ1).
+The CAD snapshots stored in this repository are now considered legacy versions. The current V3.1 download is presented in the CAD section below.
 
 | Module specification | V3.1 configuration |
 | --- | --- |
@@ -85,7 +85,15 @@ The [`Legacy CAD`](<Legacy CAD/>) folder preserves the older V1, V2, V2.25, V2.5
 | [`A301 Ratchet Swerve .75mm inc.step`](<Legacy CAD/V3/A301 Ratchet Swerve .75mm inc.step>) | STEP | Legacy neutral V3 module export |
 
 > [!IMPORTANT]
-> [Download the current V3.1 swerve pod CAD from Google Drive](https://drive.google.com/drive/folders/1PFXqzIjuWuJsmV0esLAgi1MbDl17urQ1). The repository archive remains available only for older versions and design-history reference.
+<div align="center">
+  <a href="https://drive.google.com/drive/folders/1PFXqzIjuWuJsmV0esLAgi1MbDl17urQ1" target="_blank" rel="noopener noreferrer" title="Open the current A301 V3.1 swerve pod CAD downloads">
+    <img src="images/A301%20Ratchet%20Swerve%20.75mm%20inc%20v6.png" alt="Open the current A301 V3.1 swerve pod CAD downloads on Google Drive" width="720">
+  </a>
+  <p><strong>Current A301 V3.1 Swerve Pod CAD</strong><br>Click the CAD preview to open the current swerve pod files in Google Drive.</p>
+</div>
+
+> [!TIP]
+> The image opens the current CAD download folder. The repository archive below remains available only for older versions and design-history reference.
 
 ### CAD Reference Views
 
