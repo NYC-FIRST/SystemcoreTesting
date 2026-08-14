@@ -12,6 +12,19 @@
 ![A301 V3 swerve module, underside view](<A301 Ratchet Swerve .75mm inc v62.png>)
 ![A301 V3 swerve module, top view](<A301 Ratchet Swerve .75mm inc v6.png>)
 
+## Physical Prototype
+
+<table>
+  <tr>
+    <td align="center"><img src="a301-swerve-pods-installed.png" alt="A301 swerve pods installed on the chassis"><br><strong>Pods installed on the chassis</strong></td>
+    <td align="center"><img src="a301-swerve-module-gearing.png" alt="A301 swerve module motors and gearing"><br><strong>Motors and gearing</strong></td>
+    <td align="center"><img src="a301-swerve-wheel-assembly.png" alt="A301 swerve wheel and steering assembly"><br><strong>Wheel and steering assembly</strong></td>
+  </tr>
+</table>
+
+> [!NOTE]
+> The ratchet is not installed on the current physical prototype because it could not be ordered in time for the build. The mounting holes are already included in the module, so the ratchet can be added later without redesigning the main structure.
+
 ## At a Glance
 
 | Area | Detail |
@@ -57,6 +70,7 @@
 - The wheel drive remains completely geared. Its power path is 64T to 64T, then 20T to 20T, followed by a 3.1:1 offset bevel set.
 - Unlike the Axon 2.8:1 bevel used in V2.5, V3 uses the offset 3.1:1 bevel.
 - The steering motor is directly attached to the center of rotation.
+- The current prototype does not have the ratchet installed because it could not be ordered in time. Its mounting holes are already present for a future installation.
 
 ## Older Versions
 
