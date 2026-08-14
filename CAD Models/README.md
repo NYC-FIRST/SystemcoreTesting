@@ -98,7 +98,7 @@ During the final week, the chassis design was cut from metal so the nose drawer 
 
 <div align="center">
   <a href="https://drive.google.com/drive/folders/1VI5ETDA84Cjonxy1SA_M-wRaS0PLGz6y" target="_blank" rel="noopener noreferrer" title="Open the current A301 Swechanum robot CAD downloads">
-    <img src="A301%20Chassis%20Swechanum/images/cad-full-chassis.png" alt="Open the current A301 Swechanum robot CAD downloads on Google Drive" width="720">
+    <img src="A301%20Chassis%20Swechanum/images/final-swechanum.png" alt="Open the current final four-pod A301 Swechanum robot CAD downloads on Google Drive" width="720">
   </a>
   <p><strong>Current A301 Swechanum Robot CAD</strong><br>Click the preview to open the complete robot files in Google Drive.</p>
 </div>

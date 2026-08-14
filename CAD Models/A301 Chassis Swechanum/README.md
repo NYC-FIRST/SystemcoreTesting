@@ -76,7 +76,7 @@ The latest Swechanum robot CAD is available through the preview below. The curre
 
 <div align="center">
   <a href="https://drive.google.com/drive/folders/1VI5ETDA84Cjonxy1SA_M-wRaS0PLGz6y" target="_blank" rel="noopener noreferrer" title="Open the current A301 Swechanum chassis CAD downloads">
-    <img src="images/cad-full-chassis.png" alt="Open the current A301 Swechanum chassis CAD downloads on Google Drive" width="720">
+    <img src="images/final-swechanum.png" alt="Open the current final four-pod A301 Swechanum chassis CAD downloads on Google Drive" width="720">
   </a>
   <p><strong>Current A301 Swechanum Robot CAD</strong><br>Click the CAD preview to open the complete Swechanum robot files in Google Drive.</p>
 </div>
@@ -88,9 +88,9 @@ The latest Swechanum robot CAD is available through the preview below. The curre
 
 The [`CAD archive`](<Legacy CAD/>) preserves the versioned repository files, including the Systemcore Alpha STEP reference used during chassis packaging.
 
-The image below is the updated final Swechanum CAD render with all four swerve pods installed.
+The image below is the archived earlier Swechanum CAD render from the two-pod development stage.
 
-![Final four-pod Swechanum chassis CAD render](images/cad-full-chassis.png)
+![Archived two-pod Swechanum chassis CAD render](images/cad-full-chassis.png)
 
 ## Physical Prototype Gallery
 
@@ -116,7 +116,7 @@ The image below is the updated final Swechanum CAD render with all four swerve p
 - Systemcore and Motioncore control all eight powered A301 motors.
 - The four lower mecanum wheels are passive and use zero motors.
 - Current full Swechanum CAD uploads are maintained through the preview link above, while the repository keeps only the versioned CAD archive.
-- The updated CAD render shows the final four-pod Swechanum layout.
+- The current download preview shows the final four-pod layout, while the CAD archive preserves the earlier two-pod render.
 
 ---
 
