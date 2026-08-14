@@ -7,13 +7,13 @@
 ![Build](https://img.shields.io/badge/Build-Week_1-6f42c1?style=flat-square)
 ![Wheels](https://img.shields.io/badge/Drive-4_Mecanum_Wheels-0a7f5a?style=flat-square)
 ![Battery](https://img.shields.io/badge/Battery-18_Volts-f57c00?style=flat-square)
-![CAD](https://img.shields.io/badge/CAD-Legacy_Archive-0078d4?style=flat-square)
+![CAD](https://img.shields.io/badge/CAD-Current_and_Archive-0078d4?style=flat-square)
 
 <img src="images/cad-lower-mecanum-section.png" alt="A301 mecanum chassis CAD" width="820">
 
 A fast mecanum test platform that established the first working drivetrain layout for the internship.
 
-[Read the overview](#project-overview) | [View legacy CAD](#legacy-cad) | [See the timeline](#project-timeline) | [Back to CAD Models](../)
+[Read the overview](#project-overview) | [View CAD](#cad) | [See the timeline](#project-timeline) | [Back to CAD Models](../)
 
 </div>
 
@@ -59,11 +59,9 @@ During the final week of the internship, the chassis parts were cut from metal a
 
 The mecanum chassis remained its own mini project even after the internship moved toward swerve. It documents the early drivetrain test platform and the final metal base that supported the mechanism work.
 
-## Legacy CAD
+## CAD
 
-The [`Legacy CAD`](<Legacy CAD/>) folder preserves the versioned record of the older repository CAD package. These archived files and records are kept only for project history.
-
-The current files were moved to Google Drive because the full Fusion 360 and STEP assemblies are too large for normal GitHub storage.
+The latest mecanum CAD is available through the preview below. The current files are maintained on Google Drive because the full Fusion 360 and STEP assemblies are too large for normal GitHub storage.
 
 <div align="center">
   <a href="https://drive.google.com/drive/folders/1Kuxc78ZMYxh6YiVGicnxMk1Pkc9k5txG" target="_blank" rel="noopener noreferrer" title="Open the current A301 mecanum chassis CAD downloads">
@@ -71,6 +69,13 @@ The current files were moved to Google Drive because the full Fusion 360 and STE
   </a>
   <p><strong>Current A301 Mecanum Chassis CAD</strong><br>Click the CAD preview to open the current mecanum chassis files in Google Drive.</p>
 </div>
+
+> [!TIP]
+> The image opens the current CAD download folder. Older repository CAD versions are available in the archive below.
+
+### CAD Archive
+
+The [`CAD archive`](<Legacy CAD/>) preserves the versioned record of the older repository CAD package for project history.
 
 The reference renders below remain available directly in the repository.
 
@@ -96,7 +101,7 @@ The reference renders below remain available directly in the repository.
 
 | Folder | Purpose |
 | --- | --- |
-| [`Legacy CAD`](<Legacy CAD/>) | Versioned archive and source-file status |
+| [`CAD archive`](<Legacy CAD/>) | Versioned archive and source-file status |
 | [`images`](images/) | Mecanum CAD renders and future physical-build photos |
 
 ## Build Notes

@@ -7,13 +7,13 @@
 ![Version](https://img.shields.io/badge/Version-V3.1-6f42c1?style=flat-square)
 ![Motors](https://img.shields.io/badge/Motors-2_A301-0a7f5a?style=flat-square)
 ![Reduction](https://img.shields.io/badge/Drive_Reduction-3.1%3A1-f57c00?style=flat-square)
-![CAD](https://img.shields.io/badge/CAD-Legacy_Archive-0078d4?style=flat-square)
+![CAD](https://img.shields.io/badge/CAD-Current_and_Archive-0078d4?style=flat-square)
 
 <img src="images/a301-swerve-pods-installed.png" alt="A301 V3 swerve pods installed on the robot" width="820">
 
 The updated custom swerve pod developed after manufacturing and testing the four-module A301 robot.
 
-[Watch the prototype](#prototype-video) | [Browse legacy CAD](#legacy-cad-archive) | [Review the design history](#design-history) | [Back to CAD Models](../)
+[Watch the prototype](#prototype-video) | [View CAD](#cad) | [Review the design history](#design-history) | [Back to CAD Models](../)
 
 </div>
 
@@ -75,16 +75,10 @@ The wheel and TPU tread are designed to be produced together in one print on a m
 > [!NOTE]
 > The ratchet is not installed on the current physical prototype because it could not be ordered in time for the build. The mounting holes are already included in the module, so the ratchet can be added later without redesigning the main structure.
 
-## Legacy CAD Archive
+## CAD
 
-The [`Legacy CAD`](<Legacy CAD/>) folder preserves the older V1, V2, V2.25, V2.5, and V3 source packages. These files document the design history and are not the current distribution location.
+The latest V3.1 CAD is available through the preview below.
 
-| Archived V3 file | Format | Purpose |
-| --- | --- | --- |
-| [`A301 Ratchet Swerve .75mm inc.f3z`](<Legacy CAD/V3/A301 Ratchet Swerve .75mm inc.f3z>) | Fusion 360 archive | Legacy editable V3 module assembly |
-| [`A301 Ratchet Swerve .75mm inc.step`](<Legacy CAD/V3/A301 Ratchet Swerve .75mm inc.step>) | STEP | Legacy neutral V3 module export |
-
-> [!IMPORTANT]
 <div align="center">
   <a href="https://drive.google.com/drive/folders/1PFXqzIjuWuJsmV0esLAgi1MbDl17urQ1" target="_blank" rel="noopener noreferrer" title="Open the current A301 V3.1 swerve pod CAD downloads">
     <img src="images/A301%20Ratchet%20Swerve%20.75mm%20inc%20v6.png" alt="Open the current A301 V3.1 swerve pod CAD downloads on Google Drive" width="720">
@@ -93,7 +87,16 @@ The [`Legacy CAD`](<Legacy CAD/>) folder preserves the older V1, V2, V2.25, V2.5
 </div>
 
 > [!TIP]
-> The image opens the current CAD download folder. The repository archive below remains available only for older versions and design-history reference.
+> The image opens the current CAD download folder. Older repository CAD versions are available in the archive below.
+
+### CAD Archive
+
+The [`CAD archive`](<Legacy CAD/>) preserves the older V1, V2, V2.25, V2.5, and V3 source packages for design-history reference.
+
+| Archived V3 file | Format | Purpose |
+| --- | --- | --- |
+| [`A301 Ratchet Swerve .75mm inc.f3z`](<Legacy CAD/V3/A301 Ratchet Swerve .75mm inc.f3z>) | Fusion 360 archive | Archived editable V3 module assembly |
+| [`A301 Ratchet Swerve .75mm inc.step`](<Legacy CAD/V3/A301 Ratchet Swerve .75mm inc.step>) | STEP | Archived neutral V3 module export |
 
 ### CAD Reference Views
 
@@ -116,7 +119,7 @@ The [`Legacy CAD`](<Legacy CAD/>) folder preserves the older V1, V2, V2.25, V2.5
 
 ## Design History
 
-The module was revised throughout the internship as the team tested packaging, steering, and power transmission. Repository copies are preserved in [`Legacy CAD`](<Legacy CAD/>), including [`V1`](<Legacy CAD/V1/>), [`V2`](<Legacy CAD/V2/>), [`V2.25`](<Legacy CAD/V2.25/>), [`V2.5`](<Legacy CAD/V2.5/>), and [`V3`](<Legacy CAD/V3/>).
+The module was revised throughout the internship as the team tested packaging, steering, and power transmission. Repository copies are preserved in the [`CAD archive`](<Legacy CAD/>), including [`V1`](<Legacy CAD/V1/>), [`V2`](<Legacy CAD/V2/>), [`V2.25`](<Legacy CAD/V2.25/>), [`V2.5`](<Legacy CAD/V2.5/>), and [`V3`](<Legacy CAD/V3/>).
 
 | Version | Main steering approach | Drive approach |
 | --- | --- | --- |
