@@ -7,13 +7,13 @@
 ![Build](https://img.shields.io/badge/Build-Week_1-6f42c1?style=flat-square)
 ![Wheels](https://img.shields.io/badge/Drive-4_Mecanum_Wheels-0a7f5a?style=flat-square)
 ![Battery](https://img.shields.io/badge/Battery-18_Volts-f57c00?style=flat-square)
-![CAD](https://img.shields.io/badge/CAD-Reference_Renders-0078d4?style=flat-square)
+![CAD](https://img.shields.io/badge/CAD-Legacy_Archive-0078d4?style=flat-square)
 
 <img src="images/cad-lower-mecanum-section.png" alt="A301 mecanum chassis CAD" width="820">
 
 A fast mecanum test platform that established the first working drivetrain layout for the internship.
 
-[Read the overview](#project-overview) | [View the CAD references](#cad-documentation) | [See the timeline](#project-timeline) | [Back to CAD Models](../)
+[Read the overview](#project-overview) | [View legacy CAD](#legacy-cad) | [See the timeline](#project-timeline) | [Back to CAD Models](../)
 
 </div>
 
@@ -59,9 +59,11 @@ During the final week of the internship, the chassis parts were cut from metal a
 
 The mecanum chassis remained its own mini project even after the internship moved toward swerve. It documents the early drivetrain test platform and the final metal base that supported the mechanism work.
 
-## CAD Documentation
+## Legacy CAD
 
-The final editable Fusion 360 and STEP files are maintained outside this public repository because they are too large for normal GitHub storage and this public fork cannot upload new Git LFS objects. The [`CAD`](CAD/) folder documents their repository status.
+The [`Legacy CAD`](<Legacy CAD/>) folder preserves the versioned record of the older repository CAD package. These archived files and records are kept only for project history.
+
+Current mecanum CAD uploads and future revisions were moved to Google Drive because the full Fusion 360 and STEP files are too large for normal GitHub storage.
 
 The reference renders below remain available directly in the repository.
 
@@ -87,7 +89,7 @@ The reference renders below remain available directly in the repository.
 
 | Folder | Purpose |
 | --- | --- |
-| [`CAD`](CAD/) | Status of the external final CAD source files |
+| [`Legacy CAD`](<Legacy CAD/>) | Versioned archive and source-file status |
 | [`images`](images/) | Mecanum CAD renders and future physical-build photos |
 
 ## Build Notes

@@ -7,13 +7,13 @@
 ![Swerve](https://img.shields.io/badge/Swerve_Pods-4_Powered-6f42c1?style=flat-square)
 ![Motors](https://img.shields.io/badge/Motors-8_A301-0a7f5a?style=flat-square)
 ![Mecanum](https://img.shields.io/badge/Mecanum_Motors-0_Passive-f57c00?style=flat-square)
-![CAD](https://img.shields.io/badge/CAD-Reference_Render-0078d4?style=flat-square)
+![CAD](https://img.shields.io/badge/CAD-Legacy_Archive-0078d4?style=flat-square)
 
 <img src="images/updated-chassis-front.png" alt="Final A301 Swechanum chassis" width="820">
 
 The final integrated robot developed from the mecanum base, custom swerve pods, and six weeks of Systemcore testing.
 
-[Watch the final robot](#final-robot-video) | [Review the architecture](#current-chassis-architecture) | [View the CAD reference](#cad-reference) | [Back to CAD Models](../)
+[Watch the final robot](#final-robot-video) | [Review the architecture](#current-chassis-architecture) | [View legacy CAD](#legacy-cad) | [Back to CAD Models](../)
 
 </div>
 
@@ -70,9 +70,11 @@ The lower mecanum wheels are not part of the powered drivetrain in the final rob
 | Lower mecanum | Four passive mecanum wheels | 0 |
 | **Total** | Final physical robot | **8** |
 
-## CAD Reference
+## Legacy CAD
 
-The final editable Fusion 360 and STEP files are maintained outside this public repository because they are too large for normal GitHub storage and this public fork cannot upload new Git LFS objects. The [`CAD`](CAD/) folder documents their repository status.
+The [`Legacy CAD`](<Legacy CAD/>) folder preserves the versioned repository archive, including the Systemcore Alpha STEP reference used during chassis packaging.
+
+Current Swechanum CAD uploads and future revisions were moved to Google Drive because the complete Fusion 360 and STEP assemblies are too large for normal GitHub storage.
 
 The image below is a reference render captured during development and may not include every final physical revision.
 
@@ -101,7 +103,7 @@ The image below is a reference render captured during development and may not in
 - Each pod uses one drive motor and one steering motor.
 - Systemcore and Motioncore control all eight powered A301 motors.
 - The four lower mecanum wheels are passive and use zero motors.
-- The oversized final Fusion 360 and STEP source files are stored outside this repository.
+- Current full CAD uploads are maintained on Google Drive, while the repository keeps only the versioned legacy archive.
 - The physical photos show the current robot more accurately than the earlier reference render.
 
 ---

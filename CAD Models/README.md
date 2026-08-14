@@ -6,7 +6,7 @@
 
 [![Systemcore](https://img.shields.io/badge/Systemcore-Alpha-6f42c1?style=flat-square)](https://github.com/NYC-FIRST/SystemcoreTesting/tree/Revlib4-testing)
 [![Motioncore](https://img.shields.io/badge/Motioncore-A301_Control-0a7f5a?style=flat-square)](https://github.com/NYC-FIRST/SystemcoreTesting/tree/Revlib4-testing)
-[![CAD](https://img.shields.io/badge/CAD-Fusion_360_%2B_STEP-f57c00?style=flat-square)](#cad-collection)
+[![CAD](https://img.shields.io/badge/CAD-Legacy_Archive-f57c00?style=flat-square)](#cad-collection)
 [![Robot Code](https://img.shields.io/badge/Robot_Code-Java-007396?style=flat-square)](https://github.com/NYC-FIRST/SystemcoreTesting/tree/Revlib4-testing/testprojects/robot%20test/src/main/java/first/robot)
 
 <img src="./A301%20Chassis%20Swechanum/images/updated-chassis-front.png" alt="Final A301 four-pod swerve robot" width="820">
@@ -31,6 +31,9 @@ The project began with a simple mecanum chassis for early Systemcore and Motionc
 
 The final drivetrain uses **four custom A301 V3 swerve pods** and **eight A301 motors**. Each pod has one drive motor and one steering motor. The lower mecanum wheels on the hybrid chassis are passive and use zero motors.
 
+> [!NOTE]
+> The STEP and Fusion 360 files kept in this repository are versioned legacy snapshots. Current CAD uploads and future revisions for all three mini projects were moved to Google Drive.
+
 | Final system | Configuration |
 | --- | --- |
 | Control hardware | Systemcore and Motioncore |
@@ -48,7 +51,7 @@ The final drivetrain uses **four custom A301 V3 swerve pods** and **eight A301 m
 
 ![A301 V3 swerve module](<A301 Swerve Module/A301 Ratchet Swerve .75mm inc v6.png>)
 
-The complete CAD package for the custom A301 swerve module. The main folder contains **V3**, the slimmer final module used on the current robot, with a Fusion 360 archive, STEP export, reference renders, gearing details, and build notes. Earlier V1, V2, and V2.5 designs are preserved in `Older Versions` to show how the mechanism changed during development.
+The custom A301 swerve module project. The main folder documents **V3**, the slimmer final physical module used on the current robot, with reference renders, gearing details, and build notes. Repository CAD snapshots from V1 through V3 are preserved in `Legacy CAD`, while current uploads moved to Google Drive.
 
 | Module specification | V3 design |
 | --- | --- |
@@ -67,7 +70,7 @@ The complete CAD package for the custom A301 swerve module. The main folder cont
 
 The simple mecanum prototype created during the first week of the internship. It provided a quick platform for testing Systemcore, Motioncore, A301 motors, and the 18-volt battery pack before the project moved deeper into custom swerve development.
 
-During the final week, the chassis design was cut from metal so the nose drawer could be mounted above it. The folder contains mecanum CAD reference renders, source-file status documentation, and space for real-life build photos.
+During the final week, the chassis design was cut from metal so the nose drawer could be mounted above it. The folder contains mecanum CAD reference renders, a versioned `Legacy CAD` archive, and space for real-life build photos. Current CAD uploads moved to Google Drive.
 
 | Chassis specification | Mecanum prototype |
 | --- | --- |
@@ -87,7 +90,7 @@ During the final week, the chassis design was cut from metal so the nose drawer 
 
 The full hybrid prototype that combines the upper swerve structure with a lower mecanum base. This folder documents the chassis CAD reference and the updated physical robot. The current build has **four powered swerve pods, zero caster wheels, and zero powered mecanum motors**.
 
-It also includes current chassis photos, final source-file status documentation, a full hybrid reference render, motor allocation, Systemcore and Motioncore layout, and the final robot video.
+It also includes current chassis photos, a versioned `Legacy CAD` archive, a full hybrid reference render, motor allocation, Systemcore and Motioncore layout, and the final robot video. Current CAD uploads moved to Google Drive.
 
 | Chassis specification | Final hybrid robot |
 | --- | --- |

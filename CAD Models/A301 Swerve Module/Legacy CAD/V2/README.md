@@ -3,6 +3,9 @@
 > [!NOTE]
 > CAD package for V2 of the A301-based swerve module used for Systemcore, Motioncore, and A301 testing.
 
+> [!IMPORTANT]
+> V2 is a legacy repository snapshot. Current CAD uploads moved to Google Drive.
+
 ![A301 swerve module V2](<IMG_20260723_203749662.jpg>)
 ![A301 swerve module V2](<IMG_20260723_203833159.jpg>)
 ![A301 swerve module V2](<IMG_20260723_203846978.jpg>)
@@ -56,3 +59,5 @@
 This model is an older prototype version (V2). It iterates on V1 by replacing the belted steering with a direct-driven bolted center shaft and using a fully geared drive path.
 
 </details>
+
+[Back to the Legacy CAD index](../)

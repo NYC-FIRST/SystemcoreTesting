@@ -1,6 +1,6 @@
 # A301 Swerve Module CAD (V2.5)
 
-V2.5 is an archived release. The current main design is V3 in the repository root.
+V2.5 is an archived release preserved as part of the module's design history. Current CAD uploads moved to Google Drive.
 
 ## V2.5 Design Summary
 
@@ -28,3 +28,5 @@ V2.5 is an archived release. The current main design is V3 in the repository roo
 | --- | --- |
 | [`A301 Swerve Direct turning V2.5.f3z`](<./A301 Swerve Direct turning V2.5.f3z>) | Fusion 360 archive |
 | [`A301 Swerve Direct turning V2.5.step`](<./A301 Swerve Direct turning V2.5.step>) | STEP export |
+
+[Back to the Legacy CAD index](../)

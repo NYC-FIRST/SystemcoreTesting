@@ -1,7 +1,10 @@
-# A301 Swerve Module CAD
+# A301 Swerve Module CAD V1
 
 > [!NOTE]
 > CAD package for an A301-based swerve module used for Systemcore, Motioncore, and A301 testing.
+
+> [!IMPORTANT]
+> V1 is a legacy repository snapshot. Current CAD uploads moved to Google Drive.
 
 ![A301 swerve module](<Screenshot 2026-07-21 220702.png>)
 
@@ -51,3 +54,5 @@
 This model is for bring-up and iteration, not a frozen production design. Use the CAD as a reference for A301 packaging, steering geometry, and early swerve-module testing.
 
 </details>
+
+[Back to the Legacy CAD index](../)
