@@ -90,8 +90,8 @@ The latest V3.1 CAD is available through the preview below.
 
 <table>
   <tr>
-    <td align="center"><img src="images/A301%20Ratchet%20Swerve%20.75mm%20inc%20v62.png" alt="A301 V3.1 swerve module underside CAD"><br><strong>Underside CAD</strong></td>
-    <td align="center"><img src="images/A301%20Ratchet%20Swerve%20.75mm%20inc%20v6.png" alt="A301 V3.1 swerve module top CAD"><br><strong>Top CAD</strong></td>
+    <td align="center"><picture><img src="images/A301%20Ratchet%20Swerve%20.75mm%20inc%20v62.png" alt="A301 V3.1 swerve module underside CAD" draggable="false"></picture><br><strong>Underside CAD</strong></td>
+    <td align="center"><picture><img src="images/A301%20Ratchet%20Swerve%20.75mm%20inc%20v6.png" alt="A301 V3.1 swerve module top CAD" draggable="false"></picture><br><strong>Top CAD</strong></td>
   </tr>
 </table>
 
@@ -113,9 +113,9 @@ The [`CAD archive`](<Legacy CAD/>) preserves the older V1, V2, V2.25, V2.5, and 
 
 <table>
   <tr>
-    <td align="center"><img src="images/a301-swerve-pods-installed.png" alt="A301 swerve pods installed on the chassis"><br><strong>Installed pods</strong></td>
-    <td align="center"><img src="images/a301-swerve-module-gearing.png" alt="A301 swerve module motors and gearing"><br><strong>Motors and gearing</strong></td>
-    <td align="center"><img src="images/a301-swerve-wheel-assembly.png" alt="A301 swerve wheel and steering assembly"><br><strong>Wheel assembly</strong></td>
+    <td align="center"><picture><img src="images/a301-swerve-pods-installed.png" alt="A301 swerve pods installed on the chassis" draggable="false"></picture><br><strong>Installed pods</strong></td>
+    <td align="center"><picture><img src="images/a301-swerve-module-gearing.png" alt="A301 swerve module motors and gearing" draggable="false"></picture><br><strong>Motors and gearing</strong></td>
+    <td align="center"><picture><img src="images/a301-swerve-wheel-assembly.png" alt="A301 swerve wheel and steering assembly" draggable="false"></picture><br><strong>Wheel assembly</strong></td>
   </tr>
 </table>
 
