@@ -9,7 +9,9 @@
 [![CAD](https://img.shields.io/badge/CAD-Legacy_Archive-f57c00?style=flat-square)](#cad-collection)
 [![Robot Code](https://img.shields.io/badge/Robot_Code-Java-007396?style=flat-square)](https://github.com/NYC-FIRST/SystemcoreTesting/tree/Revlib4-testing/testprojects/robot%20test/src/main/java/first/robot)
 
-<img src="./A301%20Chassis%20Swechanum/images/updated-chassis-front.png" alt="Completed A301 four-pod Swechanum robot viewed from the front" width="820">
+<picture>
+  <img src="./A301%20Chassis%20Swechanum/images/updated-chassis-front.png" alt="Completed A301 four-pod Swechanum robot viewed from the front" width="820" draggable="false">
+</picture>
 
 This folder collects the CAD and build history for the A301 drivetrain prototypes developed during a six-week internship at the NYC FIRST Cornell Tech STEM Center.
 
@@ -133,8 +135,6 @@ The CAD folders preserve the mechanical progression from the first mecanum base 
 
 > [!IMPORTANT]
 > This code folder contains the robot work completed throughout the six-week internship. It includes the earlier prototypes, mechanism tests, and the final code used to drive the four-pod swerve robot shown in the Instagram Reel.
-
-### [Open the complete robot code on GitHub](https://github.com/NYC-FIRST/SystemcoreTesting/tree/Revlib4-testing/testprojects/robot%20test/src/main/java/first/robot)
 
 | Code area | Purpose |
 | --- | --- |

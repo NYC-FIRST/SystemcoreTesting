@@ -84,12 +84,6 @@ The latest mecanum CAD is available through the preview below. The current files
 | Later development | Used lessons from the mecanum platform while developing the custom swerve system |
 | Final week | Cut the chassis from metal and prepared the upper surface for the nose drawer |
 
-## Folder Contents
-
-| Folder | Purpose |
-| --- | --- |
-| [`images`](images/) | Mecanum CAD renders and future physical-build photos |
-
 ## Build Notes
 
 - This was the first complete drivetrain mini project of the internship.

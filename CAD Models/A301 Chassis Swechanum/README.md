@@ -9,7 +9,9 @@
 ![Mecanum](https://img.shields.io/badge/Mecanum_Motors-0_Passive-f57c00?style=flat-square)
 ![CAD](https://img.shields.io/badge/CAD-Current_and_Archive-0078d4?style=flat-square)
 
-<img src="images/updated-chassis-front.png" alt="Completed A301 Swechanum chassis viewed from the front" width="820">
+<picture>
+  <img src="images/updated-chassis-front.png" alt="Completed A301 Swechanum chassis viewed from the front" width="820" draggable="false">
+</picture>
 
 The final integrated robot developed from the mecanum base, custom swerve pods, and six weeks of Systemcore testing.
 
@@ -99,19 +101,12 @@ The [`CAD archive`](<Legacy CAD/>) preserves the older Systemcore Alpha STEP ref
 
 <table>
   <tr>
-    <td align="center"><img src="images/updated-chassis-side.png" alt="Completed Swechanum robot viewed from the side"><br><strong>Completed robot</strong></td>
-    <td align="center"><img src="images/updated-chassis-angle.png" alt="Swechanum robot showing the final electronics and chassis packaging"><br><strong>Final electronics and chassis packaging</strong></td>
+    <td align="center"><picture><img src="images/updated-chassis-side.png" alt="Completed Swechanum robot viewed from the side" draggable="false"></picture><br><strong>Completed robot</strong></td>
+    <td align="center"><picture><img src="images/updated-chassis-angle.png" alt="Lower wide-angle view of the Swechanum chassis" draggable="false"></picture><br><strong>Lower wide-angle chassis view</strong></td>
   </tr>
 </table>
 
 These build photos show the four-pod robot from multiple angles, including the installed Systemcore and Motioncore hardware, finished wiring, and passive lower mecanum wheels.
-
-## Related Mini Projects
-
-| Project | Relationship to this chassis |
-| --- | --- |
-| [`A301 Swerve Module`](../A301%20Swerve%20Module/) | Documents the V3 drive-and-steer pod used four times on the final robot |
-| [`A301 Mecanum Chassis`](../A301%20Mecanum%20Chassis/) | Documents the earlier mecanum test base and final metal chassis work |
 
 ## Build Notes
 
