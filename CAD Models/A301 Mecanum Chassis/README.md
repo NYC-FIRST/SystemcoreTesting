@@ -9,7 +9,9 @@
 ![Battery](https://img.shields.io/badge/Battery-18_Volts-f57c00?style=flat-square)
 ![CAD](https://img.shields.io/badge/CAD-Current-0078d4?style=flat-square)
 
-<img src="images/cad-lower-mecanum-section.png" alt="A301 mecanum chassis CAD" width="820">
+<picture>
+  <img src="images/mecanum-chassis-prototype.jpg" alt="Physical A301 mecanum chassis with Systemcore and Motioncore hardware" width="820" draggable="false">
+</picture>
 
 A fast mecanum test platform that established the first working drivetrain layout for the internship.
 
